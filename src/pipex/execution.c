@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:07:30 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 11:08:02 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:59:00 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,17 +110,17 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 			return (result);
 		i++;
 	}
-	ft_printf("Marinashell: %s: command not found!\n", result);
+	// ft_printf("Marinashell: %s: command not found!\n", result);
 	return (NULL);
 }
 
 void	ft_execve(t_shell *shell)
 {
-	char		*path;
-	char		*cmd;
-	char		*aux;
-	char		**str;
-	char		**envp;
+	char	*path;
+	char	*cmd;
+	char	*aux;
+	char	**str;
+	char	**envp;
 
 	cmd = ft_strdup("/");
 	aux = cmd;
@@ -128,9 +128,15 @@ void	ft_execve(t_shell *shell)
 	path = ft_find_path(shell, cmd);
 	str = ft_pointer_str(shell);
 	envp = ft_update_envp(shell);
+	printf("entrada 1\n");
 	ft_process(path, str, envp);
-	ft_free_double(str);
+	printf("entrada 2\n");
+	if (str != NULL)
+		ft_free_double(str);
+	printf("entrada 3\n");
 	ft_free_double(envp);
-	free(cmd);
-	free(path);
+	if (cmd != NULL)
+		free(cmd);
+	if (path != NULL)
+		free(path);
 }

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 10:58:41 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:20:10 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_check_number(t_shell *shell)
 	else
 	{
 		ft_printf("exit\n");
-		printf("marinashell: exit: %s: numeric argument required\n",
+		ft_printf("marinashell: exit: %s: numeric argument required\n",
 			tmp->str);
 		ft_free_exit(shell);
 		exit(255);

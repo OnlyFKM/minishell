@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 14:02:10 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/02/29 19:03:49 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	ft_builtins(t_shell *shell)
 		ft_export(shell);
 	else if (ft_strncmp(shell->tokens->str, "cd\0", 3) == EXIT_SUCCESS)
 		ft_cd(shell);
-	else
-		ft_printf("entro aqui\n");
 }
 
 void	ft_loop(t_shell *shell)

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:58:50 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 14:00:09 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/04 12:23:45 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	ft_cd_next(t_shell *shell)
 	else if (flag == 0)
 	{
 		ft_oldpwd(shell);
+		/* if (shell->tmp_cd != NULL)
+			free(shell->tmp_cd); */
 		shell->tmp_cd = ft_strdup(cwd);
 		ft_change_pwd(shell);
 	}
@@ -79,7 +81,7 @@ void	ft_cd(t_shell *shell)
 	}
 	else
 		ft_cd_next(shell);
-	if (shell->tmp_cd)
+	if (shell->tmp_cd != NULL)
 		free(shell->tmp_cd);
 	shell->tmp_cd = NULL;
 }
