@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:22:15 by yfang             #+#    #+#             */
-/*   Updated: 2024/02/27 14:59:58 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/06 12:44:30 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ void	ft_tokenizer(t_shell *shell)
 			ft_token(shell, &i);
 		else if (shell->line[i] == '\'' || shell->line[i] == '\"')
 			ft_token_in_quotes(shell, &i);
-		while (ft_isspace(shell->line[i]))
-			i++;
+		else if (shell->line[i] == '>' || shell->line[i] == '<')
+			ft_token_redirections(shell, &i);
+		else if (shell->line[i] == '|')
+			ft_init_token(shell, PIPE, "|");
+		i++;
 	}
 }

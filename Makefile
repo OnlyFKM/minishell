@@ -13,6 +13,7 @@ SRCS =  src/minishell.c\
 	src/init/init.c\
 	src/init/tokens.c\
 	src/init/tokeneizer.c\
+	src/init/tokeneizer2.c\
 	src/free/free.c
 
 CC = gcc
@@ -30,6 +31,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
 
 $(NAME): $(OBJS)
+	ar rcs minishell.a $(OBJS)
 	@$(CC) -g $(CFLAGS) $(LIBFT)/libft.a $(OBJS) $(HEADERS) $(INCLUDES) -o $(NAME)
 
 $(LIBFT)/libft.a:

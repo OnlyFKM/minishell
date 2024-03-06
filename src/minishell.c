@@ -51,7 +51,7 @@ int	main(int argc, char *argv[], char **envp)
 	(void)argv;
 	if (argc == 1)
 	{
-		/* ft_welcome(); */
+		ft_welcome();
 		shell = ft_calloc(1, sizeof(t_shell));
 		ft_init(shell, envp);
 		ft_loop(shell);

@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:40:30 by yfang             #+#    #+#             */
-/*   Updated: 2024/02/26 16:29:10 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/05 16:55:59 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ void		ft_init_token(t_shell *shell, int type, char *str);
 //		tokenizer
 void		ft_token(t_shell *shell, int *i);
 void		ft_token_in_quotes(t_shell *shell, int *i);
+//		tokenizer2
+void		ft_token_redirections(t_shell *shell, int *i);
 //	Utils
 //		messages
 void		ft_welcome(void);

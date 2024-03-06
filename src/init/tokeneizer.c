@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:40:13 by yfang             #+#    #+#             */
-/*   Updated: 2024/02/29 15:29:59 by yfang            ###   ########.fr       */
+/*   Updated: 2024/02/29 17:41:46 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ft_quotes(t_shell *shell, int *i)
 			(*i)++;
 			j++;
 		}
+		(*i)++;
 	}
 	else if (shell->line[*i] == '\"')
 	{
@@ -34,6 +35,7 @@ int	ft_quotes(t_shell *shell, int *i)
 			(*i)++;
 			j++;
 		}
+		(*i)++;
 	}
 	return (j);
 }
