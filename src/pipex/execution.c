@@ -6,34 +6,38 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:07:30 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/04 12:59:00 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/11 16:57:38 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_process(char *path, char **str, char **envp)
+/* void	ft_process(char *path, char **str, char **envp)
 {
 	pid_t	pid;
 	int		status;
+	int		fd;
 
 	pid = fork();
 	if (pid == -1)
 		exit(EXIT_FAILURE);
 	else if (pid == 0)
 	{
+		fd = open("/fd", O_WRONLY);
+		if (fd == -1)
+			exit(EXIT_FAILURE);
+		if (dup2(fd, STDOUT_FILENO) == -1)
+			exit(EXIT_FAILURE);
 		if (execve(path, str, envp) == -1)
-		{
-			ft_printf("Marinashell: %s: command not found!\n", str[0]);
-			exit(127);
-		}
+			ft_printf("marinashell: %s: command not found!\n", str[0]);
+		exit (EXIT_FAILURE);
 	}
 	else
 	{
 		if (waitpid(pid, &status, 0) == -1)
 			exit(EXIT_FAILURE);
 	}
-}
+} */
 
 char	**ft_pointer_str(t_shell *shell)
 {
@@ -110,7 +114,6 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 			return (result);
 		i++;
 	}
-	// ft_printf("Marinashell: %s: command not found!\n", result);
 	return (NULL);
 }
 
@@ -128,15 +131,32 @@ void	ft_execve(t_shell *shell)
 	path = ft_find_path(shell, cmd);
 	str = ft_pointer_str(shell);
 	envp = ft_update_envp(shell);
-	printf("entrada 1\n");
-	ft_process(path, str, envp);
-	printf("entrada 2\n");
+	//ft_process(path, str, envp);
+	execve(path, str, envp);
 	if (str != NULL)
 		ft_free_double(str);
-	printf("entrada 3\n");
 	ft_free_double(envp);
 	if (cmd != NULL)
 		free(cmd);
 	if (path != NULL)
 		free(path);
 }
+
+void	ft_execve_one(t_shell *shell)
+{
+	char	**str;
+	int		pid;
+
+	str = ft_pointer_str(shell);
+	pid = fork();
+	if (pid == 0)
+	{
+		ft_execve(shell);
+		ft_printf("marinashell: %s: command not found!\n", str[0]);
+		exit (127);
+	}
+	else
+		waitpid(pid, NULL, 0);
+	free(str);
+}
+                                                                                            

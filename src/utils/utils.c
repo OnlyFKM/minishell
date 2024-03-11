@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:16:46 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 13:51:04 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/11 13:53:39 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ void	ft_check_builtings(t_shell *shell)
 			tmp->type = 3;
 		if (tmp->next)
 			tmp = tmp->next;
-		else
-			break ;
+		break ;
 	}
 }
 
@@ -52,7 +51,7 @@ void	ft_count_cmd(t_shell *shell)
 	while (tmp)
 	{
 		if ((tmp->type == 0) || (tmp->type == 1))
-			tmp->count_cmd++;
+			shell->count_cmd++;
 		if (tmp->next)
 			tmp = tmp->next;
 		else

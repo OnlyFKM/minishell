@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 19:20:10 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:25:10 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_check_number(t_shell *shell)
 		if (!tmp->next)
 			ft_status_exit(shell, ft_atoi(tmp->str));
 		if (tmp->next)
-			ft_printf("exit\nbash: exit: too many arguments\n");
+			ft_printf("exit\nmarinashell: exit: too many arguments\n");
 	}
 	else
 	{

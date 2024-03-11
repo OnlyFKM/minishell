@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 12:56:55 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:49:48 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_tokens
 	int				type;
 	// int				space;
 	int				n_words;
-	int				count_cmd;
 	// struct s_tokens	*prev;
 	struct s_tokens	*next;
 }					t_tokens;
@@ -51,6 +50,7 @@ typedef struct s_shell
 	char			*line;
 	char			*tmp_cd;
 	char			*pwd;
+	int				count_cmd;
 }					t_shell;
 
 // main.c
@@ -164,8 +164,11 @@ void				ft_execve(t_shell *shell);
 char				*ft_find_path(t_shell *shell, char *cmd);
 char				**ft_update_envp(t_shell *shell);
 char				**ft_pointer_str(t_shell *shell);
+void				ft_execve_one(t_shell *shell);
 
-// execution_utils.c
-void				ft_process(char *path, char **str, char **envp);
+//	planner.c
+void				ft_more_cmds(t_shell *shell, t_tokens *tokens);
+void				ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
+void				ft_child(t_shell *shell, t_tokens *tokens, int *fd);
 
 #endif

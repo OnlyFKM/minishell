@@ -6,35 +6,11 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 19:03:49 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/11 15:25:10 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-/* int	ft_check_builtins(t_shell *shell)
-{
-	if (ft_strncmp(shell->prueba->str, "pwd\0", 4) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else if (ft_strncmp(shell->prueba->str, "echo\0", 5) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else if (ft_strncmp(shell->prueba->str, "game\0", 5) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else if (ft_strncmp(shell->prueba->str, "marina\0", 7) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else if (ft_strncmp(shell->prueba->str, "env\0", 4) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else if (ft_strncmp(shell->prueba->str, "exit\0", 5) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else if (ft_strncmp(shell->prueba->str, "unset\0", 6) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else if (ft_strncmp(shell->prueba->str, "export\0", 7) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else if (ft_strncmp(shell->prueba->str, "cd\0", 3) == EXIT_SUCCESS)
-		return (EXIT_SUCCESS);
-	else
-		return (EXIT_FAILURE);
-} */
 
 void	ft_builtins(t_shell *shell)
 {
@@ -69,15 +45,15 @@ void	ft_loop(t_shell *shell)
 		if (!ft_whitespace(shell->line))
 		{
 			ft_count_cmd(shell);
-			if (shell->tokens->count_cmd == 1)
+			if (shell->count_cmd == 1)
 			{
 				if (shell->tokens->type == 0)
 					ft_builtins(shell);
 				else
-					ft_execve(shell);
+					ft_execve_one(shell);
 			}
-			/*if (shell->count_cmd > '1')
-					ft_more_cmds(shell); */
+			if (shell->count_cmd >= 2)
+				ft_more_cmds(shell, shell->tokens);
 		}
 		ft_free_loop(shell);
 	}
@@ -92,7 +68,6 @@ int	main(int argc, char *argv[], char **envp)
 	{
 		ft_welcome();
 		shell = ft_calloc(1, sizeof(t_shell));
-		//*tokens = ft_calloc(1, sizeof(t_tokens));
 		ft_init(shell, envp);
 		ft_loop(shell);
 	}

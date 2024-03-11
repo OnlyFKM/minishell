@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:33:00 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 11:01:39 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/05 11:47:49 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	ft_create_node_env(t_env *env)
 
 	new_node = ft_calloc(1, sizeof(t_env));
 	if (new_node == NULL)
-		ft_printf("Error calloc env\n");
+		ft_printf("marinashell: error calloc env\n");
 	new_node->content = NULL;
 	new_node->name = NULL;
 	new_node->next = NULL;
