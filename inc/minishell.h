@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:40:30 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/05 16:55:59 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/13 19:13:16 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,24 @@ char		*ft_strndup(const char *s, size_t n);
 t_tokens	*ft_newtoken(int type, char *str);
 void		ft_addbacktoken(t_tokens **token, t_tokens *new);
 t_tokens	*ft_lasttoken(t_tokens *token);
+//		list
+int			ft_nodesize(t_env *env);
+void		ft_nodeadd_back(t_env *env, t_env *new);
+t_env		*ft_nodelast(t_env *env);
+//	Tokendepure
+//		expand
+void		ft_expand(t_shell *shell);
+/* void		ft_expand(t_shell *shell); */
+//	Builtins
+//		env
+void		ft_env(t_env *env, char **envp);
+void		ft_search_oldpwd(t_env *env);
+void		ft_create_node_env(t_env *env);
+void		ft_print_env(t_env *env);
+void		ft_dupenvp(t_shell *shell, char **envp);
 //	Free
 void		ft_free_loop(t_shell *shell);
+
+# define END "\033[0m"
 
 #endif

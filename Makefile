@@ -8,12 +8,15 @@ INCLUDES = -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 SRCS =  src/minishell.c\
 	src/utils/messages.c\
 	src/utils/t_tokens.c\
+	src/utils/list.c\
 	src/utils/is.c\
 	src/utils/libftplus.c\
 	src/init/init.c\
 	src/init/tokens.c\
 	src/init/tokeneizer.c\
 	src/init/tokeneizer2.c\
+	src/tokendepure/expand.c\
+	src/builtins/env.c\
 	src/free/free.c
 
 CC = gcc
@@ -38,7 +41,7 @@ $(LIBFT)/libft.a:
 	@make -C $(LIBFT)
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/utils $(OBJ_DIR)/init $(OBJ_DIR)/builtins $(OBJ_DIR)/free
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/utils $(OBJ_DIR)/init $(OBJ_DIR)/builtins $(OBJ_DIR)/tokendepure $(OBJ_DIR)/free
 
 clean:
 	@rm -rf $(OBJ_DIR)
