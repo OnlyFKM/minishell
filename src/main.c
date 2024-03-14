@@ -6,11 +6,42 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/14 15:23:41 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:01:32 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	ft_leaks(void)
+{
+	system("leaks -q minishell");
+}
+
+void	ft_view(t_shell *shell)
+{
+	t_tokens	*tmp;
+	t_env		*aux;
+
+	tmp = shell->tokens;
+	aux = shell->env;
+	while (tmp)
+	{
+		ft_printf("%s%s, %i, %i%s\n", YELLOW, tmp->str, tmp->type, tmp->space,
+			END);
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			break ;
+	}
+	while (aux)
+	{
+		// ft_printf("%s, %s\n", aux->name, aux->content);
+		if (aux->next)
+			aux = aux->next;
+		else
+			break ;
+	}
+}
 
 void	ft_builtins(t_shell *shell)
 {
@@ -41,9 +72,10 @@ void	ft_loop(t_shell *shell)
 		shell->line = readline("marinashell$ ");
 		if (ft_strncmp(shell->line, "\0", 1))
 			add_history(shell->line);
-		shell->tokens = ft_tokenize(shell, shell->line);
 		if (!ft_whitespace(shell->line))
 		{
+			ft_tokenizer(shell);
+			/* 		ft_expand(shell); */
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
 			{
@@ -55,7 +87,9 @@ void	ft_loop(t_shell *shell)
 			/* if (shell->count_cmd >= 2)
 				ft_more_cmds(shell, shell->tokens); */
 		}
+		ft_view(shell); // borrar
 		ft_free_loop(shell);
+		// exit(0);
 	}
 }
 
@@ -63,6 +97,7 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_shell	*shell;
 
+	atexit(ft_leaks);
 	(void)argv;
 	if (argc == 1)
 	{

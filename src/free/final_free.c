@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:22:28 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/11 14:00:37 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:02:05 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,10 @@ void	ft_free_exit(t_shell *shell)
 {
 	ft_free_double(shell->envp);
 	ft_free_env(shell->env);
-	ft_prueba(shell->tokens);
+	ft_prueba(&shell->tokens);
 	free(shell->line);
 	free(shell->pwd);
 	free(shell);
-}
-
-void	ft_prueba(t_tokens *prueba)
-{
-	t_tokens	*current;
-	t_tokens	*tmp;
-
-	current = prueba;
-	while (current)
-	{
-		if (current->str)
-			free(current->str);
-		tmp = current;
-		current = current->next;
-		free(tmp);
-	}
 }
 
 void	ft_free_env(t_env *env)
@@ -56,7 +40,7 @@ void	ft_free_env(t_env *env)
 	}
 }
 
-void	ft_free_double(char	**str)
+void	ft_free_double(char **str)
 {
 	int	i;
 
