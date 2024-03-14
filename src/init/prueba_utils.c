@@ -1,38 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   prueba_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 18:00:15 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/11 14:44:32 by frcastil         ###   ########.fr       */
+/*   Created: 2024/02/07 15:21:01 by frcastil          #+#    #+#             */
+/*   Updated: 2024/02/29 13:01:45 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_prueba(t_tokens **prueba)
+int	ft_prueba_size(t_tokens *prueba)
 {
+	int			i;
 	t_tokens	*current;
-	t_tokens	*tmp;
 
-	current = *prueba;
-	while (current)
+	if (!prueba)
+		return (0);
+	i = 1;
+	current = prueba;
+	while (current->next)
 	{
-		tmp = current->next;
-		free(current->str);
-		current->str = NULL;
-		free(current);
-		current = NULL;
-		current = tmp;
+		i++;
+		current = current->next;
 	}
+	return (i);
 }
 
-void	ft_free_loop(t_shell *shell)
+t_tokens	*ft_initialize_list(void)
 {
-	ft_prueba(&shell->tokens);
-	shell->tokens = NULL;
-	shell->count_cmd = 0;
-	free(shell->line);
+	return (NULL);
+}
+
+void	ft_skip_special_chars(char **start)
+{
+	while (ft_special_char(**start))
+		(*start)++;
+}
+
+void	ft_find_token_end(char **start, char **end)
+{
+	*end = *start;
+	while (!ft_special_char(**end) && **end)
+		(*end)++;
 }
