@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 16:39:05 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/07 17:22:03 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/14 15:17:45 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_view(t_shell *shell)
 	aux = shell->env;
 	while (tmp)
 	{
-		ft_printf("%s%s, %i, %i%s", YELLOW, tmp->str, tmp->type, tmp->space, END);
+		ft_printf("%s%s, %i, %i%s\n", YELLOW, tmp->str, tmp->type, tmp->space, END);
 		if (tmp->next)
 			tmp = tmp->next;
 		else
@@ -45,7 +45,7 @@ void	ft_loop(t_shell *shell)
 /* 		if (ft_strncmp(shell->line, "\0", 1))
 			add_history(shell->line); */
 		ft_tokenizer(shell);
-		ft_expand(shell);
+/* 		ft_expand(shell); */
 		if (ft_strncmp(shell->tokens->str, "exit", 4) == 0)
 			exit(1);
 		if (ft_strncmp(shell->tokens->str, "env", 3) == 0)
