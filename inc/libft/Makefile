@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yfang <yfang@student.42.fr>                +#+  +:+       +#+         #
+#    By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 12:46:13 by yfang             #+#    #+#              #
-#    Updated: 2024/02/07 16:59:22 by yfang            ###   ########.fr        #
+#    Updated: 2024/03/14 16:00:10 by frcastil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC = src/ft_isalpha.c src/ft_isdigit.c src/ft_isalnum.c src/ft_isascii.c\
 	src/ft_putendl_fd.c src/ft_putnbr_fd.c src/ft_lstnew_bonus.c src/ft_lstadd_front_bonus.c\
 	src/ft_lstsize_bonus.c src/ft_lstlast_bonus.c src/ft_lstadd_back_bonus.c src/ft_lstdelone_bonus.c\
 	src/ft_lstclear_bonus.c src/ft_lstiter_bonus.c src/ft_lstmap_bonus.c src/ft_printf.c\
-	src/ft_words.c src/ft_num.c src/get_next_line_bonus.c src/get_next_line_utils_bonus.c
+	src/ft_words.c src/ft_num.c src/get_next_line_bonus.c src/get_next_line_utils_bonus.c\
+	src/ft_strcmp.c src/ft_isalpha_char.c\
 
 OBJ = $(SRC:src/%.c=obj/%.o)
 

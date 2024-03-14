@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:07:30 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/11 16:57:38 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:02:37 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 	}
 } */
 
-char	**ft_pointer_str(t_shell *shell)
+/* char	**ft_pointer_str(t_shell *shell)
 {
 	t_tokens	*aux;
 	char		**tmp;
@@ -158,5 +158,5 @@ void	ft_execve_one(t_shell *shell)
 	else
 		waitpid(pid, NULL, 0);
 	free(str);
-}
+} */
                                                                                             
