@@ -12,9 +12,27 @@
 
 #include "../../inc/minishell.h"
 
+void	ft_prueba(t_tokens **prueba)
+{
+	t_tokens	*current;
+	t_tokens	*tmp;
+
+	current = *prueba;
+	while (current)
+	{
+		tmp = current->next;
+		free(current->str);
+		current->str = NULL;
+		free(current);
+		current = NULL;
+		current = tmp;
+	}
+}
+
 void	ft_free_loop(t_shell *shell)
 {
-	ft_prueba(shell->tokens);
+	ft_prueba(&shell->tokens);
+	shell->tokens = NULL;
 	shell->count_cmd = 0;
 	free(shell->line);
 }

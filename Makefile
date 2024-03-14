@@ -1,16 +1,23 @@
 NAME = minishell
 
-CFLAGS = -Wextra -Wall -Werror
+CFLAGS = -g -Wextra -Wall -Werror
 LIBFT = ./inc/libft
-HEADERS = -I ./include -I /System/Volumes/Data/Users/$(USER)/.brew/Cellar/readline/8.2.7/include/
+HEADERS = -I ./include -I /System/Volumes/Data/Users/$(USER)/.brew/Cellar/readline/8.2.7
 INCLUDES = -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 
-SRCS = src/main.c\
-	src/utils/welcome.c src/utils/utils.c src/utils/list.c\
-	src/init/init.c src/init/prueba.c src/init/prueba_utils.c\
-	src/builtins/basics.c src/builtins/cd.c src/builtins/cd_utils.c src/builtins/echo.c src/builtins/env.c src/builtins/export.c src/builtins/export_utils.c src/builtins/unset.c\
-	src/free/free.c src/free/final_free.c\
-	src/pipex/execution.c src/pipex/planner.c\
+SRCS =  src/minishell.c\
+	src/utils/messages.c\
+	src/utils/t_tokens.c\
+	src/utils/list.c\
+	src/utils/is.c\
+	src/utils/libftplus.c\
+	src/init/init.c\
+	src/init/tokens.c\
+	src/init/tokeneizer.c\
+	src/init/tokeneizer2.c\
+	src/tokendepure/expand.c\
+	src/builtins/env.c\
+	src/free/free.c
 
 CC = gcc
 
@@ -27,13 +34,14 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
 
 $(NAME): $(OBJS)
+	ar rcs minishell.a $(OBJS)
 	@$(CC) -g $(CFLAGS) $(LIBFT)/libft.a $(OBJS) $(HEADERS) $(INCLUDES) -o $(NAME)
 
 $(LIBFT)/libft.a:
 	@make -C $(LIBFT)
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/utils $(OBJ_DIR)/init $(OBJ_DIR)/builtins $(OBJ_DIR)/free $(OBJ_DIR)/pipex
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/utils $(OBJ_DIR)/init $(OBJ_DIR)/builtins $(OBJ_DIR)/tokendepure $(OBJ_DIR)/free
 
 clean:
 	@rm -rf $(OBJ_DIR)

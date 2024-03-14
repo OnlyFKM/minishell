@@ -1,42 +1,61 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yfang <yfang@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/21 12:46:13 by yfang             #+#    #+#              #
+#    Updated: 2024/02/07 16:59:22 by yfang            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libft.a
 
-FILES = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c\
-    ft_isalpha.c ft_isascii.c ft_isdigit.c ft_isprint.c\
-    ft_itoa.c ft_lstnew_bonus.c ft_lstadd_front_bonus.c\
-    ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c\
-    ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c\
-    ft_lstmap_bonus.c ft_memchr.c ft_memcmp.c ft_memcpy.c\
-    ft_memmove.c ft_memset.c ft_printchar.c ft_printdec.c\
-    ft_printf.c ft_printhexa.c ft_printptr.c ft_printstr.c\
-    ft_printunsigned.c ft_putchar_fd.c ft_putchar.c ft_putendl_fd.c\
-    ft_putnbr_fd.c ft_putnbr.c ft_putstr_fd.c ft_split.c\
-    ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strcmp.c\
-    ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c\
-    ft_strncmp.c ft_strnstr.c ft_strtrim.c ft_substr.c\
-    ft_tolower.c ft_toupper.c ft_isalpha_char.c\
-    get_next_line_utils.c get_next_line.c\
+CC = cc
+CFLAGS =  -Wall -Wextra -Werror
+ARFLAGS = ar -rcs
+REMOVE = rm -rf
 
-OBJECTS = $(patsubst %,tmp/%,$(notdir $(FILES:.c=.o)))
+SRC = src/ft_isalpha.c src/ft_isdigit.c src/ft_isalnum.c src/ft_isascii.c\
+	src/ft_isprint.c src/ft_strlen.c src/ft_memset.c src/ft_bzero.c\
+	src/ft_memcpy.c src/ft_memmove.c src/ft_strlcpy.c src/ft_strlcat.c\
+	src/ft_toupper.c src/ft_tolower.c src/ft_strchr.c src/ft_strrchr.c\
+	src/ft_strncmp.c src/ft_memchr.c src/ft_memcmp.c src/ft_strnstr.c\
+	src/ft_atoi.c src/ft_calloc.c src/ft_strdup.c src/ft_substr.c\
+	src/ft_strjoin.c src/ft_strtrim.c src/ft_split.c src/ft_itoa.c\
+	src/ft_strmapi.c src/ft_striteri.c src/ft_putchar_fd.c src/ft_putstr_fd.c\
+	src/ft_putendl_fd.c src/ft_putnbr_fd.c src/ft_lstnew_bonus.c src/ft_lstadd_front_bonus.c\
+	src/ft_lstsize_bonus.c src/ft_lstlast_bonus.c src/ft_lstadd_back_bonus.c src/ft_lstdelone_bonus.c\
+	src/ft_lstclear_bonus.c src/ft_lstiter_bonus.c src/ft_lstmap_bonus.c src/ft_printf.c\
+	src/ft_words.c src/ft_num.c src/get_next_line_bonus.c src/get_next_line_utils_bonus.c
 
-FLAGS = -Wall -Werror -Wextra
+OBJ = $(SRC:src/%.c=obj/%.o)
+
+HEADERS = -I include
+
+.PHONY: all clean fclean re
+
+.SILENT: all $(NAME) $(OBJ) clean fclean re
+
+VIOLET = \033[38;5;129m
+RESET = \033[0m
+U_LINE = \033[4m
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	@ar rcs $(NAME) $(OBJECTS)
+$(NAME): $(OBJ)
+	$(ARFLAGS) $@ $(OBJ)
+	echo "\n$(VIOLET)$(U_LINE)🌸 $(NAME): Compiled 🌸 $(RESET) \n"
 
-tmp/%.o: %.c | tmp
-	@gcc $(FLAGS) -c $< -o $@
-
-tmp:
-	@mkdir -p tmp
+obj/%.o: src/%.c
+	mkdir -p obj
+	$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJECTS)
+	$(REMOVE) obj
 
-fclean:
-	@rm -f $(NAME) $(OBJECTS); rm -rf tmp
+fclean: clean
+	$(REMOVE) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re
