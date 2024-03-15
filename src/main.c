@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/15 09:48:57 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/15 17:10:09 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	ft_loop(t_shell *shell)
 		{
 			ft_tokenizer(shell);
 			ft_view(shell); // borrar
-			/* ft_expand(shell); */
+			ft_expand(shell);
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
 			{

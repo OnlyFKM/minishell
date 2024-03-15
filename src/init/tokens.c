@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:22:15 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/15 10:24:44 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/15 11:09:41 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_tokenizer(t_shell *shell)
 	i = 0;
 	while (shell->line[i])
 	{
+		ft_printf("%sline: %s, int i: %d%s\n", BLUE, shell->line, i, END);
 		if ((!ft_isspecial(shell->line[i])))
 			ft_token(shell, &i);
 		else if (shell->line[i] == '\'' || shell->line[i] == '\"')

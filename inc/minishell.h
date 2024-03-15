@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/15 09:56:46 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/15 15:37:37 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void		ft_builtins(t_shell *shell);
 //		is.c
 int			ft_isspace(int c);
 int			ft_isspecial(char c);
+int			ft_spandchar(char c);
 //		libftplus.c
 char		*ft_strndup(const char *s, size_t n);
 //		list.c
