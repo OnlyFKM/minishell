@@ -6,13 +6,13 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:50:32 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/13 19:14:45 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/15 09:49:14 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_add_expand(t_tokens *token, char *str, int start, int end)
+/* void	ft_add_expand(t_tokens *token, char *str, int start, int end)
 {
 	int		i;
 	int		j;
@@ -92,9 +92,9 @@ void	ft_find_dollar(t_shell *shell, t_tokens *token)
 	i = 0;
 	while (token->str[i] && token->str[i] != '$')
 	{
-		i++;
-		if (ft_isdigit(token->str[i]) == 1)
+		if (ft_isdigit(token->str[i]))
 		{
+			ft_printf("is num\n");
 			start = i;
 			end = i;
 			ft_find_and_expand(shell, token, start, end);
@@ -102,24 +102,31 @@ void	ft_find_dollar(t_shell *shell, t_tokens *token)
 		else if (ft_isalpha(token->str[i]))
 		{
 			start = i;
+			ft_printf("is alpha\n");
 			while (token->str[i] && ft_isalnum(token->str[i]) == 1)
 				i++;
 			end = i;
 			ft_find_and_expand(shell, token, start, end);
 		}
+		i++;
 	}
-}
+} */
+
+/* void	ft_find_dollar(t_shell *shell, t_tokens *token)
+{
+	
+} */
 
 void	ft_expand(t_shell *shell)
 {
 	t_tokens	*tmp;
 
 	tmp = shell->tokens;
-	while (tmp != 0)
+	while (tmp)
 	{
 		if (tmp->type != SIMPLE && tmp->type != PIPE)
 		{
-			ft_find_dollar(shell, tmp);
+			/* ft_find_dollar(shell, tmp); */
 		}
 		tmp = tmp->next;
 	}

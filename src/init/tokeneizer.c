@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:40:13 by yfang             #+#    #+#             */
-/*   Updated: 2024/02/29 17:41:46 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/15 10:21:53 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ int	ft_quotes(t_shell *shell, int *i)
 		(*i)++;
 	}
 	return (j);
+}
+
+void	ft_ifspace(t_shell *shell, int i)
+{
+	if (ft_isspace(shell->line[i]))
+		shell->space = 0;
+	else
+		shell->space = 1;
 }
 
 void	ft_token_in_quotes(t_shell *shell, int *i)

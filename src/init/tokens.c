@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:22:15 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/14 17:01:20 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/15 10:24:44 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_init_token(t_shell *shell, int type, char *str)
 {
 	t_tokens	*tmp;
 
-	tmp = ft_newtoken(type, str);
+	tmp = ft_newtoken(type, str, shell->space);
 	ft_addbacktoken(&shell->tokens, tmp);
 }
 
@@ -27,7 +27,6 @@ void	ft_tokenizer(t_shell *shell)
 	i = 0;
 	while (shell->line[i])
 	{
-		ft_printf("%sline: %s, int i: %d%s\n", BLUE, shell->line, i, END);
 		if ((!ft_isspecial(shell->line[i])))
 			ft_token(shell, &i);
 		else if (shell->line[i] == '\'' || shell->line[i] == '\"')
@@ -36,7 +35,8 @@ void	ft_tokenizer(t_shell *shell)
 			ft_token_redirections(shell, &i);
 		else if (shell->line[i] == '|')
 			ft_init_token(shell, PIPE, "|");
-		if (shell->line[i] != '\0')	
+		if (shell->line[i])	
 			i++;
+		ft_ifspace(shell, i - 1);
 	}
 }
