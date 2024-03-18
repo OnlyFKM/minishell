@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:22:15 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/18 15:44:09 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/18 17:25:22 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_tokenizer(t_shell *shell)
 	int	i;
 
 	i = 0;
+	shell->space = 0;
 	while (shell->line[i])
 	{
 		if ((!ft_isspecial(shell->line[i])))

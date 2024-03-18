@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/18 16:28:29 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/18 19:02:40 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void		ft_check_builtings(t_shell *shell);
 void		ft_welcome(void);
 
 //	Tokendepure
+//		agroup.c
+void		ft_agroup(t_shell *shell);
 //		expand_utils.c
 char		*ft_createdst(t_tokens *token, int *i, int *j);
 void		ft_disexpand(t_tokens *token, int start, int len);
