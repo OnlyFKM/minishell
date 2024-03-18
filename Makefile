@@ -12,6 +12,7 @@ SRCS =  src/main.c\
 	src/utils/t_tokens.c\
 	src/utils/utils.c\
 	src/utils/welcome.c\
+	src/tokendepure/expand_utils.c\
 	src/tokendepure/expand.c\
 	src/pipex/execution.c\
 	src/pipex/planner.c\
