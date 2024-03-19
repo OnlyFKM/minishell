@@ -31,6 +31,11 @@ SRCS =  src/main.c\
 	src/builtins/export.c\
 	src/builtins/export_utils.c\
 	src/builtins/unset.c\
+	src/pipex/utils_pipex.c\
+	src/pipex/execution.c\
+	src/pipex/planner.c\
+	src/pipex/heredoc.c\
+
 
 CC = gcc
 

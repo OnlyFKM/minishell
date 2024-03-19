@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 10:54:42 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/19 11:30:35 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,19 @@ typedef struct s_tokens
 	struct s_tokens	*next;
 }					t_tokens;
 
+typedef struct s_cmd
+{
+	char			*str;
+	int				heredoc;
+	int				infile;
+	int				outfile;
+	struct s_cmd	*next;
+}					t_cmd;
+
 typedef struct s_shell
 {
 	t_env			*env;
+	t_cmd			*cmd;
 	t_tokens		*tokens;
 	char			**envp;
 	char			*line;
@@ -71,6 +81,8 @@ typedef struct s_shell
 	char			*pwd;
 	int				count_cmd;
 	int				space;
+	int				in;
+	int				out;
 }					t_shell;
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
@@ -191,5 +203,32 @@ void		ft_create_pointers_2(t_shell *shell, char *str, int j);
 //		unset.c
 void		ft_unset(t_shell *shell, char *str);
 void		ft_unset_loop(t_shell *shell, t_tokens *prueba);
+
+//  Pipex
+
+/* //	execution.c
+void				ft_execve(t_shell *shell);
+char				*ft_find_path(t_shell *shell, char *cmd);
+char				**ft_update_envp(t_shell *shell);
+char				**ft_pointer_str(t_shell *shell);
+void				ft_execve_one(t_shell *shell); */
+
+//	  utils_pipex.c
+void		ft_execve_one(t_shell *shell);
+void		ft_execve(t_shell *shell);
+char		*ft_find_path(t_shell *shell, char *cmd);
+char		**ft_update_envp(t_shell *shell);
+char		**ft_pointer_str(t_shell *shell);
+
+//	  planner.c
+void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
+void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
+void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
+
+//	  heredoc.c
+void		ft_pipex(t_shell *shell);
+void		ft_heredoc(t_shell *shell, char *limiter);
+void		ft_do_heredoc(char	*input);
+
 
 #endif
