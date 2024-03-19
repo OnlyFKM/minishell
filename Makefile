@@ -13,11 +13,24 @@ SRCS =  src/main.c\
 	src/init/tokeneizer.c\
 	src/init/tokeneizer2.c\
 	src/tokendepure/expand.c\
-	src/utils/welcome.c src/utils/utils.c src/utils/list.c\
+	src/utils/welcome.c\
+	src/utils/utils.c\
+	src/utils/list.c\
 	src/init/init.c\
-	src/builtins/basics.c src/builtins/cd.c src/builtins/cd_utils.c src/builtins/echo.c src/builtins/env.c src/builtins/export.c src/builtins/export_utils.c src/builtins/unset.c\
-	src/free/free.c src/free/final_free.c\
-	src/pipex/execution.c src/pipex/planner.c\
+	src/builtins/basics.c\
+	src/builtins/cd.c\
+	src/builtins/cd_utils.c\
+	src/builtins/echo.c\
+	src/builtins/env.c\
+	src/builtins/export.c\
+	src/builtins/export_utils.c\
+	src/builtins/unset.c\
+	src/free/free.c\
+	src/free/final_free.c\
+	src/pipex/utils_pipex.c\
+	src/pipex/execution.c\
+	src/pipex/planner.c\
+	src/pipex/heredoc.c\
 
 
 CC = gcc
