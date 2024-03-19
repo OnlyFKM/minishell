@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:30:22 by yfang             #+#    #+#             */
-/*   Updated: 2024/02/21 14:18:47 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/15 09:38:05 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_addbacktoken(t_tokens **token, t_tokens *new)
 		*token = new;
 }
 
-t_tokens	*ft_newtoken(int type, char *str)
+t_tokens	*ft_newtoken(int type, char *str, int space)
 {
 	t_tokens	*new_token;
 
@@ -46,7 +46,7 @@ t_tokens	*ft_newtoken(int type, char *str)
 		return (0);
 	new_token->str = ft_strdup(str);
 	new_token->type = type;
-	new_token->space = 0;
+	new_token->space = space;
 	new_token->next = NULL;
 	return (new_token);
 }

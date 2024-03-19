@@ -6,11 +6,16 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:29:07 by yfang             #+#    #+#             */
-/*   Updated: 2024/02/14 15:04:51 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/15 12:11:51 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+int	ft_spandchar(char c)
+{
+	return (ft_isalnum(c) || c == '_' || c == '~');
+}
 
 int	ft_isspecial(char c)
 {
