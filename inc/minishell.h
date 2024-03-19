@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:14:04 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:30:35 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,11 +183,11 @@ char				**ft_pointer_str(t_shell *shell);
 void				ft_execve_one(t_shell *shell); */
 
 //	utils_pipex.c
+void				ft_execve_one(t_shell *shell);
 void				ft_execve(t_shell *shell);
 char				*ft_find_path(t_shell *shell, char *cmd);
 char				**ft_update_envp(t_shell *shell);
 char				**ft_pointer_str(t_shell *shell);
-void				ft_pipex(t_shell *shell);
 
 //	planner.c
 void				ft_more_cmds(t_shell *shell, t_tokens *tokens);
@@ -196,6 +196,7 @@ void				ft_parent(t_shell *shell, t_tokens *tokens, int *fd,
 void				ft_child(t_shell *shell, t_tokens *tokens, int *fd);
 
 //	heredoc.c
+void				ft_pipex(t_shell *shell);
 void				ft_heredoc(t_shell *shell, char *limiter);
 void				ft_do_heredoc(char	*input);
 

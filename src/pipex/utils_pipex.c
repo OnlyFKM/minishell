@@ -6,30 +6,11 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:00:28 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/19 11:29:59 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-void	ft_pipex(t_shell *shell)
-{
-	t_cmd	*tmp;
-
-	tmp = shell->cmd;
-	if (tmp->heredoc != 0)
-		ft_heredoc(shell, tmp->next->str);
-	if (tmp->outfile != -1)
-	{
-		dup2(tmp->outfile, STDOUT_FILENO);
-		close(tmp->outfile);
-	}
-	if (tmp->infile != -1)
-	{
-		dup2(tmp->infile, STDIN_FILENO);
-		close(tmp->infile);
-	}
-}
 
 char	**ft_pointer_str(t_shell *shell)
 {
@@ -129,4 +110,30 @@ void	ft_execve(t_shell *shell)
 		free(cmd);
 	if (path != NULL)
 		free(path);
+}
+
+void	ft_execve_one(t_shell *shell)
+{
+	int		pid;
+	char	*path;
+	char	**envp;
+
+	path = ft_find_path(shell, shell->cmd);
+	if (!path)
+	{
+		ft_printf("marinashell: no such file or directory\n");
+		exit (127);
+	}
+	envp = ft_update_envp(shell);
+	pid = fork();
+	if (pid == 0)
+	{
+		execve(path, shell->cmd->str, envp);
+		ft_printf("marinashell: %s: command not found\n", shell->cmd);
+		exit (127);
+	}
+	else
+		waitpid(pid, NULL, 0);
+	free(path);
+	free(envp);
 }
