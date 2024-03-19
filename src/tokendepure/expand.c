@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:50:32 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/18 16:27:31 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/19 10:08:09 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_reemplace(char *dst, t_env *env, t_tokens *token, int start)
 	if (!flag)
 		ft_disexpand(token, start, ft_strlen(dst));
 }
-
 
 void	ft_find_dollar(t_tokens *token, t_shell *shell)
 {

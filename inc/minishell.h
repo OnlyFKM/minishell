@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/18 19:02:40 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/19 10:54:42 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int			ft_isspecial(char c);
 int			ft_spandchar(char c);
 //		libftplus.c
 char		*ft_strndup(const char *s, size_t n);
+char		*ft_strjoin_space(char const *s1, char const *s2);
 //		list.c
 int			ft_nodesize(t_env *env);
 void		ft_nodeadd_back(t_env *env, t_env *new);
@@ -106,6 +107,7 @@ void		ft_welcome(void);
 //	Tokendepure
 //		agroup.c
 void		ft_agroup(t_shell *shell);
+void		ft_agroup_pipes(t_shell *shell);
 //		expand_utils.c
 char		*ft_createdst(t_tokens *token, int *i, int *j);
 void		ft_disexpand(t_tokens *token, int start, int len);

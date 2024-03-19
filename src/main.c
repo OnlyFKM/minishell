@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/18 19:03:47 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/19 11:53:35 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	ft_loop(t_shell *shell)
 			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
+			ft_agroup_pipes(shell);
 			ft_view(shell); // borrar
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
