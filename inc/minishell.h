@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:30:35 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/19 16:19:48 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,13 +205,12 @@ void		ft_unset(t_shell *shell, char *str);
 void		ft_unset_loop(t_shell *shell, t_tokens *prueba);
 
 //  Pipex
-
 /* //	execution.c
-void				ft_execve(t_shell *shell);
-char				*ft_find_path(t_shell *shell, char *cmd);
-char				**ft_update_envp(t_shell *shell);
-char				**ft_pointer_str(t_shell *shell);
-void				ft_execve_one(t_shell *shell); */
+void		ft_execve(t_shell *shell);
+char		*ft_find_path(t_shell *shell, char *cmd);
+char		**ft_update_envp(t_shell *shell);
+char		**ft_pointer_str(t_shell *shell);
+void		ft_execve_one(t_shell *shell); */
 
 //	  utils_pipex.c
 void		ft_execve_one(t_shell *shell);
