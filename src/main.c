@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/20 12:53:37 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/20 13:08:54 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	ft_loop(t_shell *shell)
 			{
 				if (shell->tokens->type == 0)
 					ft_builtins(shell);
-			/* 	else
+				/* else
 					ft_execve_one(shell); */
 			}
 		}
