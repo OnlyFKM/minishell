@@ -98,7 +98,7 @@ void	ft_loop(t_shell *shell)
 			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
-			//ft_agroup_pipes(shell);
+			/* ft_agroup_pipes(shell); */
 			ft_view(shell); // borrar
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
@@ -109,6 +109,8 @@ void	ft_loop(t_shell *shell)
 					ft_execve_one(shell); */
 			}
 		}
+/* 			ft_inside_loop(shell);
+		ft_view(shell); // borrar */
 		ft_free_loop(shell);
 	}
 }

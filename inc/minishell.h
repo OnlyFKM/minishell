@@ -261,13 +261,12 @@ void		ft_unset(t_shell *shell, char *str);
 void		ft_unset_loop(t_shell *shell, t_tokens *prueba);
 
 //  Pipex
-
 /* //	execution.c
-void				ft_execve(t_shell *shell);
-char				*ft_find_path(t_shell *shell, char *cmd);
-char				**ft_update_envp(t_shell *shell);
-char				**ft_pointer_str(t_shell *shell);
-void				ft_execve_one(t_shell *shell); */
+void		ft_execve(t_shell *shell);
+char		*ft_find_path(t_shell *shell, char *cmd);
+char		**ft_update_envp(t_shell *shell);
+char		**ft_pointer_str(t_shell *shell);
+void		ft_execve_one(t_shell *shell); */
 
 //	  utils_pipex.c
 void		ft_execve_one(t_shell *shell);
