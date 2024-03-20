@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 16:19:48 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/20 13:23:53 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_shell
 	int				space;
 	int				in;
 	int				out;
+	int				status;
 }					t_shell;
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
@@ -138,6 +139,60 @@ char		**ft_pointer_str(t_shell *shell);
 void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
 void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
 void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
+/*-------------------------------   FUNCTIONS   ------------------------------*/
+//		main.c
+int			main(int argc, char *argv[], char **envp);
+void		ft_loop(t_shell *shell);
+void		ft_builtins(t_shell *shell);
+
+//	Utils
+//		is.c
+int			ft_isspace(int c);
+int			ft_isspecial(char c);
+int			ft_spandchar(char c);
+//		libftplus.c
+char		*ft_strndup(const char *s, size_t n);
+char		*ft_strjoin_space(char const *s1, char const *s2);
+//		list.c
+int			ft_nodesize(t_env *env);
+void		ft_nodeadd_back(t_env *env, t_env *new);
+t_env		*ft_nodelast(t_env *env);
+int			ft_tokensize(t_tokens *lst);
+//		t_tokens.c
+t_tokens	*ft_newtoken(int type, char *str, int space);
+void		ft_addbacktoken(t_tokens **token, t_tokens *new);
+t_tokens	*ft_lasttoken(t_tokens *token);
+//		utils.c
+int			ft_whitespace(char *str);
+int			ft_special_char(char sp);
+int			ft_first_equal(char *str);
+void		ft_count_cmd(t_shell *shell);
+void		ft_check_builtings(t_shell *shell);
+//		welcome.c
+void		ft_welcome(void);
+
+//	Tokendepure
+//		agroup.c
+void		ft_agroup(t_shell *shell);
+void		ft_agroup_pipes(t_shell *shell);
+//		expand_utils.c
+char		*ft_createdst(t_tokens *token, int *i, int *j);
+void		ft_disexpand(t_tokens *token, int start, int len);
+void		ft_final_expand(t_env *env, t_tokens *token, int start, int len);
+//		expand.c
+void		ft_expand(t_shell *shell);
+
+//	Pipex
+//		execution.c
+void		ft_execve_one(t_shell *shell);
+void		ft_execve(t_shell *shell);
+char		*ft_find_path(t_shell *shell, char *cmd);
+char		**ft_update_envp(t_shell *shell);
+char		**ft_pointer_str(t_shell *shell);
+//		planner.c
+void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
+void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
+void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
 
 //	Init
 //		init.c
@@ -158,6 +213,7 @@ void		ft_init_token(t_shell *shell, int type, char *str);
 
 //	Free
 //		final_free.c
+void		ft_free_execve(char **str, char **envp, char *cmd, char *path);
 void		ft_free_loop(t_shell *shell);
 //		free.c
 void		ft_free_tokens(t_tokens **tokens);
