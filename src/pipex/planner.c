@@ -64,5 +64,4 @@ void	ft_more_cmds(t_shell *shell, t_tokens *tokens)
 		ft_child(shell, tokens, fd);
 	else
 		ft_parent(shell, tokens, fd, pid);
-}
- */
+} */

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 18:57:47 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:26:11 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@ void	ft_create_export(t_env *env)
 	{
 		str[j] = ft_strdup(tmp->name);
 		aux = str[j];
-		str[j] = ft_strjoin(aux, "=\"");
+		str[j] = ft_strjoin_2(aux, "=\"");
 		aux = str[j];
 		if (tmp->content)
-			str[j] = ft_strjoin(aux, tmp->content);
+			str[j] = ft_strjoin_2(aux, tmp->content);
 		aux = str[j];
-		str[j] = ft_strjoin(aux, "\"");
+		str[j] = ft_strjoin_2(aux, "\"");
 		tmp = tmp->next;
 		j++;
 	}
