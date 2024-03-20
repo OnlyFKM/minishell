@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:07:30 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/14 16:02:37 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:51:03 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@
 		if (waitpid(pid, &status, 0) == -1)
 			exit(EXIT_FAILURE);
 	}
-} */
+}
 
-/* char	**ft_pointer_str(t_shell *shell)
+char	**ft_pointer_str(t_shell *shell)
 {
 	t_tokens	*aux;
 	char		**tmp;
@@ -131,8 +131,8 @@ void	ft_execve(t_shell *shell)
 	path = ft_find_path(shell, cmd);
 	str = ft_pointer_str(shell);
 	envp = ft_update_envp(shell);
-	//ft_process(path, str, envp);
-	execve(path, str, envp);
+	ft_process(path, str, envp);
+	//execve(path, str, envp);
 	if (str != NULL)
 		ft_free_double(str);
 	ft_free_double(envp);
@@ -159,4 +159,3 @@ void	ft_execve_one(t_shell *shell)
 		waitpid(pid, NULL, 0);
 	free(str);
 } */
-                                                                                            

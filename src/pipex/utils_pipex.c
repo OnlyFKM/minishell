@@ -6,13 +6,13 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:29:59 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/20 12:53:09 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char	**ft_pointer_str(t_shell *shell)
+/* char	**ft_pointer_str(t_shell *shell)
 {
 	t_tokens	*aux;
 	char		**tmp;
@@ -21,7 +21,7 @@ char	**ft_pointer_str(t_shell *shell)
 
 	i = 0;
 	aux = shell->tokens;
-	len = ft_prueba_size(aux);
+	len = ft_tokensize(aux);
 	tmp = ft_calloc(len, sizeof(char *));
 	while (aux)
 	{
@@ -53,9 +53,9 @@ char	**ft_update_envp(t_shell *shell)
 	{
 		tmp[++i] = ft_strdup(aux->name);
 		join = tmp[i];
-		tmp[i] = ft_strjoin(join, "=");
+		tmp[i] = ft_strjoin_2(join, "=");
 		join = tmp[i];
-		tmp[i] = ft_strjoin(join, aux->content);
+		tmp[i] = ft_strjoin_2(join, aux->content);
 		if (aux->next)
 			aux = aux->next;
 	}
@@ -80,16 +80,21 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 	splitted = ft_split(tmp->content, ':');
 	while (splitted[i])
 	{
-		result = ft_strjoin(splitted[i], cmd);
+		result = ft_strjoin_2(splitted[i], cmd);
 		if (access(result, F_OK) == EXIT_SUCCESS)
 			return (result);
 		i++;
 	}
 	return (NULL);
-}
+} */
 
-void	ft_execve(t_shell *shell)
+/* void	ft_execve(t_shell *shell)
 {
+	char	*path;
+	char	*cmd;
+	char	*aux;
+	char	**str;
+	char	**envp;
 	char	*path;
 	char	*cmd;
 	char	*aux;
@@ -98,42 +103,85 @@ void	ft_execve(t_shell *shell)
 
 	cmd = ft_strdup("/");
 	aux = cmd;
-	cmd = ft_strjoin(aux, shell->tokens->str);
+	cmd = ft_strjoin_2(aux, shell->tokens->str);
 	path = ft_find_path(shell, cmd);
 	str = ft_pointer_str(shell);
 	envp = ft_update_envp(shell);
-	execve(path, str, envp);
-	if (str != NULL)
+	shell->status = execve(path, str, envp);
+	ft_printf("marinashell: %s: command not found\n", str[0]);
+	if (!str)
 		ft_free_double(str);
-	ft_free_double(envp);
-	if (cmd != NULL)
+	if (!envp)
+		ft_free_double(envp);
+	if (!cmd)
 		free(cmd);
-	if (path != NULL)
+	if (!path)
 		free(path);
+	exit(127);
+} */
+/* void	ft_do_execve(t_shell *shell, int flag)
+{
+	char	*path;
+	char	*cmd;
+	char	*aux;
+	char	**str;
+	char	**envp;
+
+	if (flag == 0)
+	{
+		cmd = ft_strdup("/");
+		aux = cmd;
+		cmd = ft_strjoin_2(aux, shell->tokens->str);
+		path = ft_find_path(shell, cmd);
+		str = ft_pointer_str(shell);
+		envp = ft_update_envp(shell);
+		if (path)
+			shell->status = execve(path, str, envp);
+	}
+	if (flag == 1)
+		ft_free_execve(str, envp, cmd, path);
 }
 
+int	ft_check_path(t_shell *shell)
+{
+	char	*path;
+	char	*cmd;
+	char	*aux;
+
+	cmd = ft_strdup("/");
+	aux = cmd;
+	cmd = ft_strjoin_2(aux, shell->tokens->str);
+	path = ft_find_path(shell, cmd);
+	free(cmd);
+	if (!path)
+		return (EXIT_FAILURE);
+	free(path);
+	return (EXIT_SUCCESS);
+}
 void	ft_execve_one(t_shell *shell)
 {
 	int		pid;
-	char	*path;
-	char	**envp;
+	char	**str;
 
-	path = ft_find_path(shell, shell->cmd);
-	if (!path)
+	if (ft_check_path(shell) == EXIT_SUCCESS)
 	{
-		ft_printf("marinashell: no such file or directory\n");
-		exit (127);
-	}
-	envp = ft_update_envp(shell);
-	pid = fork();
-	if (pid == 0)
-	{
-		execve(path, shell->cmd->str, envp);
-		ft_printf("marinashell: %s: command not found\n", shell->cmd);
-		exit (127);
+		pid = fork();
+		if (pid == 0)
+		{
+			ft_do_execve(shell, 0);
+			exit(127);
+		}
+		else
+		{
+			waitpid(pid, &shell->status, 0);
+		}
+		ft_do_execve(shell, 1);
 	}
 	else
-		waitpid(pid, NULL, 0);
-	free(path);
-	free(envp);
-}
+	{
+		str = ft_pointer_str(shell);
+		ft_printf("marinashell: %s: command not found\n", str[0]);
+		if (str)
+			ft_free_double(str);
+	}
+} */

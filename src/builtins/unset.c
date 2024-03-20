@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:46:23 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 11:04:19 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/19 14:26:22 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_unset(t_shell *shell, char *str)
 	t_env	*prev;
 
 	current = shell->env;
-	//prev = NULL;
 	while (current->next)
 	{
 		if (ft_strcmp(current->name, str) == EXIT_SUCCESS)

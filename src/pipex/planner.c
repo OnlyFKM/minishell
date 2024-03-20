@@ -6,13 +6,13 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:04:43 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/19 12:51:27 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_child(t_shell *shell, t_tokens *tokens, int *fd)
+/* void	ft_child(t_shell *shell, t_tokens *tokens, int *fd)
 {
 	t_tokens	*tmp;
 
@@ -64,4 +64,4 @@ void	ft_more_cmds(t_shell *shell, t_tokens *tokens)
 		ft_child(shell, tokens, fd);
 	else
 		ft_parent(shell, tokens, fd, pid);
-}
+} */

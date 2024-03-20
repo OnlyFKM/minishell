@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:53:35 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/20 12:53:37 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,25 @@ void	ft_builtins(t_shell *shell)
 		ft_cd(shell);
 }
 
-void	ft_inside_loop(t_shell *shell)
+/* void	ft_inside_loop(t_shell *shell)
 {
 	ft_tokenizer(shell);
-	/* ft_expand(shell); */
+	ft_expand(shell);
+	if (shell->tokens->next)
+		ft_agroup(shell);
+	ft_agroup_pipes(shell);
+	ft_view(shell); // borrar
 	ft_count_cmd(shell);
 	if (shell->count_cmd == 1)
 	{
-		ft_pipex(shell);
 		if (shell->tokens->type == 0)
 			ft_builtins(shell);
 		else
 			ft_execve_one(shell);
 	}
-	/* if (shell->count_cmd >= 2)
-		ft_more_cmds(shell, shell->tokens); */
-}
+	if (shell->count_cmd >= 2)
+		ft_more_cmds(shell, shell->tokens);
+} */
 
 void	ft_loop(t_shell *shell)
 {
@@ -95,23 +98,18 @@ void	ft_loop(t_shell *shell)
 			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
-			ft_agroup_pipes(shell);
+			//ft_agroup_pipes(shell);
 			ft_view(shell); // borrar
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
 			{
 				if (shell->tokens->type == 0)
 					ft_builtins(shell);
-				/* else
+			/* 	else
 					ft_execve_one(shell); */
 			}
-			/* if (shell->count_cmd >= 2)
-				ft_more_cmds(shell, shell->tokens); */
 		}
-			ft_inside_loop(shell);
-		ft_view(shell); // borrar
 		ft_free_loop(shell);
-		// exit(0);
 	}
 }
 

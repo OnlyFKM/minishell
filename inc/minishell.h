@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:30:35 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/20 11:18:48 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_shell
 	int				space;
 	int				in;
 	int				out;
+	int				status;
 }					t_shell;
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
@@ -103,6 +104,7 @@ char		*ft_strjoin_space(char const *s1, char const *s2);
 int			ft_nodesize(t_env *env);
 void		ft_nodeadd_back(t_env *env, t_env *new);
 t_env		*ft_nodelast(t_env *env);
+int			ft_tokensize(t_tokens *lst);
 //		t_tokens.c
 t_tokens	*ft_newtoken(int type, char *str, int space);
 void		ft_addbacktoken(t_tokens **token, t_tokens *new);
@@ -158,6 +160,7 @@ void		ft_init_token(t_shell *shell, int type, char *str);
 
 //	Free
 //		final_free.c
+void		ft_free_execve(char **str, char **envp, char *cmd, char *path);
 void		ft_free_loop(t_shell *shell);
 //		free.c
 void		ft_free_tokens(t_tokens **tokens);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yfang <yfang@student.42.fr>                +#+  +:+       +#+         #
+#    By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 12:46:13 by yfang             #+#    #+#              #
-#    Updated: 2024/03/14 18:43:18 by yfang            ###   ########.fr        #
+#    Updated: 2024/03/19 14:22:05 by frcastil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRC = src/ft_atoi.c\
 	src/ft_strdup.c\
 	src/ft_striteri.c\
 	src/ft_strjoin.c\
+	src/ft_strjoin_2.c\
 	src/ft_strlcat.c\
 	src/ft_strlcpy.c\
 	src/ft_strlen.c\

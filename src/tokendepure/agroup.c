@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   agroup.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:07:28 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/19 11:49:25 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/19 16:13:57 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_tokentype(int type)
 	return (0);
 }
 
-void	ft_agroup_pipes(t_shell *shell)
+/* void	ft_agroup_pipes(t_shell *shell)
 {
 	t_tokens	*tmp;
 	t_tokens	*aux;
@@ -43,7 +43,33 @@ void	ft_agroup_pipes(t_shell *shell)
 			tmp = tmp->next->next;
 		aux = tmp->next;
 	}
-}
+} */
+
+/* void	ft_agroup_pipes(t_shell *shell)
+{
+	t_tokens	*aux;
+	t_cmd		*tmp;
+	char		*str;
+
+	aux = shell->tokens;
+	tmp = shell->cmd;
+	while (aux)
+	{
+		if (!ft_tokentype(aux->type))
+		{
+			str = ft_strdup(aux->str);
+			free(tmp->str);
+			tmp->str = ft_strjoin_space(str, aux->str);
+			free(str);
+			tmp->next = aux->next;
+			free(aux->str);
+			free(aux);
+		}
+		else
+			tmp = tmp->next->next;
+		aux = tmp->next;
+	}
+} */
 
 void	ft_agroup(t_shell *shell)
 {
