@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:22:47 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:30:55 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 	}
 } */
 
-void	ft_do_heredoc(char	*input)
+/* void	ft_do_heredoc(char	*input)
 {
 	int	fd_here[2];
 	int	pid;
@@ -99,4 +99,4 @@ void	ft_pipex(t_shell *shell)
 		dup2(tmp->infile, STDIN_FILENO);
 		close(tmp->infile);
 	}
-}
+} */

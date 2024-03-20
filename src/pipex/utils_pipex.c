@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pipex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 11:29:59 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/19 17:31:35 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char	**ft_pointer_str(t_shell *shell)
+/* char	**ft_pointer_str(t_shell *shell)
 {
 	t_tokens	*aux;
 	char		**tmp;
@@ -136,4 +136,4 @@ void	ft_execve_one(t_shell *shell)
 		waitpid(pid, NULL, 0);
 	free(path);
 	free(envp);
-}
+} */
