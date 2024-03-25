@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:25:13 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/18 16:27:14 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:22:09 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,25 +65,25 @@ void	ft_disexpand(t_tokens *token, int start, int len)
 	token->str = dst;
 }
 
-char	*ft_createdst(t_tokens *token, int *i, int *j)
+char	*ft_createdst(t_tokens *token, int i, int j)
 {
 	char	*dst;
 	int		k;
 	int		l;
 
-	if (ft_isdigit(token->str[*i]))
-		dst = ft_strdup(&token->str[*i]);
-	else if (token->str[*i] == '$')
+	if (ft_isdigit(token->str[i]))
+		dst = ft_strdup(&token->str[i]);
+	else if (token->str[i] == '$')
 		dst = ft_strdup("$");
 	else
 	{
-		while (token->str[*i] && ft_spandchar(token->str[*i]))
+		while (token->str[i] && ft_spandchar(token->str[i]))
 		{
-			(*i)++;
-			(*j)++;
+			i++;
+			j++;
 		}
-		k = *i;
-		l = *j;
+		k = i;
+		l = j;
 		dst = ft_strndup(token->str + (k - l), l);
 	}
 	return (dst);

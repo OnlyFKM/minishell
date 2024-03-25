@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:50:32 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/19 10:08:09 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/22 13:08:54 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	ft_find_dollar(t_tokens *token, t_shell *shell)
 		if (token->str[i] == '$')
 		{
 			i++;
-			dst = ft_createdst(token, &i, &j);
+			dst = ft_createdst(token, i, j);
 			tmp = shell->env;
-			ft_reemplace(dst, tmp, token, i - j);
+			ft_reemplace(dst, tmp, token, i);
 			free(dst);
 		}
-		if (token->str)
+		else
 			i++;
 	}
 }

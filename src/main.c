@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/20 13:18:49 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:51:21 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	ft_loop(t_shell *shell)
 		if (!ft_whitespace(shell->line))
 		{
 			ft_tokenizer(shell);
+			ft_view(shell); // borrar
 			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
