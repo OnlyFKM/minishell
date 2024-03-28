@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:17:25 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/05 16:43:16 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/26 15:52:47 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_redirectiontype(char *start)
 	if (*start == '<')
 	{
 		if (ft_strncmp(start, "<<", 2) == 0)
-			return (INSOURCE);
+			return (HERE_DOC);
 		else
 			return (IN);
 	}
