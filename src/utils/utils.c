@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:16:46 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/14 16:35:53 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:12:26 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	ft_count_cmd(t_shell *shell)
 		else
 			break ;
 	}
-	ft_check_builtings(shell);
 }
 
 int	ft_first_equal(char *str)
