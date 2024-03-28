@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:07:28 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/27 15:22:48 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/28 16:12:41 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,4 +91,5 @@ void	ft_agroup(t_shell *shell)
 			tmp = tmp->next;
 		aux = aux->next;
 	}
+	ft_check_builtings(shell);
 }

@@ -6,21 +6,22 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:57:58 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/28 14:48:11 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/28 17:05:00 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_init_token(t_tokens *token, int type, char *str)
+t_tokens	*ft_init_token2(t_tokens *token, int type, char *str)
 {
 	t_tokens	*tmp;
 
 	tmp = ft_newtoken(type, str, 0);
 	ft_addbacktoken(&token, tmp);
+	return (token);
 }
 
-void	ft_minitoken(t_tokens *tokens, char *str, int *i)
+t_tokens	*ft_minitoken(t_tokens *tokens, char *str, int *i)
 {
 	char	*tmp;
 	char	*start;
@@ -35,13 +36,14 @@ void	ft_minitoken(t_tokens *tokens, char *str, int *i)
 	}
 	tmp = ft_strndup(start, j);
 	if (tokens == NULL)
-		ft_init_token(tokens, CMD, tmp);
+		tokens = ft_init_token2(tokens, CMD, tmp);
 	else
-		ft_init_token(tokens, ARG, tmp);
+		tokens = ft_init_token2(tokens, ARG, tmp);
 	free(tmp);
+	return (tokens);
 }
 
-void	ft_minitokenizer(t_tokens *token, char *str)
+t_tokens	*ft_minitokenizer(t_tokens *token, char *str)
 {
 	int	i;
 
@@ -49,8 +51,9 @@ void	ft_minitokenizer(t_tokens *token, char *str)
 	while (str[i])
 	{
 		if ((!ft_isspace(str[i])))
-			ft_minitoken(token, str, &i);
+			token = ft_minitoken(token, str, &i);
 		if (str[i])	
 			i++;
 	}
+	return (token);
 }
