@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 15:28:13 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:21:21 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,7 @@ typedef struct s_shell
 int			main(int argc, char *argv[], char **envp);
 void		ft_loop(t_shell *shell);
 void		ft_inside_loop(t_shell *shell);
-void		ft_builtins(t_shell *shell, t_tokens *tokens);
-
-//					Utils
+void		ft_builtins(t_shell *shell, char *str);
 
 //		is.c
 int			ft_isspace(int c);
@@ -133,19 +131,35 @@ void		ft_final_expand(t_env *env, t_tokens *token, int start, int len);
 //		expand.c
 void		ft_expand(t_shell *shell);
 
-//					Pipex
+//  Pipex
+/* //	execution.c
+void		ft_execve(t_shell *shell);
+char		*ft_find_path(t_shell *shell, char *cmd);
+char		**ft_update_envp(t_shell *shell);
+char		**ft_pointer_str(t_shell *shell);
+void		ft_execve_one(t_shell *shell); */
 
-//		execution.c
-/* void		ft_execve_one(t_shell *shell);
-void		ft_execve(t_shell *shell); */
+//	  utils_pipex.c
 char		*ft_find_path(t_shell *shell, char *cmd);
 char		**ft_update_envp(t_shell *shell);
 char		**ft_pointer_str(t_shell *shell);
 
-//		planner.c
+//	  planner.c
+void		ft_execve_one(t_shell *shell);
+void		ft_execve(t_shell *shell);
 void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
 void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
 void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
+
+//	  heredoc.c
+void		ft_pipex(t_shell *shell);
+void		ft_heredoc(t_shell *shell, char *limiter);
+void		ft_do_heredoc(char	*input);
+
+//	  heredoc.c
+void		ft_pipex(t_shell *shell);
+void		ft_heredoc(t_shell *shell, char *limiter);
+void		ft_do_heredoc(char	*input);
 
 //		utils_pipex.c
 void		ft_execve_one(t_shell *shell);
@@ -164,12 +178,8 @@ void		ft_do_heredoc(char	*input);
 //		init.c
 int			ft_init(t_shell *shell, char **envp);
 void		ft_first_pwd(t_shell *shell);
-
 //		minitokenizer.c
-void		ft_minitokenizer(t_tokens *token, char *str);
-void		ft_minitoken(t_tokens *tokens, char *str, int *i);
-void		ft_init_token2(t_tokens *token, int type, char *str);
-
+t_tokens	*ft_minitokenizer(t_tokens *token, char *str);
 //		tokenizer.c
 void		ft_token(t_shell *shell, int *i);
 void		ft_token_in_quotes(t_shell *shell, int *i);
@@ -243,5 +253,7 @@ void		ft_create_pointers_2(t_shell *shell, char *str, int j);
 //		unset.c
 void		ft_unset(t_shell *shell, char *str);
 void		ft_unset_loop(t_shell *shell, t_tokens *prueba);
+
+
 
 #endif

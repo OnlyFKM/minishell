@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 16:35:43 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:22:17 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,11 @@ void	ft_view(t_shell *shell)
 	}
 }
 
-void	ft_view2(t_tokens *shell)
+void	ft_view2(t_tokens *tokens)
 {
 	t_tokens	*tmp;
 
-	tmp = shell;
+	tmp = tokens;
 	while (tmp)
 	{
 		ft_printf("%s%s, %i, %i%s\n", BLUE, tmp->str, tmp->type, tmp->space,
@@ -59,14 +59,14 @@ void	ft_view2(t_tokens *shell)
 	}
 }
 
-void	ft_builtins(t_shell *shell, t_tokens *tokens)
+void	ft_builtins(t_shell *shell, char *str)
 {
 	t_tokens	*aux;
 
 	aux = NULL;
-	ft_minitokenizer(aux, tokens->str);
-	ft_view2(aux); // borrar
-	if (ft_strncmp(tokens->str, "pwd\0", 4) == EXIT_SUCCESS)
+	aux = ft_minitokenizer(aux, str);
+	ft_view2(aux);
+	if (ft_strncmp(shell->tokens->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
 		ft_echo(aux);
@@ -84,6 +84,7 @@ void	ft_builtins(t_shell *shell, t_tokens *tokens)
 		ft_export(shell);
 	else if (ft_strncmp(shell->tokens->str, "cd\0", 3) == EXIT_SUCCESS)
 		ft_cd(shell);
+	ft_free_tokens(&aux);
 }
 
 void	ft_inside_loop(t_shell *shell)
@@ -99,11 +100,11 @@ void	ft_inside_loop(t_shell *shell)
 	if (shell->count_cmd == 1)
 	{
 		if (shell->tokens->type == 0)
-			ft_builtins(shell, shell->tokens);
-		/* else
+			ft_builtins(shell, shell->tokens->str);
+/* 		else
 			ft_execve_one(shell); */
 	}
-	/* if (shell->count_cmd >= 2)
+/* 	if (shell->count_cmd >= 2)
 		ft_more_cmds(shell, shell->tokens); */
 }
 
@@ -118,18 +119,17 @@ void	ft_loop(t_shell *shell)
 		{
 			/* ft_inside_loop(shell); */
 			ft_tokenizer(shell);
-			ft_view(shell); // borrar
 			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
 			ft_check_builtings(shell);
 			ft_agroup_pipes(shell);
-			ft_view(shell); // borrar
 			ft_count_cmd(shell);
+			ft_view(shell); // borrar
 			if (shell->count_cmd == 1)
 			{
-				/* if (shell->tokens->type == 0) */
-				ft_builtins(shell, shell->tokens);
+				if (shell->tokens->type == 0)
+					ft_builtins(shell, shell->tokens->str);
 				/* else
 					ft_execve_one(shell); */
 			}
