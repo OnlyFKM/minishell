@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/26 15:52:47 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/28 16:59:32 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_shell
 int			main(int argc, char *argv[], char **envp);
 void		ft_loop(t_shell *shell);
 void		ft_inside_loop(t_shell *shell);
-void		ft_builtins(t_shell *shell);
+void		ft_builtins(t_shell *shell, char *str);
 
 //	Utils
 //		is.c
@@ -123,22 +123,37 @@ void		ft_final_expand(t_env *env, t_tokens *token, int start, int len);
 //		expand.c
 void		ft_expand(t_shell *shell);
 
-//	Pipex
-//		execution.c
-void		ft_execve_one(t_shell *shell);
+//  Pipex
+/* //	execution.c
 void		ft_execve(t_shell *shell);
 char		*ft_find_path(t_shell *shell, char *cmd);
 char		**ft_update_envp(t_shell *shell);
 char		**ft_pointer_str(t_shell *shell);
-//		planner.c
+void		ft_execve_one(t_shell *shell); */
+
+//	  utils_pipex.c
+char		*ft_find_path(t_shell *shell, char *cmd);
+char		**ft_update_envp(t_shell *shell);
+char		**ft_pointer_str(t_shell *shell);
+
+//	  planner.c
+void		ft_execve_one(t_shell *shell);
+void		ft_execve(t_shell *shell);
 void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
 void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
 void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
+
+//	  heredoc.c
+void		ft_pipex(t_shell *shell);
+void		ft_heredoc(t_shell *shell, char *limiter);
+void		ft_do_heredoc(char	*input);
 
 //	Init
 //		init.c
 int			ft_init(t_shell *shell, char **envp);
 void		ft_first_pwd(t_shell *shell);
+//		minitokenizer.c
+t_tokens	*ft_minitokenizer(t_tokens *token, char *str);
 //		tokenizer.c
 void		ft_token(t_shell *shell, int *i);
 void		ft_token_in_quotes(t_shell *shell, int *i);
@@ -201,30 +216,6 @@ void		ft_create_pointers_2(t_shell *shell, char *str, int j);
 void		ft_unset(t_shell *shell, char *str);
 void		ft_unset_loop(t_shell *shell, t_tokens *prueba);
 
-//  Pipex
-/* //	execution.c
-void		ft_execve(t_shell *shell);
-char		*ft_find_path(t_shell *shell, char *cmd);
-char		**ft_update_envp(t_shell *shell);
-char		**ft_pointer_str(t_shell *shell);
-void		ft_execve_one(t_shell *shell); */
-
-//	  utils_pipex.c
-void		ft_execve_one(t_shell *shell);
-void		ft_execve(t_shell *shell);
-char		*ft_find_path(t_shell *shell, char *cmd);
-char		**ft_update_envp(t_shell *shell);
-char		**ft_pointer_str(t_shell *shell);
-
-//	  planner.c
-void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
-void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
-void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
-
-//	  heredoc.c
-void		ft_pipex(t_shell *shell);
-void		ft_heredoc(t_shell *shell, char *limiter);
-void		ft_do_heredoc(char	*input);
 
 
 #endif
