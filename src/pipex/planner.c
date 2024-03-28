@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   planner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 17:31:16 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:24:36 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 void	ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid)
 {
 	t_tokens	*tmp;
-	t_cmd		*aux;
 
 	tmp = tokens;
 	close(fd[1]);
@@ -39,17 +38,16 @@ void	ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid)
 	close(fd[0]);
 	if (tmp->type != 7)
 		waitpid(pid, NULL, 0);
-	aux = shell->cmd->next;
 	tmp = tmp->next;
 	if (tmp->next != NULL)
 		ft_more_cmds(shell, tmp);
 	else
 	{
-		ft_pipex(shell, aux);
+		ft_pipex(shell, tmp);
 		if (tmp->type == 0)
-			ft_builtins(shell);
+			ft_builtins(shell, tmp);
 		else
-			ft_child(shell, tmp, fd);
+			ft_execve_one(shell, tmp);
 	}
 }
 

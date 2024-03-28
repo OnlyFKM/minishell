@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/25 15:32:32 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:19:01 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,22 +58,15 @@ typedef struct s_tokens
 	char			*str;
 	int				type;
 	int				space;
-	struct s_tokens	*next;
-}					t_tokens;
-
-typedef struct s_cmd
-{
-	char			**str;
 	int				heredoc;
 	int				infile;
 	int				outfile;
-	struct s_cmd	*next;
-}					t_cmd;
+	struct s_tokens	*next;
+}					t_tokens;
 
 typedef struct s_shell
 {
 	t_env			*env;
-	t_cmd			*cmd;
 	t_tokens		*tokens;
 	char			**envp;
 	char			*line;
@@ -90,6 +83,7 @@ typedef struct s_shell
 //		main.c
 int			main(int argc, char *argv[], char **envp);
 void		ft_loop(t_shell *shell);
+void		ft_inside_loop(t_shell *shell);
 void		ft_builtins(t_shell *shell);
 
 //	Utils
