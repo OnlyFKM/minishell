@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/21 16:51:21 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/28 13:20:56 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void	ft_view(t_shell *shell)
 
 void	ft_builtins(t_shell *shell)
 {
+	/* t_tokens	*aux;
+	char		*aux;
+
+	aux = shell->tokens;
+	ft_tokenizer(aux); */
 	if (ft_strncmp(shell->tokens->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(shell->tokens->str, "echo\0", 5) == EXIT_SUCCESS)
@@ -65,14 +70,14 @@ void	ft_builtins(t_shell *shell)
 		ft_cd(shell);
 }
 
-/* void	ft_inside_loop(t_shell *shell)
+void	ft_inside_loop(t_shell *shell)
 {
 	ft_tokenizer(shell);
+	ft_view(shell); // borrar
 	ft_expand(shell);
 	if (shell->tokens->next)
 		ft_agroup(shell);
 	ft_agroup_pipes(shell);
-	ft_view(shell); // borrar
 	ft_count_cmd(shell);
 	if (shell->count_cmd == 1)
 	{
@@ -83,7 +88,7 @@ void	ft_builtins(t_shell *shell)
 	}
 	if (shell->count_cmd >= 2)
 		ft_more_cmds(shell, shell->tokens);
-} */
+}
 
 void	ft_loop(t_shell *shell)
 {
@@ -94,24 +99,24 @@ void	ft_loop(t_shell *shell)
 			add_history(shell->line);
 		if (!ft_whitespace(shell->line))
 		{
-			ft_tokenizer(shell);
+			ft_inside_loop(shell);
+			/* ft_tokenizer(shell);
 			ft_view(shell); // borrar
 			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
-			/* ft_agroup_pipes(shell); */
+			ft_agroup_pipes(shell);
 			ft_view(shell); // borrar
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
 			{
 				if (shell->tokens->type == 0)
 					ft_builtins(shell);
-				/* else
-					ft_execve_one(shell); */
-			}
+				else
+					ft_execve_one(shell);
+			} */
 		}
-/* 			ft_inside_loop(shell);
-		ft_view(shell); // borrar */
+		//ft_view(shell); // borrar
 		ft_free_loop(shell);
 	}
 }
