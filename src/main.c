@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 13:20:56 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/28 16:35:43 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,33 @@ void	ft_view(t_shell *shell)
 	}
 }
 
-void	ft_builtins(t_shell *shell)
+void	ft_view2(t_tokens *shell)
 {
-	/* t_tokens	*aux;
-	char		*aux;
+	t_tokens	*tmp;
 
-	aux = shell->tokens;
-	ft_tokenizer(aux); */
-	if (ft_strncmp(shell->tokens->str, "pwd\0", 4) == EXIT_SUCCESS)
+	tmp = shell;
+	while (tmp)
+	{
+		ft_printf("%s%s, %i, %i%s\n", BLUE, tmp->str, tmp->type, tmp->space,
+			END);
+		if (tmp->next)
+			tmp = tmp->next;
+		else
+			break ;
+	}
+}
+
+void	ft_builtins(t_shell *shell, t_tokens *tokens)
+{
+	t_tokens	*aux;
+
+	aux = NULL;
+	ft_minitokenizer(aux, tokens->str);
+	ft_view2(aux); // borrar
+	if (ft_strncmp(tokens->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
-	else if (ft_strncmp(shell->tokens->str, "echo\0", 5) == EXIT_SUCCESS)
-		ft_echo(shell->tokens);
+	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
+		ft_echo(aux);
 	else if (ft_strncmp(shell->tokens->str, "game\0", 5) == EXIT_SUCCESS)
 		printf("YOU HAVE LOST THE GAME\n");
 	else if (ft_strncmp(shell->tokens->str, "marina\0", 7) == EXIT_SUCCESS)
@@ -77,17 +93,18 @@ void	ft_inside_loop(t_shell *shell)
 	ft_expand(shell);
 	if (shell->tokens->next)
 		ft_agroup(shell);
+	ft_check_builtings(shell);
 	ft_agroup_pipes(shell);
 	ft_count_cmd(shell);
 	if (shell->count_cmd == 1)
 	{
 		if (shell->tokens->type == 0)
-			ft_builtins(shell);
-		else
-			ft_execve_one(shell);
+			ft_builtins(shell, shell->tokens);
+		/* else
+			ft_execve_one(shell); */
 	}
-	if (shell->count_cmd >= 2)
-		ft_more_cmds(shell, shell->tokens);
+	/* if (shell->count_cmd >= 2)
+		ft_more_cmds(shell, shell->tokens); */
 }
 
 void	ft_loop(t_shell *shell)
@@ -99,24 +116,25 @@ void	ft_loop(t_shell *shell)
 			add_history(shell->line);
 		if (!ft_whitespace(shell->line))
 		{
-			ft_inside_loop(shell);
-			/* ft_tokenizer(shell);
+			/* ft_inside_loop(shell); */
+			ft_tokenizer(shell);
 			ft_view(shell); // borrar
 			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
+			ft_check_builtings(shell);
 			ft_agroup_pipes(shell);
 			ft_view(shell); // borrar
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
 			{
-				if (shell->tokens->type == 0)
-					ft_builtins(shell);
-				else
-					ft_execve_one(shell);
-			} */
+				/* if (shell->tokens->type == 0) */
+				ft_builtins(shell, shell->tokens);
+				/* else
+					ft_execve_one(shell); */
+			}
 		}
-		//ft_view(shell); // borrar
+		// ft_view(shell); // borrar
 		ft_free_loop(shell);
 	}
 }

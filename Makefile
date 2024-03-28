@@ -20,6 +20,7 @@ SRCS =  src/main.c\
 	src/pipex/planner.c\
 	src/pipex/utils_pipex.c\
 	src/init/init.c\
+	src/init/minitokenizer.c\
 	src/init/tokeneizer.c\
 	src/init/tokeneizer2.c\
 	src/init/tokens.c\
@@ -33,7 +34,6 @@ SRCS =  src/main.c\
 	src/builtins/export.c\
 	src/builtins/export_utils.c\
 	src/builtins/unset.c\
-
 
 CC = gcc
 

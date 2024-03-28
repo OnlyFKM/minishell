@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minitokenizer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:57:58 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/28 14:48:11 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/28 15:21:53 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_init_token(t_tokens *token, int type, char *str)
+void	ft_init_token2(t_tokens *token, int type, char *str)
 {
 	t_tokens	*tmp;
 
@@ -35,9 +35,9 @@ void	ft_minitoken(t_tokens *tokens, char *str, int *i)
 	}
 	tmp = ft_strndup(start, j);
 	if (tokens == NULL)
-		ft_init_token(tokens, CMD, tmp);
+		ft_init_token2(tokens, CMD, tmp);
 	else
-		ft_init_token(tokens, ARG, tmp);
+		ft_init_token2(tokens, ARG, tmp);
 	free(tmp);
 }
 
