@@ -6,17 +6,17 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:46:23 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 14:26:22 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:41:25 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_unset_loop(t_shell *shell, t_tokens *prueba)
+void	ft_unset_loop(t_shell *shell, t_tokens *tokens)
 {
 	t_tokens	*tmp;
 
-	tmp = prueba;
+	tmp = tokens;
 	while (tmp)
 	{
 		ft_unset(shell, tmp->str);

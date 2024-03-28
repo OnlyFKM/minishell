@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 17:21:21 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:14:53 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,8 +211,8 @@ void		ft_free_exit(t_shell *shell);
 
 //		basics.c
 void		ft_pwd(t_shell *shell);
-void		ft_exit(t_shell *shell);
-void		ft_check_number(t_shell *shell);
+void		ft_exit(t_shell *shell, t_tokens *tokens);
+void		ft_check_number(t_shell *shell, t_tokens *tokens);
 void		ft_status_exit(t_shell *shell, int status);
 
 //		cd_utils.c
@@ -221,8 +221,8 @@ void		ft_oldpwd(t_shell *shell);
 void		ft_change_pwd(t_shell *shell);
 
 //		cd.c
-void		ft_cd(t_shell *shell);
-void		ft_cd_next(t_shell *shell);
+void		ft_cd(t_shell *shell, t_tokens *tokens);
+void		ft_cd_next(t_shell *shell, t_tokens *tokens);
 void		ft_first_cd(t_shell *shell);
 int			ft_check_oldpwd(t_shell *shell);
 
@@ -244,7 +244,7 @@ void		ft_check_start(t_shell *shell, char *first, char *second);
 void		ft_add_export(t_shell *shell, char *first, char *second);
 
 //		export.c
-void		ft_export(t_shell *shell);
+void		ft_export(t_shell *shell, t_tokens *tokens);
 void		ft_create_export(t_env *env);
 int			ft_check_export(t_env *env, char *first, char *second);
 void		ft_create_pointers(t_shell *shell, char *str);
@@ -252,7 +252,7 @@ void		ft_create_pointers_2(t_shell *shell, char *str, int j);
 
 //		unset.c
 void		ft_unset(t_shell *shell, char *str);
-void		ft_unset_loop(t_shell *shell, t_tokens *prueba);
+void		ft_unset_loop(t_shell *shell, t_tokens *tokens);
 
 
 

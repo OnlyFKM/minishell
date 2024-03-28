@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:58:50 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/04 12:23:45 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/28 17:37:47 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,13 @@ void	ft_first_cd(t_shell *shell)
 	last->content = ft_strdup(shell->pwd);
 }
 
-void	ft_cd_next(t_shell *shell)
+void	ft_cd_next(t_shell *shell, t_tokens *tokens)
 {
 	t_tokens	*tmp;
 	int			flag;
 	char		cwd[256];
 
-	tmp = shell->tokens->next;
+	tmp = tokens->next;
 	flag = chdir(tmp->str);
 	getcwd(cwd, sizeof(cwd));
 	if (flag == -1)
@@ -57,21 +57,21 @@ void	ft_cd_next(t_shell *shell)
 	}
 }
 
-void	ft_cd(t_shell *shell)
+void	ft_cd(t_shell *shell, t_tokens *tokens)
 {
 	int	flag;
 
 	flag = ft_check_oldpwd(shell);
 	if (flag == 0)
 		ft_first_cd(shell);
-	if (!shell->tokens->next)
+	if (!tokens->next)
 	{
 		ft_search_dir(shell, "HOME");
 		ft_oldpwd(shell);
 		chdir(shell->tmp_cd);
 		ft_change_pwd(shell);
 	}
-	else if (ft_strcmp(shell->tokens->next->str, "-") == 0)
+	else if (ft_strcmp(tokens->next->str, "-") == 0)
 	{
 		ft_search_dir(shell, "OLDPWD");
 		ft_oldpwd(shell);
@@ -80,7 +80,7 @@ void	ft_cd(t_shell *shell)
 		ft_pwd(shell);
 	}
 	else
-		ft_cd_next(shell);
+		ft_cd_next(shell, tokens);
 	if (shell->tmp_cd != NULL)
 		free(shell->tmp_cd);
 	shell->tmp_cd = NULL;
