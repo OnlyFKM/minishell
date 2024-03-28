@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/25 15:32:32 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/26 15:52:47 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define OUT 5
 # define IN 6
 # define APPEND 7
-# define INSOURCE 8
+# define HERE_DOC 8
 # define PIPE 9
 
 // Std
