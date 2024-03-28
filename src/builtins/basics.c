@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 14:24:23 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/28 18:14:30 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	ft_status_exit(t_shell *shell, int status)
 	}
 }
 
-void	ft_check_number(t_shell *shell)
+void	ft_check_number(t_shell *shell, t_tokens *tokens)
 {
 	t_tokens	*tmp;
 	int			i;
 
 	i = 0;
-	tmp = shell->tokens->next;
+	tmp = tokens->next;
 	if (tmp->str[0] == '-' || tmp->str[0] == '+')
 		i++;
 	while (ft_isdigit(tmp->str[i]))
@@ -60,11 +60,11 @@ void	ft_check_number(t_shell *shell)
 	}
 }
 
-void	ft_exit(t_shell *shell)
+void	ft_exit(t_shell *shell, t_tokens *tokens)
 {
 	t_tokens	*tmp;
 
-	tmp = shell->tokens;
+	tmp = tokens;
 	if (!tmp->next)
 	{
 		ft_free_exit(shell);
@@ -72,7 +72,7 @@ void	ft_exit(t_shell *shell)
 		exit(EXIT_SUCCESS);
 	}
 	else
-		ft_check_number(shell);
+		ft_check_number(shell, tokens);
 }
 
 void	ft_pwd(t_shell *shell)

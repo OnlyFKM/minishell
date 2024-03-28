@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:16:46 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 16:12:26 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/28 17:18:50 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ void	ft_check_builtings(t_shell *shell)
 		else if (ft_strncmp(shell->tokens->str, "cd\0", 3) == EXIT_SUCCESS)
 			tmp->type = 0;
 		else
+		{
+			ft_printf("str es %s\n", shell->tokens->str);
 			tmp->type = 1;
+		}
 		if (tmp->next)
 			tmp = tmp->next;
 		break ;

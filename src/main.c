@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
 /*   Updated: 2024/03/28 18:10:31 by yfang            ###   ########.fr       */
@@ -65,25 +65,25 @@ void	ft_builtins(t_shell *shell, char *str)
 
 	aux = NULL;
 	aux = ft_minitokenizer(aux, str);
+	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
 	ft_view2(aux); //borrar
-	if (ft_strncmp(shell->tokens->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
 		ft_echo(aux);
-	else if (ft_strncmp(shell->tokens->str, "game\0", 5) == EXIT_SUCCESS)
+	else if (ft_strncmp(aux->str, "game\0", 5) == EXIT_SUCCESS)
 		printf("YOU HAVE LOST THE GAME\n");
-	else if (ft_strncmp(shell->tokens->str, "marina\0", 7) == EXIT_SUCCESS)
+	else if (ft_strncmp(aux->str, "marina\0", 7) == EXIT_SUCCESS)
 		printf("Marina, DO NOT DELETE my home pls\n");
-	else if (ft_strncmp(shell->tokens->str, "env\0", 4) == EXIT_SUCCESS)
+	else if (ft_strncmp(aux->str, "env\0", 4) == EXIT_SUCCESS)
 		ft_print_env(shell->env);
-	else if (ft_strncmp(shell->tokens->str, "exit\0", 5) == EXIT_SUCCESS)
-		ft_exit(shell);
-	else if (ft_strncmp(shell->tokens->str, "unset\0", 6) == EXIT_SUCCESS)
-		ft_unset_loop(shell, shell->tokens->next);
-	else if (ft_strncmp(shell->tokens->str, "export\0", 7) == EXIT_SUCCESS)
-		ft_export(shell);
-	else if (ft_strncmp(shell->tokens->str, "cd\0", 3) == EXIT_SUCCESS)
-		ft_cd(shell);
+	else if (ft_strncmp(aux->str, "exit\0", 5) == EXIT_SUCCESS)
+		ft_exit(shell, aux);
+	else if (ft_strncmp(aux->str, "unset\0", 6) == EXIT_SUCCESS)
+		ft_unset_loop(shell, aux->next);
+	else if (ft_strncmp(aux->str, "export\0", 7) == EXIT_SUCCESS)
+		ft_export(shell, aux);
+	else if (ft_strncmp(aux->str, "cd\0", 3) == EXIT_SUCCESS)
+		ft_cd(shell, aux);
 	ft_free_tokens(&aux);
 }
 
@@ -94,6 +94,7 @@ void	ft_inside_loop(t_shell *shell)
 	ft_expand(shell);
 	if (shell->tokens->next)
 		ft_agroup(shell);
+	ft_check_builtings(shell);
 	ft_agroup_pipes(shell);
 	ft_count_cmd(shell);
 	if (shell->count_cmd == 1)
@@ -121,6 +122,7 @@ void	ft_loop(t_shell *shell)
 			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
+			ft_check_builtings(shell);
 			ft_agroup_pipes(shell);
 			ft_count_cmd(shell);
 			ft_view(shell); // borrar
@@ -132,7 +134,7 @@ void	ft_loop(t_shell *shell)
 					ft_execve_one(shell); */
 			}
 		}
-		//ft_view(shell); // borrar
+		// ft_view(shell); // borrar
 		ft_free_loop(shell);
 	}
 }
