@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   agroup.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:07:28 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/28 16:12:41 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/29 15:50:13 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	ft_quitpipes(t_shell *shell)
 
 	tmp = shell->tokens;
 	aux = tmp->next;
+	ft_printf("pipa 3\n");
 	while (aux)
 	{
 		if (ft_tokentype(aux->type))
@@ -38,6 +39,7 @@ void	ft_quitpipes(t_shell *shell)
 			tmp = tmp->next->next;
 		aux = tmp->next;
 	}
+	ft_printf("pipa 4\n");
 }
 
 void	ft_agroup_pipes(t_shell *shell)
@@ -48,6 +50,7 @@ void	ft_agroup_pipes(t_shell *shell)
 
 	tmp = shell->tokens;
 	aux = tmp->next;
+	ft_printf("pipa 1\n");
 	while (aux)
 	{
 		if (!ft_tokentype(aux->type))
@@ -64,6 +67,7 @@ void	ft_agroup_pipes(t_shell *shell)
 			tmp = tmp->next->next;
 		aux = tmp->next;
 	}
+	ft_printf("pipa 2\n");
 	ft_quitpipes(shell);
 }
 

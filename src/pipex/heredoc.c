@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 17:30:55 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/29 15:06:48 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 	}
 } */
 
-/* void	ft_do_heredoc(char	*input)
+void	ft_do_heredoc(char	*input)
 {
 	int	fd_here[2];
 	int	pid;
@@ -61,8 +61,9 @@ void	ft_heredoc(t_shell *shell, char *limiter)
 {
 	char	*line;
 	char	*input;
-	int		*output;
+	int		output;
 
+	input = ft_strdup("");
 	dup2(shell->in, STDIN_FILENO);
 	output = dup(STDOUT_FILENO);
 	dup2(shell->out, STDOUT_FILENO);
@@ -82,11 +83,13 @@ void	ft_heredoc(t_shell *shell, char *limiter)
 	free(line);
 }
 
-void	ft_pipex(t_shell *shell)
-{
-	t_cmd	*tmp;
+// probar que ese sea el delimitador o split
 
-	tmp = shell->cmd;
+void	ft_pipex(t_shell *shell, t_tokens *tokens)
+{
+	t_tokens	*tmp;
+
+	tmp = tokens;
 	if (tmp->heredoc != 0)
 		ft_heredoc(shell, tmp->next->str);
 	if (tmp->outfile != -1)
@@ -99,4 +102,4 @@ void	ft_pipex(t_shell *shell)
 		dup2(tmp->infile, STDIN_FILENO);
 		close(tmp->infile);
 	}
-} */
+}
