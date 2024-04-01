@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:07:28 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/29 15:50:13 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/31 15:47:03 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_quitpipes(t_shell *shell)
 
 	tmp = shell->tokens;
 	aux = tmp->next;
-	ft_printf("pipa 3\n");
 	while (aux)
 	{
 		if (ft_tokentype(aux->type))
@@ -36,10 +35,9 @@ void	ft_quitpipes(t_shell *shell)
 			free(aux);
 		}
 		else
-			tmp = tmp->next->next;
+			tmp = tmp->next;
 		aux = tmp->next;
 	}
-	ft_printf("pipa 4\n");
 }
 
 void	ft_agroup_pipes(t_shell *shell)
@@ -50,7 +48,6 @@ void	ft_agroup_pipes(t_shell *shell)
 
 	tmp = shell->tokens;
 	aux = tmp->next;
-	ft_printf("pipa 1\n");
 	while (aux)
 	{
 		if (!ft_tokentype(aux->type))
@@ -67,7 +64,6 @@ void	ft_agroup_pipes(t_shell *shell)
 			tmp = tmp->next->next;
 		aux = tmp->next;
 	}
-	ft_printf("pipa 2\n");
 	ft_quitpipes(shell);
 }
 
@@ -95,5 +91,5 @@ void	ft_agroup(t_shell *shell)
 			tmp = tmp->next;
 		aux = aux->next;
 	}
-	ft_check_builtings(shell);
+	/* ft_check_builtings(shell); */
 }

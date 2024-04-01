@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/29 15:46:01 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:48:00 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_builtins(t_shell *shell, char *str)
 
 	aux = NULL;
 	aux = ft_minitokenizer(aux, str);
-	ft_view2(aux); //borrar
+	/* ft_view2(aux); //borrar */
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
@@ -119,17 +119,13 @@ void	ft_loop(t_shell *shell)
 		{
 			/* ft_inside_loop(shell); */
 			ft_tokenizer(shell);
-			ft_expand(shell);
 			if (shell->tokens->next)
 				ft_agroup(shell);
 			ft_check_builtings(shell);
-			ft_printf("Hola 1\n");
 			ft_agroup_pipes(shell);
-			ft_printf("Hola 2\n");
-			ft_count_cmd(shell);
-			ft_printf("Hola 3\n");
-			ft_printf("count es &d\n", shell->count_cmd);
+			ft_expand(shell);
 			ft_view(shell); // borrar
+			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
 			{
 				if (shell->tokens->type == 0)
