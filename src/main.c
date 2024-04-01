@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 18:10:31 by yfang            ###   ########.fr       */
+/*   Updated: 2024/03/31 16:48:00 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	ft_builtins(t_shell *shell, char *str)
 
 	aux = NULL;
 	aux = ft_minitokenizer(aux, str);
+	/* ft_view2(aux); //borrar */
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
-	ft_view2(aux); //borrar
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
 		ft_echo(aux);
@@ -119,13 +119,20 @@ void	ft_loop(t_shell *shell)
 		{
 			/* ft_inside_loop(shell); */
 			ft_tokenizer(shell);
-			ft_expand(shell);
+			ft_view(shell); // borrar
+			ft_printf("token\n");
 			if (shell->tokens->next)
 				ft_agroup(shell);
-			ft_check_builtings(shell);
-			ft_agroup_pipes(shell);
-			ft_count_cmd(shell);
 			ft_view(shell); // borrar
+			ft_printf("agroup\n");
+			ft_check_builtings(shell);
+			ft_view(shell); // borrar
+			ft_printf("check\n");
+			ft_agroup_pipes(shell);
+			ft_expand(shell);
+			ft_view(shell); // borrar
+			ft_printf("expand\n");
+			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
 			{
 				if (shell->tokens->type == 0)

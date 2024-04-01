@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:16:46 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 17:18:50 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/31 16:00:55 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,19 @@ void	ft_check_builtings(t_shell *shell)
 	{
 		if (ft_strncmp(tmp->str, "pwd\0", 4) == EXIT_SUCCESS)
 			tmp->type = 0;
-		else if (ft_strncmp(shell->tokens->str, "echo\0", 5) == EXIT_SUCCESS)
+		else if (ft_strncmp(tmp->str, "echo\0", 5) == EXIT_SUCCESS)
 			tmp->type = 0;
-		else if (ft_strncmp(shell->tokens->str, "env\0", 4) == EXIT_SUCCESS)
+		else if (ft_strncmp(tmp->str, "env\0", 4) == EXIT_SUCCESS)
 			tmp->type = 0;
-		else if (ft_strncmp(shell->tokens->str, "exit\0", 5) == EXIT_SUCCESS)
+		else if (ft_strncmp(tmp->str, "exit\0", 5) == EXIT_SUCCESS)
 			tmp->type = 0;
-		else if (ft_strncmp(shell->tokens->str, "unset\0", 6) == EXIT_SUCCESS)
+		else if (ft_strncmp(tmp->str, "unset\0", 6) == EXIT_SUCCESS)
 			tmp->type = 0;
-		else if (ft_strncmp(shell->tokens->str, "export\0", 7) == EXIT_SUCCESS)
+		else if (ft_strncmp(tmp->str, "export\0", 7) == EXIT_SUCCESS)
 			tmp->type = 0;
-		else if (ft_strncmp(shell->tokens->str, "cd\0", 3) == EXIT_SUCCESS)
+		else if (ft_strncmp(tmp->str, "cd\0", 3) == EXIT_SUCCESS)
 			tmp->type = 0;
-		else
-		{
-			ft_printf("str es %s\n", shell->tokens->str);
-			tmp->type = 1;
-		}
-		if (tmp->next)
-			tmp = tmp->next;
-		break ;
+		tmp = tmp->next;
 	}
 }
 
