@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is.c                                               :+:      :+:    :+:   */
+/*   clean_redirecction.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 16:29:07 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/01 17:45:50 by yfang            ###   ########.fr       */
+/*   Created: 2024/04/01 16:39:09 by yfang             #+#    #+#             */
+/*   Updated: 2024/04/01 19:32:47 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	ft_ifredi(char c)
+void	ft_separe_redi(t_tokens *token)
 {
-	return (c == '>' || c == '<');
+	int		i;
+	int		j;
+	char	*dst;
+
+	i = 0;
+	while (token->str[i] && ft_ifredi(token->str[i]))
+	{
+		i++;
+		j++;
+	}
 }
 
-int	ft_spandchar(char c)
+void	ft_find_redi(t_shell *shell)
 {
-	return (ft_isalnum(c) || c == '_' || c == '~');
-}
+	t_tokens *tmp;
 
-int	ft_isspecial(char c)
-{
-	return (c == ' ' || c == '\"' || c == '\'' || c == '>' || c == '<'
-		|| c == '|');
-}
-
-int	ft_isspace(int c)
-{
-	return (c == ' ');
+	tmp = shell->tokens;
+	while (tmp)
+	{
+		if (tmp->type >= OUT && tmp->type <= HERE_DOC)
+			ft_separe_redi(tmp);
+		tmp = tmp->next;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/31 16:48:00 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/01 20:12:51 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,11 +119,12 @@ void	ft_loop(t_shell *shell)
 		{
 			/* ft_inside_loop(shell); */
 			ft_tokenizer(shell);
+			ft_view(shell); // borrar
 			if (shell->tokens->next)
 				ft_agroup(shell);
+			ft_expand(shell);
 			ft_check_builtings(shell);
 			ft_agroup_pipes(shell);
-			ft_expand(shell);
 			ft_view(shell); // borrar
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)

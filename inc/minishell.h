@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/29 14:41:56 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/01 20:07:54 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void		ft_builtins(t_shell *shell, char *str);
 int			ft_isspace(int c);
 int			ft_isspecial(char c);
 int			ft_spandchar(char c);
+int			ft_ifredi(char c);
 
 //		libftplus.c
 char		*ft_strndup(const char *s, size_t n);
