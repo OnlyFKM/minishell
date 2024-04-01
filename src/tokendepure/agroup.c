@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   agroup.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:07:28 by yfang             #+#    #+#             */
 /*   Updated: 2024/03/31 15:47:03 by yfang            ###   ########.fr       */

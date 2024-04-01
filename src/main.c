@@ -87,7 +87,7 @@ void	ft_builtins(t_shell *shell, char *str)
 	ft_free_tokens(&aux);
 }
 
-void	ft_inside_loop(t_shell *shell)
+/* void	ft_inside_loop(t_shell *shell)
 {
 	ft_tokenizer(shell);
 	ft_view(shell); // borrar
@@ -101,12 +101,12 @@ void	ft_inside_loop(t_shell *shell)
 	{
 		if (shell->tokens->type == 0)
 			ft_builtins(shell, shell->tokens->str);
-/* 		else
-			ft_execve_one(shell); */
+		else
+			ft_execve_one(shell);
 	}
-/* 	if (shell->count_cmd >= 2)
-		ft_more_cmds(shell, shell->tokens); */
-}
+	if (shell->count_cmd >= 2)
+		ft_more_cmds(shell, shell->tokens);
+} */
 
 void	ft_loop(t_shell *shell)
 {
@@ -119,27 +119,22 @@ void	ft_loop(t_shell *shell)
 		{
 			/* ft_inside_loop(shell); */
 			ft_tokenizer(shell);
-			ft_view(shell); // borrar
-			ft_printf("token\n");
 			if (shell->tokens->next)
 				ft_agroup(shell);
-			ft_view(shell); // borrar
-			ft_printf("agroup\n");
 			ft_check_builtings(shell);
-			ft_view(shell); // borrar
-			ft_printf("check\n");
 			ft_agroup_pipes(shell);
 			ft_expand(shell);
 			ft_view(shell); // borrar
-			ft_printf("expand\n");
 			ft_count_cmd(shell);
 			if (shell->count_cmd == 1)
 			{
 				if (shell->tokens->type == 0)
 					ft_builtins(shell, shell->tokens->str);
-				/* else
-					ft_execve_one(shell); */
+				else
+					ft_execve_one(shell, shell->tokens);
 			}
+			else if (shell->count_cmd >= 2)
+				ft_more_cmds(shell, shell->tokens);
 		}
 		// ft_view(shell); // borrar
 		ft_free_loop(shell);

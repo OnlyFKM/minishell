@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 18:14:53 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/29 14:41:56 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_shell
 	char			*line;
 	char			*tmp_cd;
 	char			*pwd;
+	char			*path;
 	int				count_cmd;
 	int				space;
 	int				in;
@@ -142,34 +143,18 @@ void		ft_execve_one(t_shell *shell); */
 //	  utils_pipex.c
 char		*ft_find_path(t_shell *shell, char *cmd);
 char		**ft_update_envp(t_shell *shell);
-char		**ft_pointer_str(t_shell *shell);
+void		ft_do_execve(t_shell *shell, t_tokens *tokens, int flag);
+void		ft_execve_one(t_shell *shell, t_tokens *tokens);
+int			ft_check_path(t_shell *shell, t_tokens *tokens);
 
 //	  planner.c
-void		ft_execve_one(t_shell *shell);
-void		ft_execve(t_shell *shell);
 void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
 void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
 void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
+void		ft_execve(t_shell *shell, t_tokens *tokens);
 
 //	  heredoc.c
-void		ft_pipex(t_shell *shell);
-void		ft_heredoc(t_shell *shell, char *limiter);
-void		ft_do_heredoc(char	*input);
-
-//	  heredoc.c
-void		ft_pipex(t_shell *shell);
-void		ft_heredoc(t_shell *shell, char *limiter);
-void		ft_do_heredoc(char	*input);
-
-//		utils_pipex.c
-void		ft_execve_one(t_shell *shell);
-void		ft_execve(t_shell *shell);
-char		*ft_find_path(t_shell *shell, char *cmd);
-char		**ft_update_envp(t_shell *shell);
-char		**ft_pointer_str(t_shell *shell);
-
-//		heredoc.c
-void		ft_pipex(t_shell *shell);
+void		ft_pipex(t_shell *shell, t_tokens *tokens);
 void		ft_heredoc(t_shell *shell, char *limiter);
 void		ft_do_heredoc(char	*input);
 
@@ -253,7 +238,5 @@ void		ft_create_pointers_2(t_shell *shell, char *str, int j);
 //		unset.c
 void		ft_unset(t_shell *shell, char *str);
 void		ft_unset_loop(t_shell *shell, t_tokens *tokens);
-
-
 
 #endif

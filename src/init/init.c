@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:59:27 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/20 10:54:21 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/03/29 13:23:31 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	ft_init(t_shell *shell, char **envp)
 		return (EXIT_FAILURE);
 	shell->line = NULL;
 	shell->tmp_cd = NULL;
+	shell->path = NULL; //borrar
 	shell->count_cmd = 0;
 	shell->space = 0;
 	shell->in = dup(STDIN_FILENO);
