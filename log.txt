@@ -1,0 +1,8 @@
+Makefile
+archivo
+inc
+log.txt
+minishell
+minishell.a
+src
+tmp

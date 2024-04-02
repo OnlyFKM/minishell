@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/29 14:41:56 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/02 11:18:21 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_env
 typedef struct s_tokens
 {
 	char			*str;
+	char			*path;
 	int				type;
 	int				space;
 	int				heredoc;
