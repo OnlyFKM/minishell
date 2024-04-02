@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:00:15 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/20 13:25:08 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:20:47 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void	ft_free_tokens(t_tokens **tokens)
 	{
 		tmp = current->next;
 		free(current->str);
+		if (current->path)
+		{
+			free(current->path);
+			current->path = NULL;
+		}
 		current->str = NULL;
 		free(current);
 		current = NULL;

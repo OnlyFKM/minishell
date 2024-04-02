@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/02 13:54:26 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:56:24 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	ft_builtins(t_shell *shell, char *str)
 	if (shell->count_cmd >= 2)
 		ft_more_cmds(shell, shell->tokens);
 } */
-
 void	ft_loop(t_shell *shell)
 {
 	while (1)
@@ -127,6 +126,7 @@ void	ft_loop(t_shell *shell)
 			ft_agroup_pipes(shell);
 			ft_view(shell); // borrar
 			ft_count_cmd(shell);
+			ft_printf("%d\n", shell->count_cmd);
 			if (shell->count_cmd == 1)
 			{
 				if (shell->tokens->type == 0)
@@ -146,7 +146,7 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_shell	*shell;
 
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	(void)argv;
 	if (argc == 1)
 	{

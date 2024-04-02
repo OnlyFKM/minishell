@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/01 20:07:54 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/02 13:55:48 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_env
 typedef struct s_tokens
 {
 	char			*str;
+	char			*path;
 	int				type;
 	int				space;
 	int				heredoc;
