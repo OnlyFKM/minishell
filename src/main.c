@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/31 16:48:00 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/01 15:49:25 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	ft_builtins(t_shell *shell, char *str)
 	if (shell->count_cmd >= 2)
 		ft_more_cmds(shell, shell->tokens);
 } */
-
 void	ft_loop(t_shell *shell)
 {
 	while (1)
@@ -126,6 +125,7 @@ void	ft_loop(t_shell *shell)
 			ft_expand(shell);
 			ft_view(shell); // borrar
 			ft_count_cmd(shell);
+			ft_printf("%d\n", shell->count_cmd);
 			if (shell->count_cmd == 1)
 			{
 				if (shell->tokens->type == 0)
@@ -145,7 +145,7 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_shell	*shell;
 
-	atexit(ft_leaks);
+	//atexit(ft_leaks);
 	(void)argv;
 	if (argc == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/29 15:06:48 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/02 12:28:30 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,11 @@ void	ft_heredoc(t_shell *shell, char *limiter)
 
 // probar que ese sea el delimitador o split
 
-void	ft_pipex(t_shell *shell, t_tokens *tokens)
+/* void	ft_pipex(t_shell *shell, t_tokens *tokens)
 {
 	t_tokens	*tmp;
 
+	(void)shell;
 	tmp = tokens;
 	if (tmp->heredoc != 0)
 		ft_heredoc(shell, tmp->next->str);
@@ -102,4 +103,4 @@ void	ft_pipex(t_shell *shell, t_tokens *tokens)
 		dup2(tmp->infile, STDIN_FILENO);
 		close(tmp->infile);
 	}
-}
+} */

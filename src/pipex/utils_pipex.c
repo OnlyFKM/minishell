@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/29 14:17:56 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/02 11:58:16 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 	splitted = ft_split(tmp->content, ':');
 	while (splitted[i])
 	{
-		// result = ft_strjoin_2(splitted[i], cmd);
 		result = ft_strjoin(splitted[i], cmd);
 		if (access(result, F_OK) == EXIT_SUCCESS)
 		{
@@ -75,23 +74,18 @@ void	ft_do_execve(t_shell *shell, t_tokens *tokens, int flag)
 	char	**str;
 	char	**envp;
 
-	// char	*path;
 	if (flag == 0)
 	{
 		str = ft_split(tokens->str, ' ');
 		cmd = ft_strdup("/");
 		aux = cmd;
 		cmd = ft_strjoin_2(aux, str[0]);
-		// path = ft_find_path(shell, cmd);
 		envp = ft_update_envp(shell);
-		if (shell->path)
-			shell->status = execve(shell->path, str, envp);
+		if (tokens->path)
+			shell->status = execve(tokens->path, str, envp);
 	}
 	if (flag == 1)
-	{
-		ft_printf("hola\n");
 		ft_free_execve(str, envp, cmd, shell->path);
-	}
 }
 
 int	ft_check_path(t_shell *shell, t_tokens *tokens)
@@ -103,19 +97,49 @@ int	ft_check_path(t_shell *shell, t_tokens *tokens)
 	str = ft_split(tokens->str, ' ');
 	cmd = ft_strdup("/");
 	aux = cmd;
-	// cmd = ft_strjoin_2(aux, str[0]);
 	cmd = ft_strjoin(aux, str[0]);
 	free(aux);
-	// shell->path = ft_strdup(ft_find_path(shell, cmd));
-	shell->path = ft_find_path(shell, cmd);
+	shell->tokens->path = ft_strdup(ft_find_path(shell, cmd));
 	free(cmd);
 	ft_free_double(str);
-	if (!shell->path)
+	if (!tokens->path)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
 void	ft_execve_one(t_shell *shell, t_tokens *tokens)
+{
+	int		pid;
+	char	**str;
+	char	**envp;
+	char	*cmd;
+	char	*aux;
+
+	str = ft_split(tokens->str, ' ');
+	cmd = ft_strdup("/");
+	aux = cmd;
+	cmd = ft_strjoin_2(aux, str[0]);
+	shell->path = ft_find_path(shell, cmd);
+	if (shell->path != NULL)
+	{
+		pid = fork();
+		envp = ft_update_envp(shell);
+		if (pid == 0)
+		{
+			execve(shell->path, str, envp);
+			ft_printf("marinashell: %s: command not found\n", str[0]);
+			exit(127);
+		}
+		else
+		{
+			if (shell->path)
+				free(shell->path);
+			waitpid(pid, NULL, 0);
+		}
+	}
+}
+
+/* void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 {
 	int		pid;
 	char	**str;
@@ -126,8 +150,6 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 		if (pid == 0)
 		{
 			ft_do_execve(shell, tokens, 0);
-			ft_printf("entra aqui\n");
-			ft_do_execve(shell, tokens, 1);
 			exit(127);
 		}
 		else
@@ -139,10 +161,9 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 	}
 	else
 	{
-		// str = ft_pointer_str(shell);
 		str = ft_split(tokens->str, ' ');
 		ft_printf("marinashell: %s: command not found\n", str[0]);
 		if (str)
 			ft_free_double(str);
 	}
-}
+} */
