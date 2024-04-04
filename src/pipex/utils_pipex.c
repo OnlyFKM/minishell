@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/02 11:58:16 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/03 16:02:23 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 	int		i;
 
 	tmp = shell->env;
-	i = 0;
+	i = -1;
 	while (tmp->next)
 	{
 		if (ft_strcmp(tmp->name, "PATH") == EXIT_SUCCESS)
@@ -53,7 +53,7 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 		tmp = tmp->next;
 	}
 	splitted = ft_split(tmp->content, ':');
-	while (splitted[i])
+	while (splitted[++i])
 	{
 		result = ft_strjoin(splitted[i], cmd);
 		if (access(result, F_OK) == EXIT_SUCCESS)
@@ -61,13 +61,12 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 			ft_free_double(splitted);
 			return (result);
 		}
-		i++;
+		free(result);
 	}
-	ft_free_double(splitted);
 	return (NULL);
 }
 
-void	ft_do_execve(t_shell *shell, t_tokens *tokens, int flag)
+/* void	ft_do_execve(t_shell *shell, t_tokens *tokens, int flag)
 {
 	char	*cmd;
 	char	*aux;
@@ -85,8 +84,8 @@ void	ft_do_execve(t_shell *shell, t_tokens *tokens, int flag)
 			shell->status = execve(tokens->path, str, envp);
 	}
 	if (flag == 1)
-		ft_free_execve(str, envp, cmd, shell->path);
-}
+		ft_free_execve(str, envp, cmd);
+} */
 
 int	ft_check_path(t_shell *shell, t_tokens *tokens)
 {
@@ -119,6 +118,7 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 	cmd = ft_strdup("/");
 	aux = cmd;
 	cmd = ft_strjoin_2(aux, str[0]);
+	envp = NULL;
 	shell->path = ft_find_path(shell, cmd);
 	if (shell->path != NULL)
 	{
@@ -131,12 +131,9 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 			exit(127);
 		}
 		else
-		{
-			if (shell->path)
-				free(shell->path);
 			waitpid(pid, NULL, 0);
-		}
 	}
+	ft_free_execve(str, envp, cmd);
 }
 
 /* void	ft_execve_one(t_shell *shell, t_tokens *tokens)

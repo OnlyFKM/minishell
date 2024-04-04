@@ -1,13 +1,14 @@
 NAME = minishell
 
-CFLAGS = -g -Wextra -Wall -Werror
+CFLAGS = -Wextra -Wall -Werror
 LIBFT = ./inc/libft
-HEADERS = -I ./include -I /System/Volumes/Data/Users/$(USER)/.brew/Cellar/readline/8.2.7
+
+HEADERS = -I/Users/$(USER)/.brew/opt/readline/include
 INCLUDES = -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 
 SRCS =  src/main.c\
-	src/utils/is.c\
 	src/utils/libftplus.c\
+	src/utils/is.c\
 	src/utils/list.c\
 	src/utils/t_tokens.c\
 	src/utils/utils.c\
@@ -15,7 +16,6 @@ SRCS =  src/main.c\
 	src/tokendepure/agroup.c\
 	src/tokendepure/expand_utils.c\
 	src/tokendepure/expand.c\
-	src/pipex/execution.c\
 	src/pipex/heredoc.c\
 	src/pipex/planner.c\
 	src/pipex/utils_pipex.c\

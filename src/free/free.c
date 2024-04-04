@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:00:15 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/01 18:20:47 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/03 15:55:04 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	ft_free_exit(t_shell *shell)
 	ft_free_tokens(&shell->tokens);
 	free(shell->line);
 	free(shell->pwd);
+	if (shell->path != NULL)
+		free(shell->path);
 	free(shell);
 }
 

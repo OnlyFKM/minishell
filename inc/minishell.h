@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/02 11:18:21 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/04 13:59:02 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdio.h>
+# include <stdlib.h>
+# include <signal.h>
 
 /*--------------------------------   MACROS   --------------------------------*/
 // Types
@@ -184,7 +186,7 @@ void		ft_init_token(t_shell *shell, int type, char *str);
 //					Free
 
 //		final_free.c
-void		ft_free_execve(char **str, char **envp, char *cmd, char *path);
+void		ft_free_execve(char **str, char **envp, char *cmd);
 void		ft_free_loop(t_shell *shell);
 
 //		free.c
