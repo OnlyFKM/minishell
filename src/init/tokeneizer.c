@@ -6,11 +6,23 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:40:13 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/15 11:12:40 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/04 12:35:21 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	ft_quoteserror(t_shell *shell, int *i, int j)
+{
+	if (j == 0)
+	{
+		if (shell->line[*i] != '\"')
+			shell->error = 1;
+	}
+	else
+		if (shell->line[*i] != '\"')
+			shell->error = 1;
+}
 
 int	ft_quotes(t_shell *shell, int *i)
 {
@@ -25,6 +37,7 @@ int	ft_quotes(t_shell *shell, int *i)
 			(*i)++;
 			j++;
 		}
+		ft_quoteserror(shell, i, 0);
 	}
 	else if (shell->line[*i] == '\"')
 	{
@@ -34,6 +47,7 @@ int	ft_quotes(t_shell *shell, int *i)
 			(*i)++;
 			j++;
 		}
+		ft_quoteserror(shell, i, 1);
 	}
 	return (j);
 }

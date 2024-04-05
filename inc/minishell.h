@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/02 11:18:21 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/04 17:34:41 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,23 @@ typedef struct s_shell
 	int				in;
 	int				out;
 	int				status;
+	int				cmdflag;
+	int				error;
 }					t_shell;
+
+/* 
+error
+0 no error
+1 comillas
+2 <> <<< marinashell: syntax error near unexpected token `<'
+3 >>> >< marinashell: syntax error near unexpected token `>'
+4 falta argumentos en redi marinashell: syntax error near unexpected token `newline'
+5 || seguidos marinashell: syntax error near unexpected token `|'
+6
+7
+8
+9
+ */
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
 
@@ -89,10 +105,12 @@ void		ft_loop(t_shell *shell);
 void		ft_inside_loop(t_shell *shell);
 void		ft_builtins(t_shell *shell, char *str);
 
+//	Utils
 //		is.c
 int			ft_isspace(int c);
 int			ft_isspecial(char c);
 int			ft_spandchar(char c);
+int			ft_ifredi(char c);
 
 //		libftplus.c
 char		*ft_strndup(const char *s, size_t n);
@@ -119,8 +137,7 @@ void		ft_check_builtings(t_shell *shell);
 //		welcome.c
 void		ft_welcome(void);
 
-//					Tokendepure
-
+//	Tokendepure
 //		agroup.c
 void		ft_agroup(t_shell *shell);
 void		ft_agroup_pipes(t_shell *shell);
@@ -133,6 +150,9 @@ void		ft_final_expand(t_env *env, t_tokens *token, int start, int len);
 //		expand.c
 void		ft_expand(t_shell *shell);
 
+//		redi.c
+void		ft_quitredi(t_shell *shell);
+
 //  Pipex
 /* //	execution.c
 void		ft_execve(t_shell *shell);
@@ -141,26 +161,25 @@ char		**ft_update_envp(t_shell *shell);
 char		**ft_pointer_str(t_shell *shell);
 void		ft_execve_one(t_shell *shell); */
 
-//	  utils_pipex.c
+//	  	utils_pipex.c
 char		*ft_find_path(t_shell *shell, char *cmd);
 char		**ft_update_envp(t_shell *shell);
 void		ft_do_execve(t_shell *shell, t_tokens *tokens, int flag);
 void		ft_execve_one(t_shell *shell, t_tokens *tokens);
 int			ft_check_path(t_shell *shell, t_tokens *tokens);
 
-//	  planner.c
+//	  	planner.c
 void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
 void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
 void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
 void		ft_execve(t_shell *shell, t_tokens *tokens);
 
-//	  heredoc.c
+//	  	heredoc.c
 void		ft_pipex(t_shell *shell, t_tokens *tokens);
 void		ft_heredoc(t_shell *shell, char *limiter);
 void		ft_do_heredoc(char	*input);
 
-//					Init
-
+//	Init
 //		init.c
 int			ft_init(t_shell *shell, char **envp);
 void		ft_first_pwd(t_shell *shell);
@@ -181,8 +200,7 @@ int			ft_redirections(t_shell *shell, int *i);
 void		ft_tokenizer(t_shell *shell);
 void		ft_init_token(t_shell *shell, int type, char *str);
 
-//					Free
-
+//	Free
 //		final_free.c
 void		ft_free_execve(char **str, char **envp, char *cmd, char *path);
 void		ft_free_loop(t_shell *shell);
@@ -193,8 +211,7 @@ void		ft_free_double(char **str);
 void		ft_free_env(t_env *env);
 void		ft_free_exit(t_shell *shell);
 
-//					Builtins
-
+//	Builtins
 //		basics.c
 void		ft_pwd(t_shell *shell);
 void		ft_exit(t_shell *shell, t_tokens *tokens);
