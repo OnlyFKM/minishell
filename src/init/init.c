@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:59:27 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/29 13:23:31 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:29:19 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_init(t_shell *shell, char **envp)
 	shell->in = dup(STDIN_FILENO);
 	shell->out = dup(STDOUT_FILENO);
 	shell->status = 0;
+	g_signal = 0;
 	ft_dupenvp(shell, envp);
 	ft_env(shell->env, shell->envp);
 	ft_first_pwd(shell);

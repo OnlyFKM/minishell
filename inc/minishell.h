@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/06 19:08:26 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:27:14 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define BLUE "\033[0;34m"
 # define END "\033[0m"
 
-extern int	g_signal;
+int	g_signal;
 
 /*--------------------------------   STRUCTS   -------------------------------*/
 typedef struct s_env

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/06 19:06:31 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:45:23 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ void	ft_loop(t_shell *shell)
 			else if (shell->count_cmd >= 2)
 				ft_more_cmds(shell, shell->tokens);
 		}
-		// ft_view(shell); // borrar
 		ft_free_loop(shell);
 	}
 }
