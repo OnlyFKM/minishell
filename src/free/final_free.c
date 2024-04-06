@@ -6,13 +6,13 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:22:28 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/03 15:54:13 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/06 17:30:13 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_free_execve(char **str, char **envp, char *cmd)
+void	ft_free_execve(char **str, char **envp, char *cmd, char *path)
 {
 	if (str != NULL)
 		ft_free_double(str);
@@ -20,6 +20,11 @@ void	ft_free_execve(char **str, char **envp, char *cmd)
 		ft_free_double(envp);
 	if (cmd != NULL)
 		free(cmd);
+	if (path != NULL)
+	{
+		free(path);
+		path = NULL;
+	}	
 }
 
 void	ft_free_loop(t_shell *shell)
@@ -31,6 +36,7 @@ void	ft_free_loop(t_shell *shell)
 	shell->count_cmd = 0;
 	free(shell->line);
 	shell->line = NULL;
-	if (shell->path != NULL)
-		free(shell->path);
+	shell->path = NULL;
+	/* if (shell->path != NULL)
+		free(shell->path); */
 }

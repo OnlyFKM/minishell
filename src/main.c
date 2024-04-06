@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/04 13:31:20 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:06:31 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ void	ft_loop(t_shell *shell)
 {
 	while (1)
 	{
-		rl_replace_line("", 0);
 		shell->line = readline("marinashell$ ");
 		if (ft_strncmp(shell->line, "\0", 1))
 			add_history(shell->line);
@@ -146,6 +145,8 @@ int	main(int argc, char *argv[], char **envp)
 	t_shell	*shell;
 
 	// atexit(ft_leaks);
+	signal(SIGINT, ft_sigint);
+	signal(SIGTERM, ft_eof);
 	(void)argv;
 	if (argc == 1)
 	{

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 12:07:30 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/20 11:51:03 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/06 17:56:40 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,4 +158,46 @@ void	ft_execve_one(t_shell *shell)
 	else
 		waitpid(pid, NULL, 0);
 	free(str);
+} */
+
+/* void	ft_do_execve(t_shell *shell, t_tokens *tokens, int flag)
+{
+	char	*cmd;
+	char	*aux;
+	char	**str;
+	char	**envp;
+	char	*cmd;
+	char	*aux;
+	char	**str;
+	char	*cmd;
+	char	*aux;
+	char	**str;
+	int		pid;
+
+	if (flag == 0)
+	{
+		str = ft_split(tokens->str, ' ');
+		cmd = ft_strdup("/");
+		aux = cmd;
+		cmd = ft_strjoin_2(aux, str[0]);
+		envp = ft_update_envp(shell);
+		if (tokens->path)
+			shell->status = execve(tokens->path, str, envp);
+	}
+	if (flag == 1)
+		ft_free_execve(str, envp, cmd);
+} */
+/* int	ft_check_path(t_shell *shell, t_tokens *tokens)
+{
+	str = ft_split(tokens->str, ' ');
+	cmd = ft_strdup("/");
+	aux = cmd;
+	cmd = ft_strjoin(aux, str[0]);
+	free(aux);
+	shell->tokens->path = ft_strdup(ft_find_path(shell, cmd));
+	free(cmd);
+	ft_free_double(str);
+	if (!tokens->path)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 } */

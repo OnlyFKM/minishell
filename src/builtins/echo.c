@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 11:48:30 by frcastil          #+#    #+#             */
-/*   Updated: 2024/02/29 13:02:38 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/06 16:54:29 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,19 @@ void	ft_echo(t_tokens *list)
 
 	nb = 0;
 	check = list;
-	check = check->next;
-	while (check)
+	if (!check->next)
+		ft_printf("\n");
+	else
 	{
-		if (ft_check_n(check) == 1)
-			nb++;
-		else
-			break ;
 		check = check->next;
+		while (check)
+		{
+			if (ft_check_n(check) == 1)
+				nb++;
+			else
+				break ;
+			check = check->next;
+		}
+		ft_print_echo(check, nb);
 	}
-	ft_print_echo(check, nb);
 }

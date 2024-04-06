@@ -13,6 +13,7 @@ SRCS =  src/main.c\
 	src/utils/t_tokens.c\
 	src/utils/utils.c\
 	src/utils/welcome.c\
+	src/utils/signals.c\
 	src/tokendepure/agroup.c\
 	src/tokendepure/expand_utils.c\
 	src/tokendepure/expand.c\

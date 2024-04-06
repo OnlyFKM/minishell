@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/04 13:59:02 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/06 19:08:26 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define YELLOW "\033[0;33m"
 # define BLUE "\033[0;34m"
 # define END "\033[0m"
+
+extern int	g_signal;
 
 /*--------------------------------   STRUCTS   -------------------------------*/
 typedef struct s_env
@@ -118,6 +120,10 @@ int			ft_first_equal(char *str);
 void		ft_count_cmd(t_shell *shell);
 void		ft_check_builtings(t_shell *shell);
 
+//		signals.c
+void		ft_sigint(int signum);
+void		ft_eof(int signum);
+
 //		welcome.c
 void		ft_welcome(void);
 
@@ -186,7 +192,7 @@ void		ft_init_token(t_shell *shell, int type, char *str);
 //					Free
 
 //		final_free.c
-void		ft_free_execve(char **str, char **envp, char *cmd);
+void		ft_free_execve(char **str, char **envp, char *cmd, char *path);
 void		ft_free_loop(t_shell *shell);
 
 //		free.c
