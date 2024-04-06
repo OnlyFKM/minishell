@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/05 16:34:17 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/06 19:14:14 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_builtins(t_shell *shell, char *str)
 
 	aux = NULL;
 	aux = ft_minitokenizer(aux, str);
-	/* ft_view2(aux); //borrar */
+	ft_view2(aux); //borrar
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
@@ -99,10 +99,11 @@ void	ft_inside_loop(t_shell *shell)
 	if (shell->tokens->next)
 		ft_agroup(shell);
 	ft_expand(shell);
-	/* ft_quitredi(shell); */
+	ft_quitredi(shell);
 	ft_check_builtings(shell);
 	ft_agroup_pipes(shell);
 	ft_count_cmd(shell);
+	ft_view(shell); // borrar
 	ft_printf("%d\n", shell->count_cmd);
 	if (shell->count_cmd == 1)
 	{

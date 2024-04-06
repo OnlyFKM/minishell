@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/04 17:34:41 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/06 17:40:41 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ error
 3 >>> >< marinashell: syntax error near unexpected token `>'
 4 falta argumentos en redi marinashell: syntax error near unexpected token `newline'
 5 || seguidos marinashell: syntax error near unexpected token `|'
-6
+6 Error opening file
 7
 8
 9
