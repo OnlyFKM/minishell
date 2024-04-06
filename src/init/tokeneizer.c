@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:40:13 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/04 12:35:21 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/05 16:56:06 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_quoteserror(t_shell *shell, int *i, int j)
 {
 	if (j == 0)
 	{
-		if (shell->line[*i] != '\"')
+		if (shell->line[*i] != '\'')
 			shell->error = 1;
 	}
 	else
