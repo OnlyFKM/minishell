@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/06 19:52:58 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/06 20:00:30 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	ft_out(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0666);
 	if (fd < 0)
 		shell->error = 6;
+	if (cmd->outfile != 0)
+		close(cmd->outfile);
 	cmd->outfile = fd;
 	free(file);
 }
