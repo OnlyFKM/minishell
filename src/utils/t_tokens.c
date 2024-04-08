@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:30:22 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/15 09:38:05 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/06 19:59:04 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ t_tokens	*ft_newtoken(int type, char *str, int space)
 	new_token->str = ft_strdup(str);
 	new_token->type = type;
 	new_token->space = space;
+	new_token->infile = 0;
+	new_token->outfile = 0;
 	new_token->next = NULL;
 	return (new_token);
 }
