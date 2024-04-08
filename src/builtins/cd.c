@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:58:50 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 17:37:47 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:33:02 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,13 @@ void	ft_cd_next(t_shell *shell, t_tokens *tokens)
 	flag = chdir(tmp->str);
 	getcwd(cwd, sizeof(cwd));
 	if (flag == -1)
+	{
+		shell->status = 1;
 		ft_printf("marinashell: cd: %s: No such file or directory\n", tmp->str);
+	}
 	else if (flag == 0)
 	{
 		ft_oldpwd(shell);
-		/* if (shell->tmp_cd != NULL)
-			free(shell->tmp_cd); */
 		shell->tmp_cd = ft_strdup(cwd);
 		ft_change_pwd(shell);
 	}

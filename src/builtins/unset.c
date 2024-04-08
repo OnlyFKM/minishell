@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:46:23 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 17:41:25 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:37:22 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,5 @@ void	ft_unset(t_shell *shell, char *str)
 		prev = current;
 		current = current->next;
 	}
+	shell->status = 0;
 }

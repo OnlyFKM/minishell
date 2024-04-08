@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:12:37 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 13:40:11 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:34:26 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ void	ft_check_start(t_shell *shell, char *first, char *second)
 		}
 	}
 	else
+	{
+		shell->status = 1;
 		ft_printf("marinashell: export: '%s': not a valid identifier\n", first);
+	}
 }
 
 void	ft_order_export(char **str)

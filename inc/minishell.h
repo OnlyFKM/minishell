@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 10:48:54 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:58:09 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_shell
 	int				status;
 	int				cmdflag;
 	int				error;
+	int				flag;
 }					t_shell;
 
 /* 
@@ -141,6 +142,7 @@ void		ft_check_builtings(t_shell *shell);
 //		signals.c
 void		ft_sigint(int signum);
 void		ft_eof(int signum);
+void		ft_sigquit(int signum);
 
 //		welcome.c
 void		ft_welcome(void);

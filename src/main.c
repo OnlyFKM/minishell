@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 10:47:33 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 16:44:47 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,9 @@ void	ft_builtins(t_shell *shell, char *str)
 	t_tokens	*aux;
 
 	aux = NULL;
+	g_signal = 1;
 	aux = ft_minitokenizer(aux, str);
-	ft_view2(aux); //borrar
+	ft_view2(aux); // borrar
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
@@ -104,9 +105,9 @@ void	ft_inside_loop(t_shell *shell)
 	ft_agroup_pipes(shell);
 	ft_count_cmd(shell);
 	ft_view(shell); // borrar
-	ft_printf("%d\n", shell->count_cmd);
 	if (shell->count_cmd == 1)
 	{
+		ft_pipex(shell, shell->tokens);
 		if (shell->tokens->type == 0)
 			ft_builtins(shell, shell->tokens->str);
 		else
@@ -122,6 +123,8 @@ void	ft_loop(t_shell *shell)
 	{
 		shell->error = 0;
 		shell->line = readline("marinashell$ ");
+		if (!shell->line)
+			ft_exit(shell, NULL);
 		if (ft_strncmp(shell->line, "\0", 1))
 			add_history(shell->line);
 		if (!ft_whitespace(shell->line))
@@ -141,9 +144,9 @@ int	main(int argc, char *argv[], char **envp)
 	t_shell	*shell;
 
 	// atexit(ft_leaks);
-	signal(SIGINT, ft_sigint);
-	signal(SIGTERM, ft_eof);
 	(void)argv;
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ft_sigint);
 	if (argc == 1)
 	{
 		ft_welcome();

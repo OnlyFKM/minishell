@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 18:14:30 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:35:30 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ void	ft_exit(t_shell *shell, t_tokens *tokens)
 	t_tokens	*tmp;
 
 	tmp = tokens;
-	if (!tmp->next)
+	if (tokens == NULL || !tmp->next)
 	{
 		ft_free_exit(shell);
 		ft_printf("exit\n");
+		rl_clear_history(); //maybe
 		exit(EXIT_SUCCESS);
 	}
 	else
@@ -77,5 +78,6 @@ void	ft_exit(t_shell *shell, t_tokens *tokens)
 
 void	ft_pwd(t_shell *shell)
 {
+	shell->status = 0;
 	ft_printf("%s\n", shell->pwd);
 }

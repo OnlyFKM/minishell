@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 17:22:28 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/06 17:30:13 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:34:52 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ void	ft_free_execve(char **str, char **envp, char *cmd, char *path)
 	{
 		free(path);
 		path = NULL;
-	}	
+	}
 }
 
 void	ft_free_loop(t_shell *shell)
 {
+	g_signal = 0;
 	dup2(shell->in, STDIN_FILENO);
 	dup2(shell->out, STDOUT_FILENO);
 	ft_free_tokens(&shell->tokens);
@@ -37,6 +38,5 @@ void	ft_free_loop(t_shell *shell)
 	free(shell->line);
 	shell->line = NULL;
 	shell->path = NULL;
-	/* if (shell->path != NULL)
-		free(shell->path); */
+	shell->flag = 0;
 }

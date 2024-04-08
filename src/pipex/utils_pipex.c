@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/06 17:58:34 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 17:39:30 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,7 @@ void	ft_execve_two(t_shell *shell, char **str, char **envp)
 
 	pid = fork();
 	if (pid == 0)
-	{
-		ft_printf("entro aqui\n");
 		execve(shell->path, str, envp);
-		ft_printf("marinashell: %s: command not found\n", str[0]);
-		exit(127);
-	}
 	else
 		waitpid(pid, NULL, 0);
 }
@@ -97,6 +92,9 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 	if (shell->path != NULL)
 		ft_execve_two(shell, str, envp);
 	else
+	{
 		ft_printf("marinashell: %s: command not found\n", str[0]);
+		shell->status = 127;
+	}
 	ft_free_execve(str, envp, cmd, shell->path);
 }

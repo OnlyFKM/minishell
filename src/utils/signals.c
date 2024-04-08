@@ -1,22 +1,30 @@
 
 #include "../../inc/minishell.h"
 
-//sigint (signal interrupt) 
+// sigint (signal interrupt) ctrl-C
 void	ft_sigint(int signum)
 {
-	g_signal = signum;
-	ft_printf("signal es %d\n", g_signal);
-	ft_printf("\n");
-	rl_on_new_line();
-	rl_replace_line("", 0);
-	rl_redisplay();
-}
-
-// EOF (end of file)
-void	ft_eof(int signum)
-{
-	g_signal = signum;
-	ft_printf("Exiting marinashell...\n");
-	rl_clear_history();
-	exit(0);
+	(void)signum;
+	if (g_signal != 1 && g_signal != 42)
+	{
+		write(1, "\33[K\n", 5);
+		rl_replace_line("", 0);
+		g_signal = 1;
+	}
+	else if (g_signal == 42)
+	{
+		write(1, "\33[K\n", 5);
+		close(0);
+		g_signal = 0;
+	}
+	else
+	{
+		rl_on_new_line();
+		rl_redisplay();
+		rl_replace_line("", 0);
+		write(1, "\33[K\n", 5);
+		rl_on_new_line();
+		rl_redisplay();
+		rl_replace_line("", 0);
+	}
 }

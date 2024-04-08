@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/06 20:00:30 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/08 17:18:58 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,29 @@ char	*ft_takename(t_tokens *redi)
 	return (file);
 }
 
+void	ft_in(t_tokens *cmd, t_tokens *redi, t_shell *shell)
+{
+	int		fd;
+	char	*file;
+
+	file = ft_takename(redi);
+	shell->flag = 1; //borrar
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		shell->error = 6; //mirar el error
+	if (cmd->infile != 0 && cmd->type != 1)
+		close(cmd->infile);
+	cmd->infile = fd;
+	free(file);
+}
+
 void	ft_out(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 {
 	int		fd;
 	char	*file;
 
 	file = ft_takename(redi);
+	shell->flag = 1; //borrar
 	if (redi->type == OUT)
 		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	else
@@ -55,10 +72,10 @@ void	ft_redi(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 		ft_out(cmd, redi, shell);
 	else if (redi->type == APPEND)
 		ft_out(cmd, redi, shell);
-	/* else if (redi->type == IN)
-		ft_in(cmd, redi);
-	else
-		ft_here_doc(cmd, redi); */
+	else if (redi->type == IN)
+		ft_in(cmd, redi, shell);
+	/* else
+		ft_heredoc(cmd, redi); */
 }
 
 void	ft_removeredi(t_shell *shell)
