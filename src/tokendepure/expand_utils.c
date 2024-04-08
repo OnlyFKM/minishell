@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 16:25:13 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/31 16:56:31 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/01 16:39:22 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ char	*ft_createdst(t_tokens *token, int i, int j)
 	int		l;
 
 	if (ft_isdigit(token->str[i]))
-		dst = ft_strdup(token->str + i);
+		dst = ft_strndup(&token->str[i], 1);
 	else if (token->str[i] == '$')
 		dst = ft_strdup("$");
 	else

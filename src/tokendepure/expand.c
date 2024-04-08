@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:50:32 by yfang             #+#    #+#             */
-/*   Updated: 2024/03/27 15:22:54 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/01 17:42:38 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ void	ft_expand(t_shell *shell)
 	while (tmp)
 	{
 		if (tmp->type != SIMPLE && tmp->type != PIPE)
-		{
 			ft_find_dollar(tmp, shell);
-		}
 		tmp = tmp->next;
 	}
 }

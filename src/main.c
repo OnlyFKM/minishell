@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/06 19:45:23 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/08 10:47:33 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_builtins(t_shell *shell, char *str)
 
 	aux = NULL;
 	aux = ft_minitokenizer(aux, str);
-	/* ft_view2(aux); //borrar */
+	ft_view2(aux); //borrar
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
@@ -87,53 +87,50 @@ void	ft_builtins(t_shell *shell, char *str)
 	ft_free_tokens(&aux);
 }
 
-/* void	ft_inside_loop(t_shell *shell)
+void	ft_error(t_shell *shell)
 {
-	ft_tokenizer(shell);
+	if (shell->error != 0)
+		ft_printf("caca\n");
+}
+
+void	ft_inside_loop(t_shell *shell)
+{
 	ft_view(shell); // borrar
-	ft_expand(shell);
 	if (shell->tokens->next)
 		ft_agroup(shell);
+	ft_expand(shell);
+	ft_quitredi(shell);
 	ft_check_builtings(shell);
 	ft_agroup_pipes(shell);
 	ft_count_cmd(shell);
+	ft_view(shell); // borrar
+	ft_printf("%d\n", shell->count_cmd);
 	if (shell->count_cmd == 1)
 	{
 		if (shell->tokens->type == 0)
 			ft_builtins(shell, shell->tokens->str);
 		else
-			ft_execve_one(shell);
+			ft_execve_one(shell, shell->tokens);
 	}
-	if (shell->count_cmd >= 2)
+	else if (shell->count_cmd >= 2)
 		ft_more_cmds(shell, shell->tokens);
-} */
+}
+
 void	ft_loop(t_shell *shell)
 {
 	while (1)
 	{
+		shell->error = 0;
 		shell->line = readline("marinashell$ ");
 		if (ft_strncmp(shell->line, "\0", 1))
 			add_history(shell->line);
 		if (!ft_whitespace(shell->line))
 		{
-			/* ft_inside_loop(shell); */
 			ft_tokenizer(shell);
-			if (shell->tokens->next)
-				ft_agroup(shell);
-			ft_check_builtings(shell);
-			ft_agroup_pipes(shell);
-			ft_expand(shell);
-			ft_view(shell); // borrar
-			ft_count_cmd(shell);
-			if (shell->count_cmd == 1)
-			{
-				if (shell->tokens->type == 0)
-					ft_builtins(shell, shell->tokens->str);
-				else
-					ft_execve_one(shell, shell->tokens);
-			}
-			else if (shell->count_cmd >= 2)
-				ft_more_cmds(shell, shell->tokens);
+			if (shell->error == 0)
+				ft_inside_loop(shell);
+			else
+				ft_error(shell);
 		}
 		ft_free_loop(shell);
 	}
