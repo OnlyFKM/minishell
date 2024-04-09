@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 17:19:16 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/09 13:00:33 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ void	ft_heredoc(t_shell *shell, char *limiter)
 	free(input);
 	free(line);
 }
-
-// hay alguna forma de contar si hay redirecciones o no?
 
 void	ft_pipex(t_shell *shell, t_tokens *tokens)
 {

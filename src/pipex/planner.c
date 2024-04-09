@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 17:39:15 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/09 12:46:56 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ft_execve(t_shell *shell, t_tokens *tokens)
 	char	**str;
 	char	**envp;
 
+	g_signal = 0;
 	str = ft_split(tokens->str, ' ');
 	cmd = ft_strdup("/");
 	aux = cmd;
