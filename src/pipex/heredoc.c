@@ -39,8 +39,6 @@
 	free(line);
 } */
 
-// hay alguna forma de contar si hay redirecciones o no?
-
 void	ft_pipex(t_shell *shell, t_tokens *tokens)
 {
 	t_tokens	*tmp;
