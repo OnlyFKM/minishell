@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 16:44:47 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:40:45 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	ft_builtins(t_shell *shell, char *str)
 	t_tokens	*aux;
 
 	aux = NULL;
-	g_signal = 1;
 	aux = ft_minitokenizer(aux, str);
 	ft_view2(aux); // borrar
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
