@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 16:40:45 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:29:42 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	ft_error(t_shell *shell)
 
 void	ft_inside_loop(t_shell *shell)
 {
-	ft_view(shell); // borrar
+	//ft_view(shell); // borrar
 	if (shell->tokens->next)
 		ft_agroup(shell);
 	ft_expand(shell);
@@ -103,7 +103,7 @@ void	ft_inside_loop(t_shell *shell)
 	ft_check_builtings(shell);
 	ft_agroup_pipes(shell);
 	ft_count_cmd(shell);
-	ft_view(shell); // borrar
+	//ft_view(shell); // borrar
 	if (shell->count_cmd == 1)
 	{
 		ft_pipex(shell, shell->tokens);
