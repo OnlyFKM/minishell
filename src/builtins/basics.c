@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 18:35:12 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/09 18:35:22 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	ft_check_number(t_shell *shell, t_tokens *tokens)
 		ft_printf("exit\n");
 		ft_printf("marinashell: exit: %s: numeric argument required\n",
 			tmp->str);
+		shell->status = 255;
 		ft_free_exit(shell);
 		exit(255);
 	}
