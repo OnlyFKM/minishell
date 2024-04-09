@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:07:28 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/01 17:42:48 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/09 16:56:00 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	ft_agroup_pipes(t_shell *shell)
 
 	tmp = shell->tokens;
 	aux = tmp->next;
+	str = NULL;
 	while (aux)
 	{
 		if (!ft_tokentype(aux->type))
@@ -55,7 +56,6 @@ void	ft_agroup_pipes(t_shell *shell)
 			str = ft_strdup(tmp->str);
 			free(tmp->str);
 			tmp->str = ft_strjoin_space(str, aux->str);
-			free(str);
 			tmp->next = aux->next;
 			free(aux->str);
 			free(aux);
