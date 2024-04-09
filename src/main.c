@@ -64,7 +64,6 @@ void	ft_builtins(t_shell *shell, char *str)
 	t_tokens	*aux;
 
 	aux = NULL;
-	g_signal = 1;
 	aux = ft_minitokenizer(aux, str);
 	ft_view2(aux); // borrar
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
@@ -96,7 +95,7 @@ void	ft_error(t_shell *shell)
 
 void	ft_inside_loop(t_shell *shell)
 {
-	ft_view(shell); // borrar
+	//ft_view(shell); // borrar
 	if (shell->tokens->next)
 		ft_agroup(shell);
 	ft_expand(shell);
