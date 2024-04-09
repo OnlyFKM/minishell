@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 16:44:47 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/09 18:35:05 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,20 +101,25 @@ void	ft_inside_loop(t_shell *shell)
 		ft_agroup(shell);
 	ft_expand(shell);
 	ft_quitredi(shell);
-	ft_check_builtings(shell);
-	ft_agroup_pipes(shell);
-	ft_count_cmd(shell);
-	ft_view(shell); // borrar
-	if (shell->count_cmd == 1)
+	if (shell->error == 0)
 	{
-		ft_pipex(shell, shell->tokens);
-		if (shell->tokens->type == 0)
-			ft_builtins(shell, shell->tokens->str);
-		else
-			ft_execve_one(shell, shell->tokens);
+		ft_check_builtings(shell);
+		ft_agroup_pipes(shell);
+		ft_count_cmd(shell);
+		ft_view(shell); // borrar
+		if (shell->count_cmd == 1)
+		{
+			ft_pipex(shell, shell->tokens);
+			if (shell->tokens->type == 0)
+				ft_builtins(shell, shell->tokens->str);
+			else
+				ft_execve_one(shell, shell->tokens);
+		}
+		else if (shell->count_cmd >= 2)
+			ft_more_cmds(shell, shell->tokens);
 	}
-	else if (shell->count_cmd >= 2)
-		ft_more_cmds(shell, shell->tokens);
+	else
+		ft_error(shell);
 }
 
 void	ft_loop(t_shell *shell)

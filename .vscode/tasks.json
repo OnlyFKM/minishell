@@ -8,7 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-lreadline",
-                "../inc/Libft/libft.a",
+                "../inc/libft/libft.a",
                 "../src/builtins/*.c",
                 "../src/free/*.c",
                 "../src/init/*.c",

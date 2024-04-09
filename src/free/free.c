@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:00:15 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 14:11:21 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:00:38 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void	ft_free_tokens(t_tokens **tokens)
 	while (current)
 	{
 		tmp = current->next;
-		free(current->str);
+		if (current->str)
+			free(current->str);
 		if (current->path)
 		{
 			free(current->path);

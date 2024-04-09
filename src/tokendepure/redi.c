@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/08 17:18:58 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/09 17:28:51 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ char	*ft_takename(t_tokens *redi)
 	int		i;
 
 	i = 0;
-	while (redi->str[i] && (ft_ifredi(redi->str[i]) || ft_isspace(redi->str[i])))
+	while (redi->str[i]
+		&& (ft_ifredi(redi->str[i]) || ft_isspace(redi->str[i])))
 		i++;
 	file = ft_strdup(redi->str + i);
 	return (file);
@@ -37,13 +38,16 @@ void	ft_in(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 	char	*file;
 
 	file = ft_takename(redi);
-	shell->flag = 1; //borrar
+	shell->flag = 1;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		shell->error = 6; //mirar el error
-	if (cmd->infile != 0 && cmd->type != 1)
-		close(cmd->infile);
-	cmd->infile = fd;
+		shell->error = 6;
+	if (cmd)
+	{
+		if (cmd->infile != 0 && cmd->type != 1)
+			close(cmd->infile);
+		cmd->infile = fd;
+	}
 	free(file);
 }
 
@@ -53,29 +57,90 @@ void	ft_out(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 	char	*file;
 
 	file = ft_takename(redi);
-	shell->flag = 1; //borrar
+	shell->flag = 1;
 	if (redi->type == OUT)
 		fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0666);
 	else
 		fd = open(file, O_WRONLY | O_CREAT | O_APPEND, 0666);
 	if (fd < 0)
 		shell->error = 6;
-	if (cmd->outfile != 0)
-		close(cmd->outfile);
-	cmd->outfile = fd;
+	if (cmd)
+	{
+		if (cmd->outfile != 0)
+			close(cmd->outfile);
+		cmd->outfile = fd;
+	}
 	free(file);
+}
+
+static void	ft_heredocsoon(char *limit, int fd[2])
+{
+	char	*line;
+
+	close(fd[0]);
+	while (1)
+	{
+		line = readline("> ");
+		if (!line || (!ft_strncmp(limit, line, ft_strlen(limit))
+				&& !ft_strncmp(limit, line, ft_strlen(line))))
+			exit(EXIT_SUCCESS);
+		ft_putstr_fd(line, fd[1]);
+		ft_putchar_fd('\n', fd[1]);
+		free(line);
+		line = NULL;
+	}
+}
+
+int	ft_heredoc(t_tokens *cmd, t_tokens *redi, t_shell *shell)
+{
+	pid_t	pid;
+	int		pipefd[2];
+	char	*limit;
+
+	limit = ft_takename(redi);
+	shell->flag = 1;
+	if (!limit)
+		shell->error = 7;
+	else
+	{
+		if (cmd && cmd->infile != 0)
+			close(cmd->infile);
+		if (pipe(pipefd) == -1)
+			shell->error = 8;
+		pid = fork();
+		if (pid < 0)
+			shell->error = 8;
+		if (shell->error == 0 || shell->error == 9)
+		{
+			if (pid == 0)
+				ft_heredocsoon(limit, pipefd);
+			return (waitpid(-1, NULL, 0), close(pipefd[1]), pipefd[0]);
+		}
+	}
+	return (0);
 }
 
 void	ft_redi(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 {
+	int	fd;
+
 	if (redi->type == OUT)
 		ft_out(cmd, redi, shell);
 	else if (redi->type == APPEND)
 		ft_out(cmd, redi, shell);
 	else if (redi->type == IN)
 		ft_in(cmd, redi, shell);
-	/* else
-		ft_heredoc(cmd, redi); */
+	else
+	{
+		if (cmd)
+			cmd->infile = ft_heredoc(cmd, redi, shell);
+		else
+		{
+			fd = ft_heredoc(cmd, redi, shell);
+			close(fd);
+			shell->error = 9;
+		}
+	}
 }
 
 void	ft_removeredi(t_shell *shell)
@@ -88,21 +153,44 @@ void	ft_removeredi(t_shell *shell)
 	{
 		aux = tmp->next;
 		free(tmp->str);
+		tmp->str = NULL;
 		free(tmp);
 		tmp = aux;
 	}
-	aux = tmp->next;
+	shell->tokens = tmp;
+	if (aux)
+		aux = tmp->next;
 	while (aux)
 	{
 		if (ft_isredi(aux->type))
 		{
 			tmp->next = aux->next;
 			free(aux->str);
+			aux->str = NULL;
 			free(aux);
 		}
 		else
 			tmp = tmp->next;
 		aux = tmp->next;
+	}
+}
+
+void	ft_changetype(t_shell *shell)
+{
+	t_tokens	*tmp;
+
+	tmp = shell->tokens;
+
+	while (tmp)
+	{
+		if (shell->cmdflag == 0)
+		{
+			tmp->type = 1;
+			shell->cmdflag = 1;
+		}
+		if (tmp->type == PIPE)
+			shell->count_cmd = 0;
+		tmp = tmp->next;
 	}
 }
 
@@ -127,4 +215,5 @@ void	ft_quitredi(t_shell *shell)
 			tmp = tmp->next;
 	}
 	ft_removeredi(shell);
+	ft_changetype(shell);
 }

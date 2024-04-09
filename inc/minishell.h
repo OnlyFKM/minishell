@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 16:58:09 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/09 16:33:32 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,9 @@ error
 4 falta argumentos en redi marinashell: syntax error near unexpected token `newline'
 5 || seguidos marinashell: syntax error near unexpected token `|'
 6 Error opening file
-7
-8
-9
+7 marinashell: syntax error near unexpected token
+8 marinashell: pipe or fork error
+9 redireccion sin comando
  */
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
@@ -119,7 +119,7 @@ int			ft_ifredi(char c);
 
 //		libftplus.c
 char		*ft_strndup(const char *s, size_t n);
-char		*ft_strjoin_space(char const *s1, char const *s2);
+char		*ft_strjoin_space(char *s1, char *s2);
 
 //		list.c
 int			ft_nodesize(t_env *env);
@@ -162,6 +162,7 @@ void		ft_expand(t_shell *shell);
 
 //		redi.c
 void		ft_quitredi(t_shell *shell);
+int			ft_heredoc(t_tokens *cmd, t_tokens *redi, t_shell *shell);
 
 //  Pipex
 /* //	execution.c
@@ -186,8 +187,6 @@ void		ft_execve(t_shell *shell, t_tokens *tokens);
 
 //	  	heredoc.c
 void		ft_pipex(t_shell *shell, t_tokens *tokens);
-void		ft_heredoc(t_shell *shell, char *limiter);
-void		ft_do_heredoc(char	*input);
 
 //	Init
 //		init.c

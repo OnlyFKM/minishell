@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 11:16:46 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/31 16:00:55 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/09 16:13:42 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_check_builtings(t_shell *shell)
 	t_tokens	*tmp;
 
 	tmp = shell->tokens;
-	while (tmp)
+	while (tmp && tmp->str)
 	{
 		if (ft_strncmp(tmp->str, "pwd\0", 4) == EXIT_SUCCESS)
 			tmp->type = 0;
