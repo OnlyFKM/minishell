@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   basics.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
 /*   Updated: 2024/04/09 18:35:22 by frcastil         ###   ########.fr       */
