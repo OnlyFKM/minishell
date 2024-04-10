@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 17:15:28 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/10 17:33:13 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_builtins(t_shell *shell, char *str)
 	else if (ft_strncmp(aux->str, "unset\0", 6) == EXIT_SUCCESS)
 		ft_unset_loop(shell, aux->next);
 	else if (ft_strncmp(aux->str, "export\0", 7) == EXIT_SUCCESS)
-		ft_export(shell, shell->export);
+		ft_export(shell, aux);
 	else if (ft_strncmp(aux->str, "cd\0", 3) == EXIT_SUCCESS)
 		ft_cd(shell, aux);
 	ft_free_tokens(&aux);
