@@ -96,12 +96,14 @@ void	ft_inside_loop(t_shell *shell)
 {
 	if (shell->tokens->next)
 		ft_agroup(shell);
+	ft_view(shell); // borrar
 	ft_expand(shell);
 	ft_view(shell); // borrar
 	ft_quitredi(shell);
 	ft_view(shell); // borrar
 	if (shell->error == 0)
 	{
+		ft_view(shell); // borrar
 		ft_check_builtings(shell);
 		ft_agroup_pipes(shell);
 		ft_count_cmd(shell);
@@ -120,12 +122,26 @@ void	ft_inside_loop(t_shell *shell)
 		ft_error(shell);
 }
 
+void	ft_checkascii(t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	while (shell->line[i])
+	{
+		if (!ft_isascii(shell->line[i]))
+			shell->error = 10;
+		i++;
+	}
+}
+
 void	ft_loop(t_shell *shell)
 {
 	while (1)
 	{
 		shell->error = 0;
 		shell->line = readline("marinashell$ ");
+		ft_checkascii(shell);//hacer
 		if (!shell->line)
 			ft_exit(shell, NULL);
 		if (ft_strncmp(shell->line, "\0", 1))
@@ -148,8 +164,8 @@ int	main(int argc, char *argv[], char **envp)
 
 	// atexit(ft_leaks);
 	(void)argv;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, ft_sigint);
+/* 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ft_sigint); */
 	if (argc == 1)
 	{
 		ft_welcome();

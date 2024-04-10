@@ -28,10 +28,3 @@ void	ft_sigint(int signum)
 		rl_replace_line("", 0);
 	}
 }
-
-/* void	ft_signal_handler(int signum)
-{
-	(void)signum;
-	kill(0, SIGTERM);
-	exit (EXIT_FAILURE);
-} */

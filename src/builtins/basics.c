@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 18:35:22 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/10 13:05:31 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_exit(t_shell *shell, t_tokens *tokens)
 	{
 		ft_free_exit(shell);
 		ft_printf("exit\n");
-		rl_clear_history(); //maybe
+		/* rl_clear_history(); //maybe */
 		exit(EXIT_SUCCESS);
 	}
 	else

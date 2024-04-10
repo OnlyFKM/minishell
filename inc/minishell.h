@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 16:59:56 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/10 17:20:42 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_shell
 {
 	t_env			*env;
 	t_tokens		*tokens;
+	t_tokens		*export; //aaaa
 	char			**envp;
 	char			*line;
 	char			*tmp_cd;
@@ -100,6 +101,7 @@ error
 7 marinashell: syntax error near unexpected token
 8 marinashell: pipe or fork error
 9 redireccion sin comando
+10 line no es ascii
  */
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
@@ -152,7 +154,7 @@ void		ft_agroup(t_shell *shell);
 void		ft_agroup_pipes(t_shell *shell);
 
 //		expand_utils.c
-char		*ft_createdst(t_tokens *token, int i, int j);
+char		*ft_createdst(t_tokens *token, int i, int j, int status);
 void		ft_disexpand(t_tokens *token, int start, int len);
 void		ft_final_expand(t_env *env, t_tokens *token, int start, int len);
 
