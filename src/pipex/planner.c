@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 16:49:45 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:05:53 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_execve(t_shell *shell, t_tokens *tokens)
 	char	**str;
 	char	**envp;
 
-	g_signal = 0;
+	g_signal = 1;
 	str = ft_split(tokens->str, ' ');
 	cmd = ft_strdup("/");
 	aux = cmd;
@@ -46,7 +46,7 @@ void	ft_child(t_shell *shell, t_tokens *tokens, int *fd)
 		ft_builtins(shell, tokens->str);
 	else
 		ft_execve(shell, tokens);
-	exit (0);
+	exit(0);
 }
 
 void	ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid)
@@ -82,10 +82,13 @@ void	ft_more_cmds(t_shell *shell, t_tokens *tokens)
 	if (pid < 0)
 	{
 		ft_printf("marinashell: error in pid\n");
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
+	{
 		ft_child(shell, tokens, fd);
+		exit(EXIT_SUCCESS);
+	}
 	else
 		ft_parent(shell, tokens, fd, pid);
 }

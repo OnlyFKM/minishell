@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 14:44:02 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/09 18:57:56 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-/* void	ft_heredoc(t_shell *shell, char *limiter)
-{
-	char	*line;
-	char	*input;
-	int		output;
-
-	g_signal = 42;
-	input = ft_strdup("");
-	dup2(shell->in, STDIN_FILENO);
-	output = dup(STDOUT_FILENO);
-	dup2(shell->out, STDOUT_FILENO);
-	line = get_next_line(0);
-	while (line)
-	{
-		if (ft_strcmp(line, limiter))
-			exit (1);
-		input = ft_strdup(line);
-		free(line);
-		line = get_next_line(0);
-	}
-	ft_do_heredoc(input);
-	dup2(output, STDOUT_FILENO);
-	close(output);
-	free(input);
-	free(line);
-} */
 
 void	ft_pipex(t_shell *shell, t_tokens *tokens)
 {
