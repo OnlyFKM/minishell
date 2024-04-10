@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 16:33:32 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/10 16:59:56 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,7 @@ void		ft_check_builtings(t_shell *shell);
 
 //		signals.c
 void		ft_sigint(int signum);
-void		ft_eof(int signum);
-void		ft_sigquit(int signum);
+void		ft_signal_handler(int signum); //borrar
 
 //		welcome.c
 void		ft_welcome(void);

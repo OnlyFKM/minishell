@@ -15,7 +15,7 @@ void	ft_sigint(int signum)
 	{
 		write(1, "\33[K\n", 5);
 		close(0);
-		g_signal = 0;
+		g_signal = 1;
 	}
 	else
 	{
@@ -28,3 +28,10 @@ void	ft_sigint(int signum)
 		rl_replace_line("", 0);
 	}
 }
+
+/* void	ft_signal_handler(int signum)
+{
+	(void)signum;
+	kill(0, SIGTERM);
+	exit (EXIT_FAILURE);
+} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/09 17:28:51 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/10 14:45:24 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ int	ft_heredoc(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 	int		pipefd[2];
 	char	*limit;
 
+	g_signal = 42;
 	limit = ft_takename(redi);
 	shell->flag = 1;
 	if (!limit)
@@ -180,7 +181,6 @@ void	ft_changetype(t_shell *shell)
 	t_tokens	*tmp;
 
 	tmp = shell->tokens;
-
 	while (tmp)
 	{
 		if (shell->cmdflag == 0)
@@ -189,9 +189,10 @@ void	ft_changetype(t_shell *shell)
 			shell->cmdflag = 1;
 		}
 		if (tmp->type == PIPE)
-			shell->count_cmd = 0;
+			shell->cmdflag = 0;
 		tmp = tmp->next;
 	}
+	shell->cmdflag = 0;
 }
 
 void	ft_quitredi(t_shell *shell)
@@ -209,6 +210,8 @@ void	ft_quitredi(t_shell *shell)
 		{
 			if (ft_isredi(tmp->type))
 				ft_redi(aux, tmp, shell);
+			if (!aux)
+				shell->error = 9;
 			tmp = tmp->next;
 		}
 		if (tmp)
