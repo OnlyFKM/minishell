@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/09 17:28:51 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/10 14:44:40 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,6 +209,8 @@ void	ft_quitredi(t_shell *shell)
 		{
 			if (ft_isredi(tmp->type))
 				ft_redi(aux, tmp, shell);
+			if (!aux)
+				shell->error = 9;
 			tmp = tmp->next;
 		}
 		if (tmp)

@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 18:35:05 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/10 17:15:28 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_builtins(t_shell *shell, char *str)
 	else if (ft_strncmp(aux->str, "unset\0", 6) == EXIT_SUCCESS)
 		ft_unset_loop(shell, aux->next);
 	else if (ft_strncmp(aux->str, "export\0", 7) == EXIT_SUCCESS)
-		ft_export(shell, aux);
+		ft_export(shell, shell->export);
 	else if (ft_strncmp(aux->str, "cd\0", 3) == EXIT_SUCCESS)
 		ft_cd(shell, aux);
 	ft_free_tokens(&aux);
@@ -95,17 +95,18 @@ void	ft_error(t_shell *shell)
 
 void	ft_inside_loop(t_shell *shell)
 {
-	//ft_view(shell); // borrar
+	ft_view(shell); // borrar
 	if (shell->tokens->next)
 		ft_agroup(shell);
+	ft_view(shell); // borrar
 	ft_expand(shell);
 	ft_quitredi(shell);
 	if (shell->error == 0)
 	{
+		ft_view(shell); // borrar
 		ft_check_builtings(shell);
 		ft_agroup_pipes(shell);
 		ft_count_cmd(shell);
-		ft_view(shell); // borrar
 		if (shell->count_cmd == 1)
 		{
 			ft_pipex(shell, shell->tokens);
@@ -121,12 +122,26 @@ void	ft_inside_loop(t_shell *shell)
 		ft_error(shell);
 }
 
+void	ft_checkascii(t_shell *shell)
+{
+	int	i;
+
+	i = 0;
+	while (shell->line[i])
+	{
+		if (!ft_isascii(shell->line[i]))
+			shell->error = 10;
+		i++;
+	}
+}
+
 void	ft_loop(t_shell *shell)
 {
 	while (1)
 	{
 		shell->error = 0;
 		shell->line = readline("marinashell$ ");
+		ft_checkascii(shell);//hacer
 		if (!shell->line)
 			ft_exit(shell, NULL);
 		if (ft_strncmp(shell->line, "\0", 1))
@@ -149,8 +164,8 @@ int	main(int argc, char *argv[], char **envp)
 
 	// atexit(ft_leaks);
 	(void)argv;
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, ft_sigint);
+/* 	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ft_sigint); */
 	if (argc == 1)
 	{
 		ft_welcome();
