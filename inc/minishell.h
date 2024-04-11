@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 17:20:42 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 17:09:27 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ typedef struct s_tokens
 	char			*path;
 	int				type;
 	int				space;
-	int				heredoc;
 	int				infile;
 	int				outfile;
 	struct s_tokens	*next;
@@ -152,6 +151,7 @@ void		ft_welcome(void);
 //		agroup.c
 void		ft_agroup(t_shell *shell);
 void		ft_agroup_pipes(t_shell *shell);
+int			ft_tokentype(int type);
 
 //		expand_utils.c
 char		*ft_createdst(t_tokens *token, int i, int j, int status);

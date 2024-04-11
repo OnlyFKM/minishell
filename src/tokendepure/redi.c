@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/11 12:57:31 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 17:34:50 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,32 @@ void	ft_redi(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 	}
 }
 
+void	ft_miniagroup(t_shell *shell)
+{
+	t_tokens	*tmp;
+	t_tokens	*aux;
+	char		*str;
+
+	tmp = shell->tokens;
+	aux = tmp->next;
+	while (aux)
+	{
+		if (aux->space == 1)
+		{
+			str = ft_strdup(tmp->str);
+			free(tmp->str);
+			tmp->str = ft_strjoin(str, aux->str);
+			free(str);
+			tmp->next = aux->next;
+			free(aux->str);
+			free(aux);
+		}
+		else
+			tmp = tmp->next;
+		aux = aux->next;
+	}
+}
+
 void	ft_removeredi(t_shell *shell)
 {
 	t_tokens	*tmp;
@@ -176,12 +202,12 @@ void	ft_removeredi(t_shell *shell)
 			tmp = tmp->next;
 		ft_printf("%s, %i\n", aux->str, aux->space);
 		aux = tmp->next;
-		if (aux && i != 0)
+		if (aux && i != 0 && tmp->type != PIPE)
 			aux->space = 1;
 		if (i == 0 && tmp->type != PIPE)
 			i = 1;
 	}
-	ft_agroup(shell);
+	ft_miniagroup(shell);
 }
 
 void	ft_changetype(t_shell *shell)

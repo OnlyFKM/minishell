@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 12:57:52 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 17:20:21 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,20 +92,87 @@ void	ft_error(t_shell *shell)
 		ft_printf("caca\n");
 }
 
-/* void	ft_saveexport(t_shell *shell)
+int	ft_onlyexport(t_tokens *token)
+{
+	t_tokens	*tmp;
+
+	tmp = token;
+	while (tmp && tmp->type != PIPE)
+		tmp = tmp->next;
+	if (tmp)
+		return (0);
+	else
+		return (1);
+}
+
+t_tokens	*ft_newcopytoken(t_tokens *token)
+{
+	t_tokens	*tmp;
+
+	if (!token)
+		return (NULL);
+	tmp = ft_calloc(1, sizeof(t_tokens));
+	tmp->str = ft_strdup(token->str);
+	if (token->path)
+		tmp->path = ft_strdup(token->path);
+	tmp->type = token->type;
+	tmp->space = token->space;
+	tmp->infile = token->infile;
+	tmp->outfile = token->outfile;
+	tmp->next = NULL;
+	token = token->next;
+	return (tmp);
+}
+
+void	ft_copytoken(t_tokens *token, t_shell *shell)
+{
+	t_tokens	*tmp;
+
+	while (token)
+	{
+		tmp = ft_newcopytoken(token);
+		ft_addbacktoken(&shell->export, tmp);
+		token = token->next;
+	}
+}
+
+void	ft_saveexport(t_shell *shell)
+{
+	t_tokens	*tmp;
+	int			i;
+
+	tmp = shell->tokens;
+	i = 0;
+	while (tmp)
+	{
+		if (!ft_strncmp(tmp->str, "export\0", 7) && ft_onlyexport(tmp))
+			ft_copytoken(tmp, shell);
+		tmp = tmp->next;
+	}
+}
+
+void	ft_checkpipe(t_shell *shell)
 {
 	t_tokens	*tmp;
 
 	tmp = shell->tokens;
-} */
+	while (tmp)
+	{
+		if (ft_tokentype(tmp->type))
+			if (!tmp->next || ft_strncmp(tmp->str, "|\0", 2))
+				shell->error = 5;
+		tmp = tmp->next;
+	}
+}
 
 void	ft_inside_loop(t_shell *shell)
 {
 	if (shell->tokens->next)
 		ft_agroup(shell);
 	ft_expand(shell);
-/* 	ft_saveexport(shell); */
+	ft_saveexport(shell);
 	ft_quitredi(shell);
+	ft_checkpipe(shell);
 	ft_view(shell); // borrar
 	if (shell->error == 0)
 	{
