@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 13:54:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/04 12:20:26 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:41:24 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,10 @@ void	ft_search_dir(t_shell *shell, char *find)
 			break ;
 		}
 		tmp = tmp->next;
+	}
+	if (tmp == NULL)
+	{
+		ft_printf("marinashell: cd: HOME not set\n");
+		exit(1);
 	}
 }
