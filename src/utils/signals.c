@@ -2,7 +2,7 @@
 #include "../../inc/minishell.h"
 
 // sigint (signal interrupt) ctrl-C
-/* void	ft_sigint(int signum)
+void	ft_sigint(int signum)
 {
 	(void)signum;
 	if (g_signal != 1 && g_signal != 42)
@@ -28,4 +28,3 @@
 		rl_replace_line("", 0);
 	}
 }
- */
