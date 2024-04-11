@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 17:46:23 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 17:37:22 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:14:54 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,23 @@ void	ft_unset_loop(t_shell *shell, t_tokens *tokens)
 
 void	ft_unset(t_shell *shell, char *str)
 {
-	t_env	*current;
-	t_env	*prev;
+	t_env	*tmp;
+	t_env	*aux;
 
-	current = shell->env;
-	while (current->next)
+	tmp = shell->env;
+	aux = tmp->next;
+	while (aux)
 	{
-		if (ft_strcmp(current->name, str) == EXIT_SUCCESS)
+		if (ft_strcmp(aux->name, str) == EXIT_SUCCESS)
 		{
-			if (prev)
-				prev->next = current->next;
-			else
-				shell->env = current->next;
-			if (current->name)
-				free(current->name);
-			if (current->content)
-				free(current->content);
-			if (current)
-				free(current);
+			tmp->next = aux->next;
+			free(aux->name);
+			free(aux->content);
+			free(aux);
 		}
-		prev = current;
-		current = current->next;
+		else
+			tmp = tmp->next;
+		aux = tmp->next;
 	}
 	shell->status = 0;
 }

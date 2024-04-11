@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:12:37 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 17:34:26 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:57:47 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 
 void	ft_add_export(t_shell *shell, char *first, char *second)
 {
-	t_env	*last;
-
-	last = ft_nodelast(shell->env);
-	ft_create_node_env(last);
-	last->name = ft_strdup(first);
-	if (second == NULL)
-		last->content = NULL;
-	else
-		last->content = ft_strdup(second);
+	ft_init_env(shell, first, second);
 }
 
 void	ft_check_start(t_shell *shell, char *first, char *second)
