@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
 /*   Updated: 2024/04/11 11:30:33 by yfang            ###   ########.fr       */
@@ -26,8 +26,7 @@ void	ft_view(t_shell *shell)
 	aux = shell->env;
 	while (tmp)
 	{
-		ft_printf("%s%s, %i, %i%s\n", YELLOW, tmp->str, tmp->type, tmp->space,
-			END);
+		ft_printf("%s%s, %i, %i, %i%s\n", YELLOW, tmp->str, tmp->type, tmp->space, shell->cmdflag, END);
 		if (tmp->next)
 			tmp = tmp->next;
 		else
@@ -107,6 +106,7 @@ void	ft_inside_loop(t_shell *shell)
 	ft_expand(shell);
 /* 	ft_saveexport(shell); */
 	ft_quitredi(shell);
+	ft_view(shell); // borrar
 	if (shell->error == 0)
 	{
 		ft_check_builtings(shell);

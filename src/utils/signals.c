@@ -15,7 +15,7 @@ void	ft_sigint(int signum)
 	{
 		write(1, "\33[K\n", 5);
 		close(0);
-		g_signal = 0;
+		g_signal = 1;
 	}
 	else
 	{

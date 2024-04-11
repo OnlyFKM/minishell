@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 16:47:07 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:41:03 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	ft_execve_two(t_shell *shell, char **str, char **envp)
 		execve(shell->path, str, envp);
 	else
 		waitpid(pid, NULL, 0);
+	g_signal = 1;
 }
 
 void	ft_execve_one(t_shell *shell, t_tokens *tokens)

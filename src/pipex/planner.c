@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 16:49:45 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:34:01 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_execve(t_shell *shell, t_tokens *tokens)
 	char	**str;
 	char	**envp;
 
-	g_signal = 0;
+	// g_signal = 0;
 	str = ft_split(tokens->str, ' ');
 	cmd = ft_strdup("/");
 	aux = cmd;
@@ -43,10 +43,14 @@ void	ft_child(t_shell *shell, t_tokens *tokens, int *fd)
 	close(fd[1]);
 	ft_pipex(shell, tokens);
 	if (tokens->type == 0)
+	{
+		
 		ft_builtins(shell, tokens->str);
+	}
 	else
 		ft_execve(shell, tokens);
-	exit (0);
+	g_signal = 1;
+	exit(0);
 }
 
 void	ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid)
@@ -77,15 +81,19 @@ void	ft_more_cmds(t_shell *shell, t_tokens *tokens)
 	int	fd[2];
 	int	pid;
 
+	g_signal = 0; //borrar
 	pipe(fd);
 	pid = fork();
 	if (pid < 0)
 	{
 		ft_printf("marinashell: error in pid\n");
-		exit (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	else if (pid == 0)
+	{
 		ft_child(shell, tokens, fd);
+		exit(EXIT_SUCCESS);
+	}
 	else
 		ft_parent(shell, tokens, fd, pid);
 }
