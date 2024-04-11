@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 19:41:10 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 19:47:53 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@
 # define YELLOW "\033[0;33m"
 # define BLUE "\033[0;34m"
 # define END "\033[0m"
+
+// Int max min
+# define MAX 2147483647
+# define MIN -2147483648
 
 int					g_signal;
 
@@ -235,7 +239,7 @@ void				ft_free_exit(t_shell *shell);
 void				ft_pwd(t_shell *shell);
 void				ft_exit(t_shell *shell, t_tokens *tokens);
 void				ft_check_number(t_shell *shell, t_tokens *tokens);
-void				ft_status_exit(t_shell *shell, int status);
+void				ft_status_exit(t_shell *shell, t_tokens *tokens, long status);
 
 //		cd_utils.c
 void				ft_search_dir(t_shell *shell, char *find);
@@ -249,7 +253,7 @@ void				ft_first_cd(t_shell *shell);
 int					ft_check_oldpwd(t_shell *shell);
 
 //		echo.c
-void				ft_echo(t_tokens *list);
+void				ft_echo(t_shell *shell, t_tokens *list);
 int					ft_check_n(t_tokens *check);
 void				ft_print_echo(t_tokens *list, int flag);
 

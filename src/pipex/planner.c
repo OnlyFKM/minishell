@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 17:23:38 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:56:03 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_execve(t_shell *shell, t_tokens *tokens)
 		path = ft_find_path(shell, cmd);
 	envp = ft_update_envp(shell);
 	if (path != NULL)
-		execve(path, str, envp);
+		shell->status = execve(path, str, envp);
 	else
 		ft_execve_msg(shell, str);
 	exit(127);

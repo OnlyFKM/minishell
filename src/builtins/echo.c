@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 11:48:30 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/06 16:54:29 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:47:38 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_check_n(t_tokens *check)
 	return (0);
 }
 
-void	ft_echo(t_tokens *list)
+void	ft_echo(t_shell *shell, t_tokens *list)
 {
 	int			nb;
 	t_tokens	*check;
@@ -74,4 +74,5 @@ void	ft_echo(t_tokens *list)
 		}
 		ft_print_echo(check, nb);
 	}
+	shell->status = 0;
 }
