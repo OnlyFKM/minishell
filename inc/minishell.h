@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 18:50:15 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 19:41:10 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ error
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
 
+int	ft_isredi(int c);
 t_env	*ft_newenv(char *name, char *content);
 void	ft_init_env(t_shell *shell, char *name, char *content);
 //		main.c
