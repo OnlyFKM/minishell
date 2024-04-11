@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 15:16:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/20 10:28:02 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:01:32 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ t_env	*ft_nodelast(t_env *env)
 	return (current);
 }
 
-void	ft_nodeadd_back(t_env *env, t_env *new)
+void	ft_nodeadd_back(t_env **env, t_env *new)
 {
 	t_env	*current;
 
-	if (env == NULL)
-		env = new;
-	else
+	if (*env != 0)
 	{
-		current = ft_nodelast(env);
+		current = ft_nodelast(*env);
 		current->next = new;
 	}
+	else
+		*env = new;
 }
 
 int	ft_nodesize(t_env *env)

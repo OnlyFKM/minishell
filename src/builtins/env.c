@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:33:00 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/07 16:01:53 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 18:58:21 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,40 +57,41 @@ void	ft_print_env(t_env *env)
 	}
 }
 
-void	ft_create_node_env(t_env *env)
+t_env	*ft_newenv(char *name, char *content)
 {
-	t_env	*new_node;
+	t_env	*new_token;
 
-	new_node = ft_calloc(1, sizeof(t_env));
-	if (new_node == NULL)
-		ft_printf("marinashell: error calloc env\n");
-	new_node->content = NULL;
-	new_node->name = NULL;
-	new_node->next = NULL;
-	ft_nodeadd_back(env, new_node);
+	new_token = ft_calloc(1, sizeof(t_env));
+	if (!new_token)
+		return (0);
+	new_token->name = ft_strdup(name);
+	new_token->content = ft_strdup(content);
+	new_token->next = NULL;
+	return (new_token);
 }
 
-void	ft_env(t_env *env, char **envp)
+void	ft_init_env(t_shell *shell, char *name, char *content)
+{
+	t_env	*tmp;
+
+	tmp = ft_newenv(name, content);
+	ft_nodeadd_back(&shell->env, tmp);
+}
+
+void	ft_env(t_shell *shell, char **envp)
 {
 	int		i;
-	t_env	*tmp;
 	char	**splitted;
 
 	i = 0;
-	tmp = env;
 	while (envp[i])
 	{
 		splitted = ft_split(envp[i], '=');
 		if (splitted[0] && splitted[1])
-		{
-			tmp->name = ft_strdup(splitted[0]);
-			tmp->content = ft_strdup(splitted[1]);
-		}
+			ft_init_env(shell, splitted[0], splitted[1]);
 		free(splitted[0]);
 		free(splitted[1]);
 		free(splitted);
-		ft_create_node_env(tmp);
-		tmp = tmp->next;
 		i++;
 	}
 }
