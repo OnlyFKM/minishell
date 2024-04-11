@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basics.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 13:05:31 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 18:34:55 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	ft_status_exit(t_shell *shell, int status)
 {
+	ft_printf("status es %d\n", status);
 	if (status >= 0 && status <= 125)
 	{
 		ft_free_exit(shell);
@@ -25,7 +26,13 @@ void	ft_status_exit(t_shell *shell, int status)
 		if (status < 0)
 			status = 128 + (status % 128);
 		else
-			status = status % 256;
+		{
+			if (status > 2147483647)
+				ft_printf("marinashell: exit: %d: numeric argument required\n",
+					status);
+			else
+				status = status % 256;
+		}
 		ft_free_exit(shell);
 		ft_printf("exit\n");
 		exit(status);
@@ -66,7 +73,8 @@ void	ft_exit(t_shell *shell, t_tokens *tokens)
 	t_tokens	*tmp;
 
 	tmp = tokens;
-	if (tokens == NULL || !tmp->next)
+	// if (tokens == NULL || !tmp->next)
+	if (!tmp->next)
 	{
 		ft_free_exit(shell);
 		ft_printf("exit\n");
