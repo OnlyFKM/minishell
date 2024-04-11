@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 11:20:12 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:30:33 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_builtins(t_shell *shell, char *str)
 	else if (ft_strncmp(aux->str, "unset\0", 6) == EXIT_SUCCESS)
 		ft_unset_loop(shell, aux->next);
 	else if (ft_strncmp(aux->str, "export\0", 7) == EXIT_SUCCESS)
-		ft_export(shell, aux);
+		ft_export(shell, shell->export);
 	else if (ft_strncmp(aux->str, "cd\0", 3) == EXIT_SUCCESS)
 		ft_cd(shell, aux);
 	ft_free_tokens(&aux);
@@ -92,18 +92,23 @@ void	ft_error(t_shell *shell)
 		ft_printf("caca\n");
 }
 
+/* void	ft_saveexport(t_shell *shell)
+{
+	t_tokens	*tmp;
+
+	tmp = shell->tokens;
+} */
+
 void	ft_inside_loop(t_shell *shell)
 {
 	if (shell->tokens->next)
 		ft_agroup(shell);
-	ft_view(shell); // borrar
 	ft_expand(shell);
-	ft_view(shell); // borrar
+/* 	ft_saveexport(shell); */
 	ft_quitredi(shell);
 	ft_view(shell); // borrar
 	if (shell->error == 0)
 	{
-		ft_view(shell); // borrar
 		ft_check_builtings(shell);
 		ft_agroup_pipes(shell);
 		ft_count_cmd(shell);
@@ -141,7 +146,7 @@ void	ft_loop(t_shell *shell)
 	{
 		shell->error = 0;
 		shell->line = readline("marinashell$ ");
-		ft_checkascii(shell);//hacer
+		ft_checkascii(shell);
 		if (!shell->line)
 			ft_exit(shell, NULL);
 		if (ft_strncmp(shell->line, "\0", 1))
