@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 19:06:52 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:34:01 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ void	ft_child(t_shell *shell, t_tokens *tokens, int *fd)
 	close(fd[1]);
 	ft_pipex(shell, tokens);
 	if (tokens->type == 0)
+	{
+		
 		ft_builtins(shell, tokens->str);
+	}
 	else
 		ft_execve(shell, tokens);
 	g_signal = 1;

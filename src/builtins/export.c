@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/28 17:39:51 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/10 19:47:22 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,15 @@ void	ft_export(t_shell *shell, t_tokens *tokens)
 		ft_create_export(shell->env);
 	else
 	{
-		tmp = tokens->next;
-		while (tmp)
+		if (shell->count_cmd == 1)
 		{
-			if (tmp->str != NULL)
-				ft_create_pointers(shell, tmp->str);
-			tmp = tmp->next;
+			tmp = tokens->next;
+			while (tmp)
+			{
+				if (tmp->str != NULL)
+					ft_create_pointers(shell, tmp->str);
+				tmp = tmp->next;
+			}
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 18:40:13 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 11:20:12 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,8 +164,8 @@ int	main(int argc, char *argv[], char **envp)
 
 	// atexit(ft_leaks);
 	(void)argv;
-/* 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, ft_sigint); */
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ft_sigint);
 	if (argc == 1)
 	{
 		ft_welcome();
