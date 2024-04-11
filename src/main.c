@@ -80,7 +80,7 @@ void	ft_builtins(t_shell *shell, char *str)
 	else if (ft_strncmp(aux->str, "unset\0", 6) == EXIT_SUCCESS)
 		ft_unset_loop(shell, aux->next);
 	else if (ft_strncmp(aux->str, "export\0", 7) == EXIT_SUCCESS)
-		ft_export(shell, shell->export);
+		ft_export(shell, aux);
 	else if (ft_strncmp(aux->str, "cd\0", 3) == EXIT_SUCCESS)
 		ft_cd(shell, aux);
 	ft_free_tokens(&aux);
@@ -88,8 +88,27 @@ void	ft_builtins(t_shell *shell, char *str)
 
 void	ft_error(t_shell *shell)
 {
-	if (shell->error != 0)
-		ft_printf("caca\n");
+	if (shell->error == 1)
+		ft_printf("marinashell: error for quotes not closed\n");
+	if (shell->error == 2)
+		ft_printf("marinashell: syntax error near unexpected token '<'\n");
+	if (shell->error == 3)
+		ft_printf("marinashell: syntax error near unexpected token '>'\n");
+	if (shell->error == 4)
+	{
+		ft_printf("marinashell: syntax error near ");
+		ft_printf("unexpected token 'newline'\n");
+	}
+	if (shell->error == 5)
+		ft_printf("marinashell: syntax error near unexpected token '|'\n");
+	if (shell->error == 6)
+		ft_printf("marinashell: error opening file\n");
+	if (shell->error == 7)
+		ft_printf("marinashell: syntax error near unexpected token\n");
+	if (shell->error == 8)
+		ft_printf("marinashell: failure in pipe or fork\n");
+	if (shell->error == 10)
+		ft_printf("marinashell: syntax error not an ascii char\n");
 }
 
 int	ft_onlyexport(t_tokens *token)
@@ -181,6 +200,7 @@ void	ft_inside_loop(t_shell *shell)
 		ft_count_cmd(shell);
 		if (shell->count_cmd == 1)
 		{
+			ft_view(shell); // borrar
 			ft_pipex(shell, shell->tokens);
 			if (shell->tokens->type == 0)
 				ft_builtins(shell, shell->tokens->str);

@@ -144,32 +144,6 @@ void	ft_redi(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 	}
 }
 
-void	ft_miniagroup(t_shell *shell)
-{
-	t_tokens	*tmp;
-	t_tokens	*aux;
-	char		*str;
-
-	tmp = shell->tokens;
-	aux = tmp->next;
-	while (aux)
-	{
-		if (aux->space == 1)
-		{
-			str = ft_strdup(tmp->str);
-			free(tmp->str);
-			tmp->str = ft_strjoin(str, aux->str);
-			free(str);
-			tmp->next = aux->next;
-			free(aux->str);
-			free(aux);
-		}
-		else
-			tmp = tmp->next;
-		aux = aux->next;
-	}
-}
-
 void	ft_removeredi(t_shell *shell)
 {
 	t_tokens	*tmp;
@@ -207,7 +181,7 @@ void	ft_removeredi(t_shell *shell)
 		if (i == 0 && tmp->type != PIPE)
 			i = 1;
 	}
-	ft_miniagroup(shell);
+	ft_agroup(shell);
 }
 
 void	ft_changetype(t_shell *shell)
