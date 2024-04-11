@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 19:47:22 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 15:47:19 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ void	ft_export(t_shell *shell, t_tokens *tokens)
 		ft_create_export(shell->env);
 	else
 	{
+		//if (shell->count_cmd == 1 && !ft_checkredi(tokens)) //  definitivo
 		if (shell->count_cmd == 1)
 		{
 			tmp = tokens->next;
