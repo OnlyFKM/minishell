@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 17:14:18 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:50:15 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_shell
 {
 	t_env			*env;
 	t_tokens		*tokens;
-	t_tokens *export; // aaaa
+	t_tokens		*export;
 	char			**envp;
 	char			*line;
 	char			*tmp_cd;
@@ -105,6 +105,8 @@ error
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
 
+t_env	*ft_newenv(char *name, char *content);
+void	ft_init_env(t_shell *shell, char *name, char *content);
 //		main.c
 int					main(int argc, char *argv[], char **envp);
 void				ft_loop(t_shell *shell);
@@ -124,7 +126,7 @@ char				*ft_strjoin_space(char *s1, char *s2);
 
 //		list.c
 int					ft_nodesize(t_env *env);
-void				ft_nodeadd_back(t_env *env, t_env *new);
+void				ft_nodeadd_back(t_env **env, t_env *new);
 t_env				*ft_nodelast(t_env *env);
 int					ft_tokensize(t_tokens *lst);
 
@@ -251,7 +253,7 @@ int					ft_check_n(t_tokens *check);
 void				ft_print_echo(t_tokens *list, int flag);
 
 //		env.c
-void				ft_env(t_env *env, char **envp);
+void				ft_env(t_shell *shell, char **envp);
 void				ft_create_node_env(t_env *env);
 void				ft_print_env(t_env *env);
 void				ft_dupenvp(t_shell *shell, char **envp);

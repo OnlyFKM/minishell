@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 17:59:27 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 18:38:45 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 18:38:36 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	ft_first_pwd(t_shell *shell)
 int	ft_init(t_shell *shell, char **envp)
 {
 	g_signal = 1;
-	shell->env = ft_calloc(1, sizeof(t_env));
+	shell->env = NULL;
 	shell->tokens = NULL;
 	shell->export = NULL;
-	if (!shell || !shell->env)
+	if (!shell)
 		return (EXIT_FAILURE);
 	shell->line = NULL;
 	shell->tmp_cd = NULL;
@@ -38,7 +38,7 @@ int	ft_init(t_shell *shell, char **envp)
 	shell->error = 0;
 	shell->flag = 0;
 	ft_dupenvp(shell, envp);
-	ft_env(shell->env, shell->envp);
+	ft_env(shell, shell->envp);
 	ft_first_pwd(shell);
 	return (EXIT_SUCCESS);
 }

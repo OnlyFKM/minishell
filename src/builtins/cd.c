@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:58:50 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/08 17:33:02 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 18:51:43 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ int	ft_check_oldpwd(t_shell *shell)
 		tmp = tmp->next;
 	}
 	return (0);
-}
-
-void	ft_first_cd(t_shell *shell)
-{
-	t_env	*last;
-
-	last = ft_nodelast(shell->env);
-	ft_create_node_env(last);
-	last->name = ft_strdup("OLDPWD");
-	last->content = ft_strdup(shell->pwd);
 }
 
 void	ft_cd_next(t_shell *shell, t_tokens *tokens)
@@ -64,7 +54,7 @@ void	ft_cd(t_shell *shell, t_tokens *tokens)
 
 	flag = ft_check_oldpwd(shell);
 	if (flag == 0)
-		ft_first_cd(shell);
+		ft_init_env(shell, "OLDPWD", shell->pwd);
 	if (!tokens->next)
 	{
 		ft_search_dir(shell, "HOME");
