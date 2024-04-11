@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:22:15 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/04 12:25:30 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 19:50:58 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ void	ft_init_token(t_shell *shell, int type, char *str)
 
 	tmp = ft_newtoken(type, str, shell->space);
 	ft_addbacktoken(&shell->tokens, tmp);
+}
+
+void	ft_check_error(t_shell *shell)
+{
+	t_tokens	*tmp;
+	t_tokens	*aux;
+
+	tmp = ft_lasttoken(shell->tokens);
+	ft_init_token(shell, PIPE, "|");
+	aux = ft_lasttoken(shell->tokens);
+	if (ft_isredi(tmp->type) && (shell->error == 4 || shell->error == 12))
+		shell->error = 5;
 }
 
 void	ft_tokenizer(t_shell *shell)
@@ -38,7 +50,7 @@ void	ft_tokenizer(t_shell *shell)
 			ft_token_redirections(shell, &i);
 		ft_ifspace(shell, i - 1);
 		if (shell->line[i] == '|')
-			ft_init_token(shell, PIPE, "|");
+			ft_check_error(shell);
 		if (shell->line[i])
 			i++;
 		ft_ifspace(shell, i - 1);

@@ -109,6 +109,7 @@ error
 
 /*-------------------------------   FUNCTIONS   ------------------------------*/
 
+int	ft_isredi(int c);
 t_env	*ft_newenv(char *name, char *content);
 void	ft_init_env(t_shell *shell, char *name, char *content);
 //		main.c
