@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 11:30:33 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 12:15:28 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,9 +146,9 @@ void	ft_loop(t_shell *shell)
 	{
 		shell->error = 0;
 		shell->line = readline("marinashell$ ");
-		ft_checkascii(shell);
 		if (!shell->line)
 			ft_exit(shell, NULL);
+		ft_checkascii(shell);
 		if (ft_strncmp(shell->line, "\0", 1))
 			add_history(shell->line);
 		if (!ft_whitespace(shell->line))
