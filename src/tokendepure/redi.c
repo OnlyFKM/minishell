@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/11 13:44:10 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:34:50 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,12 +176,12 @@ void	ft_removeredi(t_shell *shell)
 			tmp = tmp->next;
 		ft_printf("%s, %i\n", aux->str, aux->space);
 		aux = tmp->next;
-		if (aux && i != 0)
+		if (aux && i != 0 && tmp->type != PIPE)
 			aux->space = 1;
 		if (i == 0 && tmp->type != PIPE)
 			i = 1;
 	}
-	/* ft_agroup(shell); */ // cambiar solo si hay redirecciones
+	ft_agroup(shell);
 }
 
 void	ft_changetype(t_shell *shell)
