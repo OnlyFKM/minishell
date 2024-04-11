@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 18:41:03 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 17:16:17 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,13 +90,14 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 	cmd = ft_strjoin_2(aux, str[0]);
 	envp = NULL;
 	envp = ft_update_envp(shell);
-	shell->path = ft_find_path(shell, cmd);
+	if (ft_path(shell) == EXIT_SUCCESS)
+	{
+		if (ft_check_fullpath(shell) == EXIT_FAILURE)
+			shell->path = ft_find_path(shell, cmd);
+	}
 	if (shell->path != NULL)
 		ft_execve_two(shell, str, envp);
 	else
-	{
-		ft_printf("marinashell: %s: command not found\n", str[0]);
-		shell->status = 127;
-	}
+		ft_execve_msg(shell, str);
 	ft_free_execve(str, envp, cmd, shell->path);
 }
