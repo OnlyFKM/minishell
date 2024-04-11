@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 13:54:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 17:41:24 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:42:48 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_change_pwd(t_shell *shell)
 		}
 		tmp = tmp->next;
 	}
+	shell->status = 0;
 }
 
 void	ft_oldpwd(t_shell *shell)
@@ -78,6 +79,7 @@ void	ft_search_dir(t_shell *shell, char *find)
 	if (tmp == NULL)
 	{
 		ft_printf("marinashell: cd: HOME not set\n");
+		shell->status = 1;
 		exit(1);
 	}
 }
