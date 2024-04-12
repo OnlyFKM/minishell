@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 15:16:46 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:07:51 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,21 +92,6 @@ typedef struct s_shell
 	int				flag;
 }					t_shell;
 
-/*
-error
-0 no error
-1 comillas
-2 <> <<< marinashell: syntax error near unexpected token `<'
-3 >>> >< marinashell: syntax error near unexpected token `>'
-4 falta argumentos en redi marinashell: syntax error near unexpected token 'newline'
-5 || seguidos marinashell: syntax error near unexpected token '|'
-6 Error opening file
-7 marinashell: syntax error near unexpected token
-8 marinashell: pipe or fork error
-9 redireccion sin comando
-10 line no es ascii
- */
-
 /*-------------------------------   FUNCTIONS   ------------------------------*/
 
 int	ft_isredi(int c);
@@ -174,12 +159,6 @@ void				ft_quitredi(t_shell *shell);
 int					ft_heredoc(t_tokens *cmd, t_tokens *redi, t_shell *shell);
 
 //  Pipex
-/* //	execution.c
-void				ft_execve(t_shell *shell);
-char				*ft_find_path(t_shell *shell, char *cmd);
-char				**ft_update_envp(t_shell *shell);
-char				**ft_pointer_str(t_shell *shell);
-void	ft_execve_one(t_shell *shell); */
 
 //			utils_pipex.c
 char				*ft_find_path(t_shell *shell, char *cmd);

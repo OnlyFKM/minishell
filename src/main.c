@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 16:28:29 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:47:58 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,7 +254,6 @@ int	main(int argc, char *argv[], char **envp)
 {
 	t_shell	*shell;
 
-	// atexit(ft_leaks);
 	(void)argv;
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, ft_sigint);

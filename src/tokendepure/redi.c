@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redi.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/12 16:30:05 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:54:30 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	ft_heredoc(t_tokens *cmd, t_tokens *redi, t_shell *shell)
 
 	g_signal = 42;
 	limit = ft_takename(redi);
-	shell->flag = 1;
 	if (!limit)
 		shell->error = 7;
 	else
