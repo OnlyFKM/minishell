@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basics.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 10:53:45 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 22:00:52 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	ft_check_number(t_shell *shell, t_tokens *tokens)
 		i++;
 	if (tmp->str[i] == '\0')
 	{
-		ft_printf("str es %s\n", tmp->str);
 		if (!tmp->next)
 			ft_status_exit(shell, tmp, ft_atol(tmp->str));
 		if (tmp->next)

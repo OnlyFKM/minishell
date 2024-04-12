@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pipex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 17:23:15 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 22:04:53 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 
 	tmp = shell->env;
 	i = -1;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (ft_strcmp(tmp->name, "PATH") == EXIT_SUCCESS)
 			break ;
@@ -55,13 +55,15 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 	splitted = ft_split(tmp->content, ':');
 	while (splitted[++i])
 	{
-		result = ft_strjoin(splitted[i], cmd);
-		if (access(result, F_OK) == EXIT_SUCCESS)
+		if (!cmd)
+			result = ft_strjoin(splitted[i], "/");
+		else
+			result = ft_strjoin(splitted[i], cmd);
+		if (access(result, F_OK) == EXIT_SUCCESS && cmd)
 			return (ft_free_double(splitted), result);
 		free(result);
 	}
-	ft_free_double(splitted);
-	return (NULL);
+	return (ft_free_double(splitted), NULL);
 }
 
 void	ft_execve_two(t_shell *shell, char **str, char **envp)
@@ -69,7 +71,7 @@ void	ft_execve_two(t_shell *shell, char **str, char **envp)
 	int	pid;
 
 	pid = fork();
-	if (pid == 0)
+	if (pid == 0 && str != NULL)
 		shell->status = execve(shell->path, str, envp);
 	else
 		waitpid(pid, NULL, 0);

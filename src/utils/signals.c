@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 19:00:22 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 19:00:25 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 21:27:01 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_sigint(int signum)
 	if (g_signal != 1 && g_signal != 42)
 	{
 		write(1, "\33[K\n", 5);
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		g_signal = 1;
 	}
 	else if (g_signal == 42)
@@ -31,10 +31,10 @@ void	ft_sigint(int signum)
 	{
 		rl_on_new_line();
 		rl_redisplay();
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		write(1, "\33[K\n", 5);
 		rl_on_new_line();
 		rl_redisplay();
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 	}
 }
