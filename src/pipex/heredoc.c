@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 14:43:21 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 22:13:52 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_path(t_shell *shell)
 	t_env	*tmp;
 
 	tmp = shell->env;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (ft_strcmp(tmp->name, "PATH") == EXIT_SUCCESS)
 			return (EXIT_SUCCESS);
