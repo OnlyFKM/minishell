@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 19:51:43 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:56:28 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	ft_builtins(t_shell *shell, char *str)
 	else if (ft_strncmp(aux->str, "unset\0", 6) == EXIT_SUCCESS)
 		ft_unset_loop(shell, aux->next);
 	else if (ft_strncmp(aux->str, "export\0", 7) == EXIT_SUCCESS)
-		ft_export(shell, aux);
+		ft_export(shell, shell->export);
 	else if (ft_strncmp(aux->str, "cd\0", 3) == EXIT_SUCCESS)
 		ft_cd(shell, aux);
 	ft_free_tokens(&aux);
@@ -257,8 +257,8 @@ int	main(int argc, char *argv[], char **envp)
 
 	// atexit(ft_leaks);
 	(void)argv;
-/* 	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, ft_sigint); */
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, ft_sigint);
 	if (argc == 1)
 	{
 		ft_welcome();
