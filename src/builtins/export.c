@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 15:47:19 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 12:56:06 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ void	ft_create_export(t_env *env)
 	i = ft_nodesize(env);
 	j = 0;
 	tmp = env;
-	str = ft_calloc(i, sizeof(char *));
-	while (j < i - 1)
+	str = ft_calloc(i + 1, sizeof(char *));
+	while (j < i)
 	{
 		str[j] = ft_strdup(tmp->name);
 		aux = str[j];
@@ -112,6 +112,7 @@ void	ft_create_export(t_env *env)
 		tmp = tmp->next;
 		j++;
 	}
+	i = 0;
 	ft_order_export(str);
 }
 

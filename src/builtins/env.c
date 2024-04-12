@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:33:00 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 18:58:21 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 14:59:03 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,10 @@ t_env	*ft_newenv(char *name, char *content)
 	if (!new_token)
 		return (0);
 	new_token->name = ft_strdup(name);
-	new_token->content = ft_strdup(content);
+	if (content)
+		new_token->content = ft_strdup(content);
+	else
+		new_token->content = NULL;
 	new_token->next = NULL;
 	return (new_token);
 }

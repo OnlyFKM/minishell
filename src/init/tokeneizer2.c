@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:17:25 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/05 15:25:26 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 15:51:03 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int	ft_redirections(t_shell *shell, int *i)
 		(*i)++;
 		j++;
 	}
-	while (shell->line[*i] && !ft_isspecial(shell->line[*i]))
+	while (shell->line[*i] && !ft_isspecial(shell->line[*i])
+		&& ft_ifredi(shell->line[*i]))
 	{
 		(*i)++;
 		j++;
@@ -85,15 +86,16 @@ int	ft_checkredi(t_tokens *token)
 
 void	ft_token_redirections(t_shell *shell, int *i)
 {
-	char	*tmp;
-	char	*start;
-	int		j;
+	char		*tmp;
+	char		*start;
+	int			j;
 
 	start = shell->line + *i;
 	j = ft_redirections(shell, i);
-	tmp = ft_strndup(start, j);
+	tmp = ft_strndup(start, j + 1);
 	ft_init_token(shell, ft_redirectiontype(start), tmp);
 	free(tmp);
+	ft_lasttoken(shell->tokens)->space = 0;
 	if (ft_checkredi(ft_lasttoken(shell->tokens)) != 0)
 		shell->error = ft_checkredi(ft_lasttoken(shell->tokens));
 }
