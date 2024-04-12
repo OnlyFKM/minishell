@@ -31,7 +31,7 @@ void	ft_execve(t_shell *shell, t_tokens *tokens)
 		path = ft_find_path(shell, cmd);
 	envp = ft_update_envp(shell);
 	if (path != NULL)
-		execve(path, str, envp);
+		shell->status = execve(path, str, envp);
 	else
 		ft_execve_msg(shell, str);
 	exit(127);

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
 /*   Updated: 2024/04/12 15:54:10 by yfang            ###   ########.fr       */
@@ -67,7 +67,7 @@ void	ft_builtins(t_shell *shell, char *str)
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
-		ft_echo(aux);
+		ft_echo(shell, aux);
 	else if (ft_strncmp(aux->str, "game\0", 5) == EXIT_SUCCESS)
 		printf("YOU HAVE LOST THE GAME\n");
 	else if (ft_strncmp(aux->str, "marina\0", 7) == EXIT_SUCCESS)
@@ -108,6 +108,7 @@ void	ft_error(t_shell *shell)
 		ft_printf("marinashell: failure in pipe or fork\n");
 	if (shell->error == 10)
 		ft_printf("marinashell: syntax error not an ascii char\n");
+	shell->status = 1;
 }
 
 int	ft_onlyexport(t_tokens *token)

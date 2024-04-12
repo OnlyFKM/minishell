@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:58:50 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 18:51:43 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/11 19:41:45 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_cd_next(t_shell *shell, t_tokens *tokens)
 		ft_oldpwd(shell);
 		shell->tmp_cd = ft_strdup(cwd);
 		ft_change_pwd(shell);
+		shell->status = 0;
 	}
 }
 

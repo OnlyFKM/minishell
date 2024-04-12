@@ -121,7 +121,10 @@ void	ft_export(t_shell *shell, t_tokens *tokens)
 	t_tokens	*tmp;
 
 	if (tokens->next == NULL)
+	{
 		ft_create_export(shell->env);
+		shell->status = 0;
+	}
 	else
 	{
 		//if (shell->count_cmd == 1 && !ft_checkredi(tokens)) //  definitivo
