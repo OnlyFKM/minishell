@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 15:16:46 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:56:58 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ int	ft_isredi(int c);
 t_env	*ft_newenv(char *name, char *content);
 void	ft_init_env(t_shell *shell, char *name, char *content);
 //		main.c
-int					main(int argc, char *argv[], char **envp);
-void				ft_loop(t_shell *shell);
-void				ft_inside_loop(t_shell *shell);
-void				ft_builtins(t_shell *shell, char *str);
+int		main(int argc, char *argv[], char **envp);
+void	ft_loop(t_shell *shell);
+void	ft_inside_loop(t_shell *shell);
+void	ft_builtins(t_shell *shell, char *str);
 
 //	Utils
 //		is.c

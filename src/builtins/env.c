@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:33:00 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 16:18:51 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:57:10 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_print_env(t_env *env)
 	t_env	*tmp;
 
 	tmp = env;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (tmp->name && tmp->content)
 		{
