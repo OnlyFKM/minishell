@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 10:48:28 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:01:47 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_execve(t_shell *shell, t_tokens *tokens)
 	cmd = ft_strdup("/");
 	aux = cmd;
 	cmd = ft_strjoin_2(aux, str[0]);
-	if (ft_check_fullpath(shell) == EXIT_FAILURE)
+	if (ft_check_fullpath(shell) == EXIT_SUCCESS)
 		path = ft_strdup(tokens->str);
 	else
 		path = ft_find_path(shell, cmd);
@@ -57,13 +57,15 @@ void	ft_child(t_shell *shell, t_tokens *tokens, int *fd)
 void	ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid)
 {
 	t_tokens	*tmp;
+	int			status;
 
+	(void)shell;
 	tmp = tokens;
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
-	if (tokens->next != NULL && tokens->type != 8)
-		waitpid(pid, NULL, 0);
+	// if (tokens->next != NULL && tokens->type != 8)
+	waitpid(pid, &status, 0);
 	tmp = tokens->next;
 	if (tmp->next != NULL)
 		ft_more_cmds(shell, tmp);
@@ -81,8 +83,10 @@ void	ft_more_cmds(t_shell *shell, t_tokens *tokens)
 {
 	int	fd[2];
 	int	pid;
+	int	status;
 
 	g_signal = 0;
+	status = 0;
 	pipe(fd);
 	pid = fork();
 	if (pid < 0)
@@ -90,11 +94,10 @@ void	ft_more_cmds(t_shell *shell, t_tokens *tokens)
 		ft_printf("marinashell: error in pid\n");
 		exit(EXIT_FAILURE);
 	}
-	else if (pid == 0)
+	if (pid == 0)
 	{
 		ft_child(shell, tokens, fd);
 		exit(EXIT_SUCCESS);
 	}
-	else
-		ft_parent(shell, tokens, fd, pid);
+	ft_parent(shell, tokens, fd, pid);
 }

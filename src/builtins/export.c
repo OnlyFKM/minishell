@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 11:00:31 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 14:59:27 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	ft_create_pointers(t_shell *shell, char *str)
 	len = ft_strlen(tmp);
 	if (i == len)
 	{
-		first = ft_calloc(i + 1, sizeof(char *));
-		ft_strlcpy(first, tmp, i + 1);
+		//first = ft_calloc(i + 1, sizeof(char *));
+		//ft_strlcpy(first, tmp, i + 1);
+		first = ft_strdup(tmp);
 		second = NULL;
 		if (ft_check_export(shell->env, first, second) == 1)
 			ft_check_start(shell, first, second);
@@ -98,8 +99,8 @@ void	ft_create_export(t_env *env)
 	i = ft_nodesize(env);
 	j = 0;
 	tmp = env;
-	str = ft_calloc(i, sizeof(char *));
-	while (j < i - 1)
+	str = ft_calloc(i + 1, sizeof(char *));
+	while (j < i) // revisar i - 1
 	{
 		str[j] = ft_strdup(tmp->name);
 		aux = str[j];

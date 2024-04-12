@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 10:56:28 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 13:07:10 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_builtins(t_shell *shell, char *str)
 
 	aux = NULL;
 	aux = ft_minitokenizer(aux, str);
-	ft_view2(aux); // borrar
+	//ft_view2(aux); // borrar
 	if (ft_strncmp(aux->str, "pwd\0", 4) == EXIT_SUCCESS)
 		ft_pwd(shell);
 	else if (ft_strncmp(aux->str, "echo\0", 5) == EXIT_SUCCESS)
@@ -159,12 +159,11 @@ void	ft_copytoken(t_tokens *token, t_shell *shell)
 void	ft_saveexport(t_shell *shell)
 {
 	t_tokens	*tmp;
-	int			i;
 
 	tmp = shell->tokens;
-	i = 0;
 	while (tmp)
 	{
+		//ft_printf("entro aqui\n");
 		if (!ft_strncmp(tmp->str, "export\0", 7) && ft_onlyexport(tmp))
 			ft_copytoken(tmp, shell);
 		tmp = tmp->next;
@@ -193,7 +192,7 @@ void	ft_inside_loop(t_shell *shell)
 	ft_saveexport(shell);
 	ft_quitredi(shell);
 	ft_checkpipe(shell);
-	ft_view(shell); // borrar
+	//ft_view(shell); // borrar
 	if (shell->error == 0)
 	{
 		ft_check_builtings(shell);
@@ -201,7 +200,7 @@ void	ft_inside_loop(t_shell *shell)
 		ft_count_cmd(shell);
 		if (shell->count_cmd == 1)
 		{
-			ft_view(shell); // borrar
+			//ft_view(shell); // borrar
 			ft_pipex(shell, shell->tokens);
 			if (shell->tokens->type == 0)
 				ft_builtins(shell, shell->tokens->str);
