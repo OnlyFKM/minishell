@@ -7,6 +7,7 @@ HEADERS = -I/Users/$(USER)/.brew/opt/readline/include
 INCLUDES = -L/Users/$(USER)/.brew/opt/readline/lib -lreadline
 
 SRCS =  src/main.c\
+	src/utils/checks.c\
 	src/utils/libftplus.c\
 	src/utils/is.c\
 	src/utils/list.c\
@@ -15,9 +16,12 @@ SRCS =  src/main.c\
 	src/utils/welcome.c\
 	src/utils/signals.c\
 	src/tokendepure/agroup.c\
+	src/tokendepure/createredi.c\
 	src/tokendepure/expand_utils.c\
 	src/tokendepure/expand.c\
 	src/tokendepure/redi.c\
+	src/tokendepure/removeredi.c\
+	src/tokendepure/save_export.c\
 	src/pipex/heredoc.c\
 	src/pipex/planner.c\
 	src/pipex/utils_pipex.c\
@@ -44,15 +48,12 @@ SRC_DIR = src
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
-#OBJS = $(addprefix $(OBJ_DIR)/, $(notdir $(SRCS:.c=.o)))
-
 all: $(LIBFT)/libft.a $(OBJ_DIR) $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)\n"
 
 $(NAME): $(OBJS)
-	#ar rcs	minishell.a $(OBJS)
 	@$(CC) -g $(CFLAGS) $(LIBFT)/libft.a $(OBJS) $(HEADERS) $(INCLUDES) -o $(NAME)
 
 $(LIBFT)/libft.a:

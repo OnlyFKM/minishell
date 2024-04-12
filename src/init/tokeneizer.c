@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokeneizer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:40:13 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/05 16:56:06 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 18:25:11 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,6 @@ int	ft_quotes(t_shell *shell, int *i)
 		ft_quoteserror(shell, i, 1);
 	}
 	return (j);
-}
-
-void	ft_ifspace(t_shell *shell, int i)
-{
-	if (ft_isspace(shell->line[i]))
-		shell->space = 0;
-	else
-		shell->space = 1;
 }
 
 void	ft_token_in_quotes(t_shell *shell, int *i)

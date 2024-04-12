@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 16:29:34 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:10:16 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_execve(t_shell *shell, t_tokens *tokens)
 	str = ft_split(tokens->str, ' ');
 	cmd = ft_strdup("/");
 	aux = cmd;
-	cmd = ft_strjoin_2(aux, str[0]);
+	cmd = ft_strjoin_two(aux, str[0]);
 	if (ft_check_fullpath(shell) == EXIT_SUCCESS)
 		path = ft_strdup(tokens->str);
 	else
@@ -64,7 +64,6 @@ void	ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid)
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);
 	close(fd[0]);
-	// if (tokens->next != NULL && tokens->type != 8)
 	waitpid(pid, &status, 0);
 	tmp = tokens->next;
 	if (tmp->next != NULL)
