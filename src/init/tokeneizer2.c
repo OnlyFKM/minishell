@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 12:17:25 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/12 16:29:27 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:24:47 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ int	ft_redierror(t_tokens *token, int i, int j, char c)
 			if (j == 3 || token->str[j] != c)
 				return (3);
 	}
-	/* if (ft_strlen(token->str) < 4)
-		return (12); */
 	return (0);
 }
 

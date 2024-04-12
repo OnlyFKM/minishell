@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_2.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin_two.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:22:38 by frcastil          #+#    #+#             */
-/*   Updated: 2024/03/19 14:23:43 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:03:39 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_strjoin_2(char *s1, char *s2)
+char	*ft_strjoin_two(char *s1, char *s2)
 {
 	char	*dst;
 	size_t	i;

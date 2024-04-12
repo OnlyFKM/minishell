@@ -3,14 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   t_tokens.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 12:30:22 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/10 17:11:55 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 18:09:48 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	ft_copytoken(t_tokens *token, t_shell *shell)
+{
+	t_tokens	*tmp;
+
+	while (token)
+	{
+		tmp = ft_newcopytoken(token);
+		ft_addbacktoken(&shell->export, tmp);
+		token = token->next;
+	}
+}
+
+t_tokens	*ft_newcopytoken(t_tokens *token)
+{
+	t_tokens	*tmp;
+
+	if (!token)
+		return (NULL);
+	tmp = ft_calloc(1, sizeof(t_tokens));
+	tmp->str = ft_strdup(token->str);
+	if (token->path)
+		tmp->path = ft_strdup(token->path);
+	tmp->type = token->type;
+	tmp->space = token->space;
+	tmp->infile = token->infile;
+	tmp->outfile = token->outfile;
+	tmp->next = NULL;
+	token = token->next;
+	return (tmp);
+}
 
 t_tokens	*ft_lasttoken(t_tokens *token)
 {

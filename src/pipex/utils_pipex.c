@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 19:56:48 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 17:23:15 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ char	**ft_update_envp(t_shell *shell)
 	{
 		tmp[++i] = ft_strdup(aux->name);
 		join = tmp[i];
-		tmp[i] = ft_strjoin_2(join, "=");
+		tmp[i] = ft_strjoin_two(join, "=");
 		join = tmp[i];
-		tmp[i] = ft_strjoin_2(join, aux->content);
+		tmp[i] = ft_strjoin_two(join, aux->content);
 		if (aux->next)
 			aux = aux->next;
 	}
@@ -66,7 +66,7 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 
 void	ft_execve_two(t_shell *shell, char **str, char **envp)
 {
-	int		pid;
+	int	pid;
 
 	pid = fork();
 	if (pid == 0)
@@ -87,7 +87,7 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 	str = ft_split(tokens->str, ' ');
 	cmd = ft_strdup("/");
 	aux = cmd;
-	cmd = ft_strjoin_2(aux, str[0]);
+	cmd = ft_strjoin_two(aux, str[0]);
 	envp = NULL;
 	envp = ft_update_envp(shell);
 	if (ft_path(shell) == EXIT_SUCCESS)

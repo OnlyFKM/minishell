@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 17:08:09 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:55:32 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@ void	ft_create_export(t_env *env)
 	{
 		str[j] = ft_strdup(tmp->name);
 		aux = str[j];
-		str[j] = ft_strjoin_2(aux, "=\"");
+		str[j] = ft_strjoin_two(aux, "=\"");
 		aux = str[j];
 		if (tmp->content)
-			str[j] = ft_strjoin_2(aux, tmp->content);
+			str[j] = ft_strjoin_two(aux, tmp->content);
 		aux = str[j];
-		str[j] = ft_strjoin_2(aux, "\"");
+		str[j] = ft_strjoin_two(aux, "\"");
 		tmp = tmp->next;
 		j++;
 	}
@@ -127,8 +127,7 @@ void	ft_export(t_shell *shell, t_tokens *tokens)
 	}
 	else
 	{
-		// if (shell->count_cmd == 1 && !ft_checkredi(tokens)) //  definitivo
-		if (shell->count_cmd == 1)
+		if (shell->count_cmd == 1 && !ft_ifoutorin(shell->tokens))
 		{
 			tmp = tokens->next;
 			while (tmp)
