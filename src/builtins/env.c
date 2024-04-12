@@ -65,7 +65,10 @@ t_env	*ft_newenv(char *name, char *content)
 	if (!new_token)
 		return (0);
 	new_token->name = ft_strdup(name);
-	new_token->content = ft_strdup(content);
+	if (content)
+		new_token->content = ft_strdup(content);
+	else
+		new_token->content = NULL;
 	new_token->next = NULL;
 	return (new_token);
 }
