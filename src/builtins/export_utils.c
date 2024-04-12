@@ -6,11 +6,18 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 12:12:37 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 16:28:49 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 18:55:10 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+int	ft_ifoutorin(t_tokens *aux)
+{
+	if (aux->outfile || aux->infile)
+		return (1);
+	return (0);
+}
 
 void	ft_add_export(t_shell *shell, char *first, char *second)
 {

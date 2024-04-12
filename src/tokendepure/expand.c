@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 12:50:32 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/10 16:41:32 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 17:14:05 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	ft_final_expand2(char *str, t_tokens *token, int start, int len)
 void	ft_find_dollar(t_tokens *token, t_shell *shell)
 {
 	int		i;
-	int		j;
 	char	*k;
 	char	*dst;
 	t_env	*tmp;
@@ -67,11 +66,10 @@ void	ft_find_dollar(t_tokens *token, t_shell *shell)
 	k = ft_itoa(shell->status);
 	while (token->str[i])
 	{
-		j = 0;
 		if (token->str[i] == '$')
 		{
 			i++;
-			dst = ft_createdst(token, i, j, shell->status);
+			dst = ft_createdst(token, i, 0, shell->status);
 			tmp = shell->env;
 			if (!ft_strncmp("$", dst, ft_strlen(dst) + 1)
 				|| !ft_strncmp(k, dst, ft_strlen(dst) + 1))

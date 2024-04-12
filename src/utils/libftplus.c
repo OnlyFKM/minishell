@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   libftplus.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 17:18:54 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/09 16:32:46 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 18:25:26 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	ft_ifspace(t_shell *shell, int i)
+{
+	if (ft_isspace(shell->line[i]))
+		shell->space = 0;
+	else
+		shell->space = 1;
+}
 
 char	*ft_strjoin_space(char *s1, char *s2)
 {

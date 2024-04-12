@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitokenizer.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 16:57:58 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/05 17:21:19 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 19:03:13 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_tokens	*ft_minitokenizer(t_tokens *token, char *str)
 		if (str[i] && ft_isspace(str[i]))
 			i++;
 		token = ft_minitoken(token, str, &i);
-		if (str[i])	
+		if (str[i])
 			i++;
 	}
 	return (token);

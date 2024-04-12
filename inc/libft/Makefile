@@ -6,7 +6,7 @@
 #    By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 12:46:13 by yfang             #+#    #+#              #
-#    Updated: 2024/04/11 19:19:40 by frcastil         ###   ########.fr        #
+#    Updated: 2024/04/12 17:23:13 by frcastil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,7 @@ SRC = src/ft_atoi.c\
 	src/ft_strdup.c\
 	src/ft_striteri.c\
 	src/ft_strjoin.c\
-	src/ft_strjoin_2.c\
+	src/ft_strjoin_two.c\
 	src/ft_strlcat.c\
 	src/ft_strlcpy.c\
 	src/ft_strlen.c\
