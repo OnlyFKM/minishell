@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 12:56:06 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 16:29:19 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,9 @@ void	ft_create_pointers(t_shell *shell, char *str)
 	len = ft_strlen(tmp);
 	if (i == len)
 	{
-		first = ft_calloc(i + 1, sizeof(char *));
-		ft_strlcpy(first, tmp, i + 1);
+		//first = ft_calloc(i + 1, sizeof(char *));
+		//ft_strlcpy(first, tmp, i + 1);
+		first = ft_strdup(tmp);
 		second = NULL;
 		if (ft_check_export(shell->env, first, second) == 1)
 			ft_check_start(shell, first, second);
@@ -127,7 +128,7 @@ void	ft_export(t_shell *shell, t_tokens *tokens)
 	}
 	else
 	{
-		//if (shell->count_cmd == 1 && !ft_checkredi(tokens)) //  definitivo
+		// if (shell->count_cmd == 1 && !ft_checkredi(tokens)) //  definitivo
 		if (shell->count_cmd == 1)
 		{
 			tmp = tokens->next;

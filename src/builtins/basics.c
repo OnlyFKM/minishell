@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 19:40:52 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 10:53:45 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,14 @@ void	ft_exit(t_shell *shell, t_tokens *tokens)
 	t_tokens	*tmp;
 
 	tmp = tokens;
-	if (!tmp->next)
+	if (tmp == NULL)
+	{
+		ft_free_exit(shell);
+		ft_printf("exit\n");
+		shell->status = 0;
+		exit(EXIT_SUCCESS);
+	}
+	else if (!tmp->next)
 	{
 		ft_free_exit(shell);
 		ft_printf("exit\n");

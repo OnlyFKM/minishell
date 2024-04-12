@@ -18,7 +18,6 @@ SRCS =  src/main.c\
 	src/tokendepure/expand_utils.c\
 	src/tokendepure/expand.c\
 	src/tokendepure/redi.c\
-	src/pipex/execution.c\
 	src/pipex/heredoc.c\
 	src/pipex/planner.c\
 	src/pipex/utils_pipex.c\
