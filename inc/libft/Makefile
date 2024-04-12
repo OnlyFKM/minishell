@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yfang <yfang@student.42.fr>                +#+  +:+       +#+         #
+#    By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/21 12:46:13 by yfang             #+#    #+#              #
-#    Updated: 2024/03/21 14:38:44 by yfang            ###   ########.fr        #
+#    Updated: 2024/04/11 19:19:40 by frcastil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ ARFLAGS = ar -rcs
 REMOVE = rm -rf
 
 SRC = src/ft_atoi.c\
+	src/ft_atol.c\
 	src/ft_bzero.c\
 	src/ft_calloc.c\
 	src/ft_isalnum.c\

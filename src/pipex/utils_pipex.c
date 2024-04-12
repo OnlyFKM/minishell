@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 17:16:17 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/11 19:56:48 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_execve_two(t_shell *shell, char **str, char **envp)
 
 	pid = fork();
 	if (pid == 0)
-		execve(shell->path, str, envp);
+		shell->status = execve(shell->path, str, envp);
 	else
 		waitpid(pid, NULL, 0);
 	g_signal = 1;

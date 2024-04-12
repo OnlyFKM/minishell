@@ -3,32 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   basics.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/10 13:05:31 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 10:53:45 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	ft_status_exit(t_shell *shell, int status)
+void	ft_status_exit(t_shell *shell, t_tokens *tokens, long status)
 {
 	if (status >= 0 && status <= 125)
 	{
 		ft_free_exit(shell);
 		ft_printf("exit\n");
+		shell->status = status;
 		exit(status);
 	}
 	else
 	{
+		if (status > MAX || status < MIN)
+			ft_printf("marinashell: exit: %s: numeric argument required\n",
+				tokens->str);
 		if (status < 0)
-			status = 128 + (status % 128);
+			shell->status = 128 + (status % 128);
 		else
-			status = status % 256;
+			shell->status = status % 256;
 		ft_free_exit(shell);
 		ft_printf("exit\n");
-		exit(status);
+		exit(shell->status);
 	}
 }
 
@@ -45,15 +49,15 @@ void	ft_check_number(t_shell *shell, t_tokens *tokens)
 		i++;
 	if (tmp->str[i] == '\0')
 	{
+		ft_printf("str es %s\n", tmp->str);
 		if (!tmp->next)
-			ft_status_exit(shell, ft_atoi(tmp->str));
+			ft_status_exit(shell, tmp, ft_atol(tmp->str));
 		if (tmp->next)
 			ft_printf("exit\nmarinashell: exit: too many arguments\n");
 	}
 	else
 	{
-		ft_printf("exit\n");
-		ft_printf("marinashell: exit: %s: numeric argument required\n",
+		ft_printf("exit\nmarinashell: exit: %s: numeric argument required\n",
 			tmp->str);
 		shell->status = 255;
 		ft_free_exit(shell);
@@ -66,11 +70,18 @@ void	ft_exit(t_shell *shell, t_tokens *tokens)
 	t_tokens	*tmp;
 
 	tmp = tokens;
-	if (tokens == NULL || !tmp->next)
+	if (tmp == NULL)
 	{
 		ft_free_exit(shell);
 		ft_printf("exit\n");
-		/* rl_clear_history(); //maybe */
+		shell->status = 0;
+		exit(EXIT_SUCCESS);
+	}
+	else if (!tmp->next)
+	{
+		ft_free_exit(shell);
+		ft_printf("exit\n");
+		shell->status = 0;
 		exit(EXIT_SUCCESS);
 	}
 	else

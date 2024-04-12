@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:33:00 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 14:59:03 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/12 16:35:53 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	ft_print_env(t_env *env)
 	t_env	*tmp;
 
 	tmp = env;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (tmp->name && tmp->content)
 		{
@@ -97,4 +97,5 @@ void	ft_env(t_shell *shell, char **envp)
 		free(splitted);
 		i++;
 	}
+	shell->status = 0;
 }
