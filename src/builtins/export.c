@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 18:55:32 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/12 19:18:56 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	ft_check_export(t_env *env, char *first, char *second)
 	{
 		if (ft_strcmp(first, list->name) == 0)
 		{
-			ft_printf("Hola\n");
 			if (list->content != NULL)
 				free(list->content);
 			if (second != NULL)
