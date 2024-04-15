@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   removeredi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:21:59 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 19:02:11 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:48:54 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	ft_miniremoveredi(t_tokens *tmp, t_tokens *aux)
 			aux->space = 1;
 		if (i == 0 && tmp->type != PIPE)
 			i = 1;
+		if (tmp->type == PIPE)
+			i = 0;
 	}
 }
 
