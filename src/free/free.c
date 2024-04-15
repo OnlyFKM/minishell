@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:00:15 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/09 16:00:38 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/15 11:34:51 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_free_exit(t_shell *shell)
 	free(shell->pwd);
 	if (shell->path != NULL)
 		free(shell->path);
+	shell->path = NULL;
 	free(shell);
 }
 

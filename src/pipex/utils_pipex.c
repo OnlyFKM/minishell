@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pipex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 22:04:53 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/15 12:57:51 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,9 @@ char	*ft_find_path(t_shell *shell, char *cmd)
 
 void	ft_execve_two(t_shell *shell, char **str, char **envp)
 {
-	int	pid;
+	int		pid;
 
+	str[0] = ft_strdup(shell->path);
 	pid = fork();
 	if (pid == 0 && str != NULL)
 		shell->status = execve(shell->path, str, envp);

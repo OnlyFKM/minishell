@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 22:13:52 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/15 12:54:32 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,20 @@ int	ft_path(t_shell *shell)
 
 int	ft_check_fullpath(t_shell *shell)
 {
-	if (access(shell->tokens->str, F_OK) == EXIT_SUCCESS)
+	char	**tmp;
+	int		i;
+
+	tmp = NULL;
+	tmp = ft_split(shell->tokens->str, ' ');
+	i = 0;
+	if (access(tmp[0], F_OK) == EXIT_SUCCESS)
 	{
-		shell->path = ft_strdup(shell->tokens->str);
+		shell->path = ft_strdup(tmp[0]);
+		ft_free_double(tmp);
 		return (EXIT_SUCCESS);
 	}
+	if (tmp != NULL)
+		ft_free_double(tmp);
 	return (EXIT_FAILURE);
 }
 
