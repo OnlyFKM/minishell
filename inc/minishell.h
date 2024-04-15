@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/15 17:23:44 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:58:14 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,6 @@ void				ft_count_cmd(t_shell *shell);
 
 //		signals.c
 void				ft_sigint(int signum);
-void	ft_signal_handler(int signum); // borrar
 
 //		welcome.c
 void				ft_welcome(void);
