@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 14:22:38 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 19:03:39 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:07:07 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strjoin_two(char *s1, char *s2)
 			return (free(s1), s1 = NULL, NULL);
 	}
 	if (!s2)
-		return (NULL);
+		return (free(s1), s1 = NULL, NULL);
 	dst = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!dst)
 		return (free(s1), s1 = NULL, NULL);

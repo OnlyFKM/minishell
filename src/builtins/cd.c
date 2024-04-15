@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:58:50 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/11 19:41:45 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/15 13:28:43 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_check_oldpwd(t_shell *shell)
 	t_env	*tmp;
 
 	tmp = shell->env;
-	while (tmp->next)
+	while (tmp)
 	{
 		if (ft_strcmp(tmp->name, "OLDPWD") == 0)
 			return (1);
