@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:15:04 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 18:34:36 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:35:12 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_check_builtings(t_shell *shell)
 		else if (ft_strncmp(tmp->str, "export\0", 7) == EXIT_SUCCESS)
 			tmp->type = 0;
 		else if (ft_strncmp(tmp->str, "cd\0", 3) == EXIT_SUCCESS)
+			tmp->type = 0;
+		else if (ft_strncmp(tmp->str, "marina\0", 7) == EXIT_SUCCESS)
 			tmp->type = 0;
 		tmp = tmp->next;
 	}

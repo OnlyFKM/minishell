@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:58:50 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/15 13:30:49 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/15 17:04:54 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_cd(t_shell *shell, t_tokens *tokens)
 
 	flag = ft_check_oldpwd(shell);
 	if (flag == 0)
-		ft_init_env(shell, "OLDPWD", shell->pwd);
+		ft_init_env(shell, "OLDPWD", shell->pwd, 0);
 	if (!tokens->next)
 	{
 		ft_search_dir(shell, "HOME");
