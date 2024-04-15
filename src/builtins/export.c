@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/15 17:34:27 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:47:09 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,7 @@ void	ft_create_pointers(t_shell *shell, char *str)
 		first = ft_strdup(tmp);
 		second = NULL;
 		if (ft_check_export(shell->env, first, second) == 1)
-		{
-			if (tmp[i] == '=')
-				ft_check_start(shell, first, second);
-			else
-				ft_check_start(shell, first, second);
-		}
+			ft_check_start(shell, first, second);
 		if (first != NULL)
 			free(first);
 		if (second != NULL)
@@ -107,13 +102,11 @@ void	ft_create_export(t_env *env)
 	{
 		str[j] = ft_strdup(tmp->name);
 		aux = str[j];
-		//if (tmp->flag == 0)
 		str[j] = ft_strjoin_two(aux, "=\"");
 		aux = str[j];
 		if (tmp->content)
 			str[j] = ft_strjoin_two(aux, tmp->content);
 		aux = str[j];
-		//if (tmp->flag == 0)
 		str[j] = ft_strjoin_two(aux, "\"");
 		tmp = tmp->next;
 	}
