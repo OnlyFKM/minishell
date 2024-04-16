@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:58:50 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/15 17:52:31 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/16 10:47:10 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ int	ft_check_oldpwd(t_shell *shell)
 		tmp = tmp->next;
 	}
 	return (0);
+}
+
+void	ft_home(t_shell *shell)
+{
+	ft_search_dir(shell, "HOME");
+	if (shell->status == 0)
+	{
+		ft_oldpwd(shell);
+		chdir(shell->tmp_cd);
+		ft_change_pwd(shell);
+	}
 }
 
 void	ft_cd_next(t_shell *shell, t_tokens *tokens)
@@ -56,13 +67,8 @@ void	ft_cd(t_shell *shell, t_tokens *tokens)
 	flag = ft_check_oldpwd(shell);
 	if (flag == 0)
 		ft_init_env(shell, "OLDPWD", shell->pwd);
-	if (!tokens->next)
-	{
-		ft_search_dir(shell, "HOME");
-		ft_oldpwd(shell);
-		chdir(shell->tmp_cd);
-		ft_change_pwd(shell);
-	}
+	if (!tokens->next || ft_strcmp(tokens->next->str, "~") == 0)
+		ft_home(shell);
 	else if (ft_strcmp(tokens->next->str, "-") == 0)
 	{
 		ft_search_dir(shell, "OLDPWD");
