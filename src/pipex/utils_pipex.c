@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_pipex.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/15 16:15:33 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:24:02 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 	char	*aux;
 
 	g_signal = 0;
-	str = ft_split(tokens->str, ' ');
+	str = ft_split_two(tokens->str, ' ');
 	cmd = ft_strdup("/");
 	aux = cmd;
 	cmd = ft_strjoin_two(aux, str[0]);
@@ -98,7 +98,7 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 		if (ft_check_fullpath(shell) == EXIT_FAILURE)
 			shell->path = ft_find_path(shell, cmd);
 	}
-	if (shell->path != NULL)
+	if (shell->path != NULL && ft_strncmp(str[0], "echo\0", 5))
 		ft_execve_two(shell, str, envp);
 	else
 		ft_execve_msg(shell, str);
