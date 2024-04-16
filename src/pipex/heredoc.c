@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/15 16:15:29 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/16 11:17:52 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,20 @@ int	ft_path(t_shell *shell)
 	return (EXIT_FAILURE);
 }
 
+int	ft_dir(char *path)
+{
+	DIR	*dir;
+
+	dir = opendir(path);
+	if (dir != NULL)
+	{
+		closedir(dir);
+		return (1);
+	}
+	else
+		return (0);
+}
+
 int	ft_check_fullpath(t_shell *shell)
 {
 	char	**tmp;
@@ -43,7 +57,7 @@ int	ft_check_fullpath(t_shell *shell)
 	tmp = NULL;
 	tmp = ft_split(shell->tokens->str, ' ');
 	i = 0;
-	if (access(tmp[0], X_OK) == EXIT_SUCCESS)
+	if (access(tmp[0], X_OK) == EXIT_SUCCESS && ft_dir(tmp[0]) == 0)
 	{
 		shell->path = ft_strdup(tmp[0]);
 		ft_free_double(tmp);
