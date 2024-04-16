@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 14:37:35 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 19:18:56 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:47:09 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,10 @@ void	ft_create_export(t_env *env)
 	char	*aux;
 
 	i = ft_nodesize(env);
-	j = 0;
+	j = -1;
 	tmp = env;
 	str = ft_calloc(i + 1, sizeof(char *));
-	while (j < i)
+	while (++j < i)
 	{
 		str[j] = ft_strdup(tmp->name);
 		aux = str[j];
@@ -109,9 +109,7 @@ void	ft_create_export(t_env *env)
 		aux = str[j];
 		str[j] = ft_strjoin_two(aux, "\"");
 		tmp = tmp->next;
-		j++;
 	}
-	i = 0;
 	ft_order_export(str);
 }
 
