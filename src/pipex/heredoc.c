@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/16 11:28:57 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/16 12:57:49 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_execve_msg(t_shell *shell, char **str)
 {
-	if (!ft_strncmp(str[0], "echo\0", 5))
+	if (str[0] && !ft_strncmp(str[0], "echo\0", 5))
 		ft_printf("marinashell: %s%s: command not found\n", str[0], str[1]);
 	else if (ft_path(shell) == EXIT_SUCCESS)
 		ft_printf("marinashell: %s: command not found\n", str[0]);
