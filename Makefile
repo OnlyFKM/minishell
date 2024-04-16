@@ -15,6 +15,7 @@ SRCS =  src/main.c\
 	src/utils/utils.c\
 	src/utils/welcome.c\
 	src/utils/signals.c\
+	src/utils/split_two.c\
 	src/tokendepure/agroup.c\
 	src/tokendepure/createredi.c\
 	src/tokendepure/expand_utils.c\
