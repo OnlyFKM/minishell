@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/16 11:10:09 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/16 11:18:21 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <dirent.h>
 
 /*--------------------------------   MACROS   --------------------------------*/
 // Types
@@ -201,6 +202,7 @@ void		ft_pipex(t_shell *shell, t_tokens *tokens);
 int			ft_check_fullpath(t_shell *shell);
 int			ft_path(t_shell *shell);
 void		ft_execve_msg(t_shell *shell, char **str);
+int			ft_dir(char *path);
 
 //	Init
 //		init.c
@@ -252,6 +254,7 @@ void		ft_change_pwd(t_shell *shell);
 //		cd.c
 void		ft_cd(t_shell *shell, t_tokens *tokens);
 void		ft_cd_next(t_shell *shell, t_tokens *tokens);
+void		ft_home(t_shell *shell);
 void		ft_first_cd(t_shell *shell);
 int			ft_check_oldpwd(t_shell *shell);
 
