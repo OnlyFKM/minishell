@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/16 11:28:57 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/16 11:17:52 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	ft_execve_msg(t_shell *shell, char **str)
 {
-	if (!ft_strncmp(str[0], "echo\0", 5))
-		ft_printf("marinashell: %s%s: command not found\n", str[0], str[1]);
-	else if (ft_path(shell) == EXIT_SUCCESS)
+	if (ft_path(shell) == EXIT_SUCCESS)
 		ft_printf("marinashell: %s: command not found\n", str[0]);
 	else
 		ft_printf("marinashell: %s: No such file or directory\n", str[0]);
