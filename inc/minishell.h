@@ -193,8 +193,7 @@ int			ft_check_path(t_shell *shell, t_tokens *tokens);
 
 //		planner.c
 void		ft_more_cmds(t_shell *shell, t_tokens *tokens);
-void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd,
-				int pid);
+void		ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid);
 void		ft_child(t_shell *shell, t_tokens *tokens, int *fd);
 void		ft_execve(t_shell *shell, t_tokens *tokens);
 
@@ -228,8 +227,7 @@ void		ft_init_token(t_shell *shell, int type, char *str);
 
 //	Free
 //		final_free.c
-void		ft_free_execve(char **str, char **envp, char *cmd,
-				char *path);
+void		ft_free_execve(char **str, char **envp, char *cmd, char *path);
 void		ft_free_loop(t_shell *shell);
 
 //		free.c
@@ -243,8 +241,7 @@ void		ft_free_exit(t_shell *shell);
 void		ft_pwd(t_shell *shell);
 void		ft_exit(t_shell *shell, t_tokens *tokens);
 void		ft_check_number(t_shell *shell, t_tokens *tokens);
-void		ft_status_exit(t_shell *shell, t_tokens *tokens,
-				long status);
+void		ft_status_exit(t_shell *shell, t_tokens *tokens, long status);
 
 //		cd_utils.c
 void		ft_search_dir(t_shell *shell, char *find);
