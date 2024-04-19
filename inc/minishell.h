@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/16 16:47:09 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/19 15:57:44 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ int			ft_onlyexport(t_tokens *token);
 //		utils_pipex.c
 char		*ft_find_path(t_shell *shell, char *cmd);
 char		**ft_update_envp(t_shell *shell);
-void		ft_do_execve(t_shell *shell, t_tokens *tokens, int flag);
+void		ft_shellpath(t_shell *shell);
 void		ft_execve_one(t_shell *shell, t_tokens *tokens);
 int			ft_check_path(t_shell *shell, t_tokens *tokens);
 
@@ -197,7 +197,7 @@ void		ft_execve(t_shell *shell, t_tokens *tokens);
 
 //		heredoc.c
 void		ft_pipex(t_shell *shell, t_tokens *tokens);
-int			ft_check_fullpath(t_shell *shell);
+int			ft_check_fullpath(t_shell *shell, char *str);
 int			ft_path(t_shell *shell);
 void		ft_execve_msg(t_shell *shell, char **str);
 int			ft_dir(char *path);
