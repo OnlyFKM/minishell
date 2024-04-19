@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/16 11:18:21 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:57:44 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,9 +142,6 @@ void		ft_count_cmd(t_shell *shell);
 //		signals.c
 void		ft_sigint(int signum);
 
-//		split_two.c
-char		**ft_split_two(char const *s, char c);
-
 //		welcome.c
 void		ft_welcome(void);
 void		ft_error(t_shell *shell);
@@ -183,11 +180,12 @@ void		ft_miniagroup_two(t_tokens *tmp, t_tokens *aux);
 //		save_export.c
 void		ft_saveexport(t_shell *shell);
 int			ft_onlyexport(t_tokens *token);
+
 //  Pipex
 //		utils_pipex.c
 char		*ft_find_path(t_shell *shell, char *cmd);
 char		**ft_update_envp(t_shell *shell);
-void		ft_do_execve(t_shell *shell, t_tokens *tokens, int flag);
+void		ft_shellpath(t_shell *shell);
 void		ft_execve_one(t_shell *shell, t_tokens *tokens);
 int			ft_check_path(t_shell *shell, t_tokens *tokens);
 
@@ -199,7 +197,7 @@ void		ft_execve(t_shell *shell, t_tokens *tokens);
 
 //		heredoc.c
 void		ft_pipex(t_shell *shell, t_tokens *tokens);
-int			ft_check_fullpath(t_shell *shell);
+int			ft_check_fullpath(t_shell *shell, char *str);
 int			ft_path(t_shell *shell);
 void		ft_execve_msg(t_shell *shell, char **str);
 int			ft_dir(char *path);
@@ -211,8 +209,8 @@ void		ft_first_pwd(t_shell *shell);
 
 //		minitokenizer.c
 t_tokens	*ft_minitokenizer(t_tokens *token, char *str);
-
 //		tokenizer.c
+
 void		ft_token(t_shell *shell, int *i);
 void		ft_token_in_quotes(t_shell *shell, int *i);
 int			ft_quotes(t_shell *shell, int *i);
@@ -266,8 +264,8 @@ void		ft_print_echo(t_tokens *list, int flag);
 //		env.c
 void		ft_env(t_shell *shell, char **envp);
 t_env		*ft_newenv(char *name, char *content);
-void		ft_init_env(t_shell *shell, char *name, char *content);
 void		ft_print_env(t_env *env);
+void		ft_init_env(t_shell *shell, char *name, char *content);
 void		ft_dupenvp(t_shell *shell, char **envp);
 
 //		export_utils.c
