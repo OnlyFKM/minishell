@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/12 18:15:04 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/22 11:30:30 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:33:10 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_checkpipe(t_shell *shell)
 	while (tmp)
 	{
 		if (ft_tokentype(tmp->type))
-			if (!tmp->next || ft_strncmp(tmp->str, "|\0", 2))
+			if (!tmp->next || tmp->next->type == PIPE)
 				shell->error = 5;
 		tmp = tmp->next;
 	}
