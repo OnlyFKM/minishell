@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 16:25:14 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/12 19:23:55 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/22 13:36:09 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_changetype(t_shell *shell)
 	tmp = shell->tokens;
 	while (tmp)
 	{
-		if (shell->cmdflag == 0)
+		if (shell->cmdflag == 0 && tmp->type != PIPE)
 		{
 			tmp->type = 1;
 			shell->cmdflag = 1;
