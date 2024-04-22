@@ -6,11 +6,20 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:48:44 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/16 16:26:01 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:52:14 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
+
+void	ft_shellpath(t_shell *shell)
+{
+	if (shell->path != NULL)
+	{
+		free(shell->path);
+		shell->path = NULL;
+	}
+}
 
 char	**ft_update_envp(t_shell *shell)
 {
@@ -70,6 +79,8 @@ void	ft_execve_two(t_shell *shell, char **str, char **envp)
 {
 	int	pid;
 
+	if (str[0] != NULL)
+		free(str[0]);
 	str[0] = ft_strdup(shell->path);
 	pid = fork();
 	if (pid == 0 && str != NULL)
@@ -99,8 +110,11 @@ void	ft_execve_one(t_shell *shell, t_tokens *tokens)
 	envp = ft_update_envp(shell);
 	if (ft_path(shell) == EXIT_SUCCESS)
 	{
-		if (ft_check_fullpath(shell) == EXIT_FAILURE)
+		if (ft_check_fullpath(shell, tokens->str) == EXIT_FAILURE)
+		{
+			ft_shellpath(shell);
 			shell->path = ft_find_path(shell, cmd);
+		}
 	}
 	if (shell->path != NULL)
 		ft_execve_two(shell, str, envp);

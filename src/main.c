@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
+/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 17:01:20 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/12 19:24:20 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/22 11:19:05 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_builtins(t_shell *shell, char *str)
 	else if (ft_strncmp(aux->str, "marina\0", 7) == EXIT_SUCCESS)
 		printf("Marina, DO NOT DELETE my home pls\n");
 	else if (ft_strncmp(aux->str, "env\0", 4) == EXIT_SUCCESS)
-		ft_print_env(shell->env);
+		ft_print_env(shell, aux);
 	else if (ft_strncmp(aux->str, "exit\0", 5) == EXIT_SUCCESS)
 		ft_exit(shell, aux);
 	else if (ft_strncmp(aux->str, "unset\0", 6) == EXIT_SUCCESS)

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 16:33:00 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/15 17:21:36 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:19:20 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,30 @@ void	ft_dupenvp(t_shell *shell, char **envp)
 	shell->envp[j] = NULL;
 }
 
-void	ft_print_env(t_env *env)
+void	ft_print_env(t_shell *shell, t_tokens *tokens)
 {
-	t_env	*tmp;
+	t_env		*tmp;
+	t_tokens	*aux;
 
-	tmp = env;
-	while (tmp)
+	tmp = shell->env;
+	aux = tokens;
+	if (aux->next)
 	{
-		if (tmp->name && tmp->content)
+		ft_printf("env: %s: No such file or directory\n", aux->next->str);
+		shell->status = 127;
+	}
+	else
+	{
+		while (tmp)
 		{
-			ft_printf("%s", tmp->name);
-			ft_printf("=");
-			ft_printf("%s\n", tmp->content);
+			if (tmp->name && tmp->content)
+			{
+				ft_printf("%s", tmp->name);
+				ft_printf("=");
+				ft_printf("%s\n", tmp->content);
+			}
+			tmp = tmp->next;
 		}
-		tmp = tmp->next;
 	}
 }
 

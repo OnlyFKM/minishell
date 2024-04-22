@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:57:03 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/15 12:35:28 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/19 15:53:48 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_execve(t_shell *shell, t_tokens *tokens)
 {
-	char	*path;
 	char	*cmd;
 	char	*aux;
 	char	**str;
@@ -25,18 +24,19 @@ void	ft_execve(t_shell *shell, t_tokens *tokens)
 	cmd = ft_strdup("/");
 	aux = cmd;
 	cmd = ft_strjoin_two(aux, str[0]);
-	if (ft_check_fullpath(shell) == EXIT_SUCCESS)
-		path = ft_strdup(tokens->str);
-	else
-		path = ft_find_path(shell, cmd);
+	if (ft_check_fullpath(shell, tokens->str) == EXIT_FAILURE)
+	{
+		ft_shellpath(shell);
+		shell->path = ft_strdup(ft_find_path(shell, cmd));
+	}
 	envp = ft_update_envp(shell);
 	if (str != NULL)
 	{
 		free(str[0]);
-		str[0] = ft_strdup(path);
+		str[0] = ft_strdup(shell->path);
 	}
-	if (path != NULL)
-		shell->status = execve(path, str, envp);
+	if (shell->path != NULL)
+		shell->status = execve(shell->path, str, envp);
 	else
 		ft_execve_msg(shell, str);
 }
@@ -63,7 +63,6 @@ void	ft_parent(t_shell *shell, t_tokens *tokens, int *fd, int pid)
 	t_tokens	*tmp;
 	int			status;
 
-	(void)shell;
 	tmp = tokens;
 	close(fd[1]);
 	dup2(fd[0], STDIN_FILENO);

@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 16:48:53 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/16 16:39:48 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/22 12:31:40 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,19 @@ int	ft_dir(char *path)
 		return (0);
 }
 
-int	ft_check_fullpath(t_shell *shell)
+int	ft_check_fullpath(t_shell *shell, char *str)
 {
 	char	**tmp;
-	int		i;
 
 	tmp = NULL;
-	tmp = ft_split(shell->tokens->str, ' ');
-	i = 0;
+	tmp = ft_split(str, ' ');
 	if (access(tmp[0], X_OK) == EXIT_SUCCESS && ft_dir(tmp[0]) == 0)
 	{
+		if (shell->path != NULL)
+		{
+			free(shell->path);
+			shell->path = NULL;
+		}
 		shell->path = ft_strdup(tmp[0]);
 		ft_free_double(tmp);
 		return (EXIT_SUCCESS);
