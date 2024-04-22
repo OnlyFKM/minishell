@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokeneizer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
+/*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 15:40:13 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/12 18:25:11 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/22 13:11:35 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,18 +78,24 @@ int	ft_type(t_tokens *token)
 
 void	ft_token(t_shell *shell, int *i)
 {
-	char	*tmp;
-	char	*start;
-	int		j;
+	char		*tmp;
+	t_tokens	*aux;
+	char		*start;
+	int			j;
 
 	start = shell->line + *i;
 	j = 0;
+	aux = NULL;
+	if (shell->tokens)
+		aux = ft_lasttoken(shell->tokens);
 	while (shell->line[*i] && !ft_isspecial(shell->line[*i]))
 	{
 		(*i)++;
 		j++;
 	}
 	tmp = ft_strndup(start, j);
+	if (aux && aux->type == PIPE)
+		shell->space = 0;
 	if (shell->tokens == NULL || ft_type(ft_lasttoken(shell->tokens)) == 9)
 		ft_init_token(shell, CMD, tmp);
 	else
