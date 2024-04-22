@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/12 19:00:22 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/22 12:31:55 by yfang            ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/04/22 13:14:44 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "../../inc/minishell.h"
 
@@ -18,7 +19,7 @@ void	ft_sigint(int signum)
 	if (g_signal != 1 && g_signal != 42)
 	{
 		write(1, "\33[K\n", 5);
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		g_signal = 1;
 	}
 	else if (g_signal == 42)
@@ -31,10 +32,10 @@ void	ft_sigint(int signum)
 	{
 		rl_on_new_line();
 		rl_redisplay();
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 		write(1, "\33[K\n", 5);
 		rl_on_new_line();
 		rl_redisplay();
-		rl_replace_line("", 0);
+		//rl_replace_line("", 0);
 	}
 }

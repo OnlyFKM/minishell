@@ -6,7 +6,7 @@
 /*   By: yfang <yfang@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 17:07:28 by yfang             #+#    #+#             */
-/*   Updated: 2024/04/10 19:10:24 by yfang            ###   ########.fr       */
+/*   Updated: 2024/04/22 12:59:43 by yfang            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	ft_agroup(t_shell *shell)
 	aux = tmp->next;
 	while (aux)
 	{
-		if (aux->space == 1)
+		if (aux->space == 1 && tmp->type != PIPE && aux->type != PIPE)
 		{
 			str = ft_strdup(tmp->str);
 			free(tmp->str);
