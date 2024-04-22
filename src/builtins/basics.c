@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:32:51 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/19 14:30:25 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:20:49 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,11 @@ void	ft_check_number(t_shell *shell, t_tokens *tokens)
 	}
 }
 
-void	ft_leaks()
-{
-	system("leaks -q minishell");
-}
-
 void	ft_exit(t_shell *shell, t_tokens *tokens)
 {
 	t_tokens	*tmp;
 
 	tmp = tokens;
-	atexit(ft_leaks);
 	if (tmp == NULL)
 	{
 		ft_free_exit(shell);

@@ -6,7 +6,7 @@
 /*   By: frcastil <frcastil@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:12:52 by frcastil          #+#    #+#             */
-/*   Updated: 2024/04/19 15:57:44 by frcastil         ###   ########.fr       */
+/*   Updated: 2024/04/22 11:19:37 by frcastil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,7 +264,7 @@ void		ft_print_echo(t_tokens *list, int flag);
 //		env.c
 void		ft_env(t_shell *shell, char **envp);
 t_env		*ft_newenv(char *name, char *content);
-void		ft_print_env(t_env *env);
+void		ft_print_env(t_shell *shell, t_tokens *tokens);
 void		ft_init_env(t_shell *shell, char *name, char *content);
 void		ft_dupenvp(t_shell *shell, char **envp);
 
